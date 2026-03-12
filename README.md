@@ -10,7 +10,7 @@ A community platform for plant lovers to share plant care knowledge and exchange
 ## Class Link
 
 - [CS5610-2026-Spring](https://johnguerra.co/classes/webDevelopment_online_spring_2026/)
-- This is Project3 for this class
+- This is Project 3 for this class
 
 ## Website Link
 
@@ -20,18 +20,38 @@ A community platform for plant lovers to share plant care knowledge and exchange
 ## How to Use the Website
 
 - [Slides]()
-
 - [Video]()
 
 ## Project Link
 
-- [GitHub Repo]()
+- [GitHub Repo](https://github.com/Jiahui-Zhou98/GreenCorner-project)
 
 ## Project Description
 
+GreenCorner is a community platform for plant lovers to both share plant care knowledge and exchange plants locally. Many beginners struggle to find practical advice for watering, lighting, propagation, and plant health, while experienced plant owners often have extra plants, cuttings, or unwanted pots they want to sell, give away, or rehome. GreenCorner brings these two needs together in one space.
+
 ## Project Objective
 
+- Help beginners find trustworthy, community-sourced plant care advice
+- Allow experienced plant owners to share care knowledge through posts
+- Enable users to list plants for free adoption, sale, or rehoming
+- Connect budget-conscious plant lovers with affordable or free local plants
+
 ## Core Features
+
+**Plant Care Posts**
+
+- Browse and filter care posts by plant type, difficulty, and tags
+- Read full care guides including watering, lighting, and propagation tips
+- Create, edit, and delete your own care posts
+- Mark posts as beginner-friendly or low-maintenance
+
+**Plant Listings**
+
+- Browse plant listings filtered by type, price, location, condition, and status
+- View detailed listing pages with full description and seller contact info
+- Create listings marked as free, for sale, or rehoming
+- Edit and delete your own listings
 
 ## Design Document
 
@@ -39,117 +59,190 @@ A community platform for plant lovers to share plant care knowledge and exchange
 
 ## Tech Stack
 
-- **Frontend**: React 19 with Hooks, Vite, CSS3, JavaScript ES6 modules
+- **Frontend**: React 19 with Hooks, Vite, CSS3, JavaScript ES6 modules, React Router, React Bootstrap
 - **Backend**: Node.js, Express
-- **Database**: MongoDB (native Node.js driver)
+- **Database**: MongoDB (native Node.js driver, no Mongoose)
+- **No prohibited libraries**: no Axios, no Mongoose, no cors helper libraries
 
 ## Project Structure
 
 ```
 plant-community/
-├── server/                          # Node.js + Express backend
-│   ├── backend.js                   # Express server entry point
+├── server/                              # Node.js + Express backend
+│   ├── backend.js                       # Express server entry point
 │   ├── db/
-│   │   ├── connection.js            # MongoDB connection helper
-│   │   ├── CarePostsDB.js           # CRUD methods for carePosts collection
-│   │   └── PlantListingsDB.js       # CRUD methods for plantListings collection
+│   │   └── connection.js                # MongoDB singleton connection
 │   ├── routes/
-│   │   ├── carePosts.js             # API routes for /api/careposts
-│   │   └── plantListings.js         # API routes for /api/listings
+│   │   ├── carePosts.js                 # API routes for /api/careposts
+│   │   └── plantListings.js             # API routes for /api/plant-listings
 │   └── seed/
-│       ├── seedCarePosts.js         # Seed script for care posts (1000 entries)
-│       └── seedPlantListings.js     # Seed script for plant listings
+│       ├── seedCarePosts.js             # Seed script for care posts
+│       └── seedPlantListings.js         # Seed script for plant listings (1000 entries)
 │
-└── frontend/                        # Vite + React frontend
-    ├── index.html
-    ├── vite.config.js
-    ├── package.json
-    └── src/
-        ├── main.jsx                 # React entry point
-        ├── App.jsx                  # Root component with routing
-        ├── App.css
-        ├── index.css
-        ├── styles/
-        │   └── main.css             # Global styles: layout, navbar, footer, design system
-        ├── components/              # Shared components used across pages
-        │   ├── Navbar.jsx           # Navigation bar (Home / About / Care Posts / Plant Listings)
-        │   ├── Navbar.css
-        │   ├── Footer.jsx
-        │   └── Footer.css
-        └── pages/
-            ├── Home/
-            │   ├── HomePage.jsx     # Landing page with platform intro
-            │   └── HomePage.css
-            ├── About/
-            │   ├── AboutPage.jsx    # About the project and team
-            │   └── AboutPage.css
-            ├── CarePosts/
-            │   ├── CarePostsPage.jsx          # Browse and filter care posts
-            │   ├── CarePostsPage.css
-            │   ├── CarePostDetailPage.jsx      # Full content of a single care post
-            │   ├── CarePostDetailPage.css
-            │   ├── CreateCarePostPage.jsx      # Form to create a new care post
-            │   ├── CreateCarePostPage.css
-            │   ├── EditCarePostPage.jsx        # Form to edit an existing care post
-            │   ├── EditCarePostPage.css
-            │   └── components/
-            │       ├── CarePostCard.jsx        # Summary card linking to detail page
-            │       ├── CarePostList.jsx        # Collection renderer (PropTypes required)
-            │       └── CarePostFilter.jsx      # Filter bar (plant type, difficulty, tags)
-            └── PlantListings/
-                ├── PlantListingsPage.jsx       # Browse and filter plant listings
-                ├── PlantListingsPage.css
-                ├── ListingDetailPage.jsx       # Full detail of a single listing
-                ├── ListingDetailPage.css
-                ├── CreateListingPage.jsx       # Form to create a new listing
-                ├── CreateListingPage.css
-                ├── EditListingPage.jsx         # Form to edit an existing listing
-                ├── EditListingPage.css
-                └── components/
-                    ├── ListingCard.jsx         # Summary card linking to detail page
-                    ├── ListingList.jsx         # Collection renderer (PropTypes required)
-                    └── ListingFilter.jsx       # Filter bar (type, price, location, free)
+├── frontend/                            # Vite + React frontend
+│   ├── index.html
+│   ├── vite.config.js
+│   ├── package.json
+│   └── src/
+│       ├── main.jsx                     # React entry point with BrowserRouter
+│       ├── App.jsx                      # Root component with route definitions
+│       ├── styles/
+│       │   └── main.css                 # Global CSS variables, layout, typography
+│       ├── components/
+│       │   ├── Navbar.jsx               # Sticky navigation bar
+│       │   ├── Navbar.css
+│       │   ├── Footer.jsx
+│       │   └── Footer.css
+│       └── pages/
+│           ├── Home/
+│           │   ├── HomePage.jsx
+│           │   └── HomePage.css
+│           ├── About/
+│           │   ├── AboutPage.jsx        # About page with 5-section layout
+│           │   ├── AboutPage.css
+│           │   ├── BubbleHero.jsx       # Floating bubble image hero component
+│           │   └── BubbleHero.css
+│           ├── CarePosts/
+│           │   ├── CarePostsPage.jsx
+│           │   ├── CarePostsPage.css
+│           │   ├── CarePostDetailPage.jsx
+│           │   ├── CarePostDetailPage.css
+│           │   ├── CreateCarePostPage.jsx
+│           │   ├── CreateCarePostPage.css
+│           │   ├── EditCarePostPage.jsx
+│           │   ├── EditCarePostPage.css
+│           │   └── components/
+│           │       ├── CarePostCard.jsx
+│           │       ├── CarePostList.jsx
+│           │       └── CarePostFilter.jsx
+│           └── PlantListings/
+│               ├── PlantListingsPage.jsx    # Listings page with sidebar filter
+│               ├── PlantListingsPage.css
+│               ├── ListingCard.jsx          # Card component with PropTypes
+│               ├── ListingDetailPage.jsx
+│               ├── ListingDetailPage.css
+│               ├── CreateListingPage.jsx
+│               ├── CreateListingPage.css
+│               ├── EditListingPage.jsx
+│               ├── EditListingPage.css
+│               └── components/
+│                   ├── ListingCard.jsx
+│                   ├── ListingList.jsx
+│                   └── ListingFilter.jsx
+│
+├── .env.example                         # Environment variable template
+├── .gitignore
+├── package.json                         # Backend dependencies and scripts
+└── README.md
 ```
 
 ## Pages & Routes
 
-| Page             | Route                 | Description                |
-| ---------------- | --------------------- | -------------------------- |
-| Home             | `/`                   | Platform landing page      |
-| About            | `/about`              | Project and team info      |
-| Care Posts       | `/careposts`          | Browse all care posts      |
-| Care Post Detail | `/careposts/:id`      | Read a single care post    |
-| Create Care Post | `/careposts/new`      | Submit a new care post     |
-| Edit Care Post   | `/careposts/:id/edit` | Edit an existing care post |
-| Plant Listings   | `/listings`           | Browse all plant listings  |
-| Listing Detail   | `/listings/:id`       | View a single listing      |
-| Create Listing   | `/listings/new`       | Submit a new listing       |
-| Edit Listing     | `/listings/:id/edit`  | Edit an existing listing   |
+| Page             | Route                 | Description                        |
+| ---------------- | --------------------- | ---------------------------------- |
+| Home             | `/`                   | Platform landing page              |
+| About            | `/about`              | Project info, features, and CTA    |
+| Care Posts       | `/careposts`          | Browse and filter care posts       |
+| Care Post Detail | `/careposts/:id`      | Read a single care post            |
+| Create Care Post | `/careposts/new`      | Submit a new care post             |
+| Edit Care Post   | `/careposts/:id/edit` | Edit an existing care post         |
+| Plant Listings   | `/listings`           | Browse and filter plant listings   |
+| Listing Detail   | `/listings/:id`       | View a single listing with details |
+| Create Listing   | `/listings/new`       | Submit a new plant listing         |
+| Edit Listing     | `/listings/:id/edit`  | Edit an existing listing           |
 
 ## API Endpoints
 
-| Method | Endpoint             | Description                           |
-| ------ | -------------------- | ------------------------------------- |
-| GET    | `/api/careposts`     | Get all care posts (supports filters) |
-| GET    | `/api/careposts/:id` | Get a single care post                |
-| POST   | `/api/careposts`     | Create a new care post                |
-| PUT    | `/api/careposts/:id` | Update a care post                    |
-| DELETE | `/api/careposts/:id` | Delete a care post                    |
-| GET    | `/api/listings`      | Get all listings (supports filters)   |
-| GET    | `/api/listings/:id`  | Get a single listing                  |
-| POST   | `/api/listings`      | Create a new listing                  |
-| PUT    | `/api/listings/:id`  | Update a listing                      |
-| DELETE | `/api/listings/:id`  | Delete a listing                      |
+| Method | Endpoint                  | Description                           |
+| ------ | ------------------------- | ------------------------------------- |
+| GET    | `/api/careposts`          | Get all care posts (supports filters) |
+| GET    | `/api/careposts/:id`      | Get a single care post                |
+| POST   | `/api/careposts`          | Create a new care post                |
+| PUT    | `/api/careposts/:id`      | Update a care post                    |
+| DELETE | `/api/careposts/:id`      | Delete a care post                    |
+| GET    | `/api/plant-listings`     | Get all listings (supports filters)   |
+| GET    | `/api/plant-listings/:id` | Get a single listing                  |
+| POST   | `/api/plant-listings`     | Create a new listing                  |
+| PUT    | `/api/plant-listings/:id` | Update a listing                      |
+| DELETE | `/api/plant-listings/:id` | Delete a listing                      |
+
+### Plant Listings Filter Query Params
+
+`GET /api/plant-listings?plantType=Tropical&listingType=free&condition=good&status=available&maxPrice=20&page=1&limit=18`
 
 ## Work Distribution
 
-- **[Your Name]** — Plant Care Posts: `carePosts` collection, `CarePostsDB.js`, `routes/carePosts.js`, seed script, and all Care Posts frontend pages.
-- **[Teammate Name]** — Plant Listings: `plantListings` collection, `PlantListingsDB.js`, `routes/plantListings.js`, seed script, and all Plant Listings frontend pages.
-- **Shared** — `backend.js`, `connection.js`, `Navbar`, `Footer`, and `main.css`.
+- **Yi-Peng Chiang** — Plant Care Posts: `carePosts` collection, `routes/carePosts.js`, seed script, and all Care Posts frontend pages.
+- **Jiahui Zhou** — Plant Listings: `plantListings` collection, `routes/plantListings.js`, seed script, and all Plant Listings frontend pages. Also responsible for About page and shared UI components (Navbar, Footer).
 
 ## Screenshots
 
 ## Instructions (How to get started)
+
+### Prerequisites
+
+- Node.js v18+
+- MongoDB running locally on port 27017
+
+### Setup
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/Jiahui-Zhou98/GreenCorner-project.git
+   cd GreenCorner-project
+   ```
+
+2. Create a `.env` file in the root directory:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Edit `.env` and set your MongoDB connection string:
+
+   ```
+   MONGODB_URI=mongodb://localhost:27017/greencorner
+   PORT=3000
+   ```
+
+3. Install backend dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Install frontend dependencies:
+
+   ```bash
+   cd frontend && npm install && cd ..
+   ```
+
+5. Seed the database:
+   ```bash
+   npm run seed:listings
+   npm run seed:careposts
+   ```
+
+### Running the app
+
+Open two terminals:
+
+**Terminal 1 — Backend:**
+
+```bash
+npm run dev
+```
+
+Backend runs on `http://localhost:3000`
+
+**Terminal 2 — Frontend:**
+
+```bash
+cd frontend && npm run dev
+```
+
+Frontend runs on `http://localhost:5173`
 
 ## License
 
