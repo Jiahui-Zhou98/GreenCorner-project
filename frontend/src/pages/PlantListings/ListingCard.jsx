@@ -9,6 +9,13 @@ const TYPE_EMOJI = {
   Fern: "🍀",
   Flowering: "🌸",
   Cactus: "🌵",
+  Foliage: "🍃",
+  Trailing: "🪝",
+  Aquatic: "💧",
+  Carnivorous: "🪲",
+  Bulb: "🌷",
+  "Air Plant": "🌬️",
+  Bonsai: "🎋",
 };
 
 const LISTING_BADGE = {
@@ -19,14 +26,14 @@ const LISTING_BADGE = {
 
 const CONDITION_STYLE = {
   excellent: { background: "#2c4f34", color: "#f1ece4", label: "Excellent" },
-  good:      { background: "#6a9e6a", color: "#fff",    label: "Good"      },
-  fair:      { background: "#b8d4b8", color: "#2c4f34", label: "Fair"      },
+  good: { background: "#6a9e6a", color: "#fff", label: "Good" },
+  fair: { background: "#b8d4b8", color: "#2c4f34", label: "Fair" },
 };
 
 const STATUS_STYLE = {
   available: { background: "#e8f5e8", color: "#2c4f34", label: "Available" },
-  pending:   { background: "#fff3cd", color: "#856404", label: "Pending"   },
-  sold:      { background: "#e9ecef", color: "#6c757d", label: "Sold"      },
+  pending: { background: "#fff3cd", color: "#856404", label: "Pending" },
+  sold: { background: "#e9ecef", color: "#6c757d", label: "Sold" },
 };
 
 export default function ListingCard({ listing }) {
@@ -68,13 +75,19 @@ export default function ListingCard({ listing }) {
           </Badge>
           <span
             className="listing-badge-condition me-1"
-            style={{ background: conditionStyle.background, color: conditionStyle.color }}
+            style={{
+              background: conditionStyle.background,
+              color: conditionStyle.color,
+            }}
           >
             {conditionStyle.label}
           </span>
           <span
             className="listing-badge-condition"
-            style={{ background: statusStyle.background, color: statusStyle.color }}
+            style={{
+              background: statusStyle.background,
+              color: statusStyle.color,
+            }}
           >
             {statusStyle.label}
           </span>

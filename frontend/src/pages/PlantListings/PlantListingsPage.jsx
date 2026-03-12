@@ -10,6 +10,13 @@ const PLANT_TYPES = [
   "Fern",
   "Flowering",
   "Cactus",
+  "Foliage",
+  "Trailing",
+  "Aquatic",
+  "Carnivorous",
+  "Bulb",
+  "Air Plant",
+  "Bonsai",
 ];
 const LISTING_TYPES = ["free", "for sale", "rehoming"];
 const CONDITIONS = ["excellent", "good", "fair"];
