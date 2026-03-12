@@ -10,7 +10,7 @@ A community platform for plant lovers to share plant care knowledge and exchange
 ## Class Link
 
 - [CS5610-2026-Spring](https://johnguerra.co/classes/webDevelopment_online_spring_2026/)
-- This is Project3 for this class
+- This is Project3 for the class
 
 ## Website Link
 
