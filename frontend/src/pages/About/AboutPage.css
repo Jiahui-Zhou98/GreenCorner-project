@@ -1,0 +1,108 @@
+/* ── 2. Mission ───────────────────────────────────── */
+.about-mission {
+  background-color: var(--bg-light);
+  padding: 0.5rem 0 3rem;
+}
+
+.about-mission h2 {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--green-dark);
+  text-align: center;
+}
+
+.about-mission p {
+  font-size: 1.05rem;
+  color: var(--text-mid);
+  line-height: 1.85;
+}
+
+/* ── 3. Features ──────────────────────────────────── */
+.about-features {
+  /* background-color: #e2efd4; */
+  padding: 5rem 0;
+  border-top: 10px dotted #e2efd4;
+  border-bottom: 10px dotted #e2efd4;
+}
+
+.about-features h2 {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--green-dark);
+}
+
+.about-card {
+  border: none;
+  border-radius: 14px;
+  background-color: #fff;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 28px rgba(44, 79, 52, 0.15);
+}
+
+.about-card .card-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--green-dark);
+  margin-bottom: 1rem;
+}
+
+.about-card .card-text {
+  font-size: 1.05rem;
+  color: var(--text-mid);
+  line-height: 1.85;
+}
+
+/* ── 4. CTA ───────────────────────────────────────── */
+.about-cta {
+  background-color: var(--bg-light);
+  padding: 5rem 0;
+}
+
+.about-cta h2 {
+  font-family: var(--font-display);
+  color: var(--green-dark);
+  font-size: 2.5rem;
+}
+
+.about-cta p {
+  color: var(--text-mid);
+  font-size: 1.05rem;
+}
+
+.cta-btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  --bs-btn-bg: #2c4f34;
+  --bs-btn-border-color: #2c4f34;
+  --bs-btn-color: #f1ece4;
+  --bs-btn-hover-bg: #3d6b46;
+  --bs-btn-hover-border-color: #3d6b46;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-active-bg: #2c4f34;
+  --bs-btn-active-border-color: #2c4f34;
+  --bs-btn-active-color: #f1ece4;
+  border-radius: 10px;
+  padding: 12px 36px;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.4px;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.2s ease;
+}
+
+.cta-btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 20px rgba(44, 79, 52, 0.3);
+}

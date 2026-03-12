@@ -1,0 +1,38 @@
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+}
+
+.bubble-hero {
+  position: relative;
+  width: 100%;
+  height: 375px;
+  background-color: var(--bg-light);
+  overflow: hidden;
+  margin-top: 1.8rem;
+  padding-top: 40px;
+}
+
+.bubble-wrap {
+  position: absolute;
+  border-radius: 50%;
+  overflow: hidden;
+  animation-name: float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  box-shadow:
+    0 0 40px 18px rgba(245, 249, 245, 0.85),
+    inset 0 0 30px 14px rgba(245, 249, 245, 0.65);
+}
+
+.bubble-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

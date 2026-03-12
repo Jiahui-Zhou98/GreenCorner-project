@@ -1,0 +1,28 @@
+{
+  "name": "plant-community",
+  "version": "1.0.0",
+  "description": "GreenCorner - A Community Platform for Plant Care Sharing and Plant Rehoming",
+  "main": "server/backend.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server/backend.js",
+    "dev": "nodemon server/backend.js",
+    "seed:careposts": "node server/seed/seedCarePosts.js",
+    "seed:listings": "node server/seed/seedPlantListings.js"
+  },
+  "keywords": [],
+  "author": "Jiahui Zhou and Yi-Peng Chiang",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "express": "latest",
+    "mongodb": "latest"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.0.3",
+    "eslint-config-prettier": "^10.1.8",
+    "nodemon": "^3.1.14",
+    "prettier": "^3.8.1"
+  }
+}

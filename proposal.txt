@@ -1,0 +1,30 @@
+Project3 Proposal
+Project Name
+GreenCorner - A Community Platform for Plant Care Sharing and Plant Rehoming
+Team Members
+[Yi-Peng Chiang] - Plant Care Posts
+[Jiahui Zhou] - Plant Listings
+Project Description
+GreenCorner is a community platform for plant lovers to both share plant care knowledge and exchange plants locally. Many beginners struggle to find practical advice for watering, lighting, propagation, and plant health, while experienced plant owners often have extra plants, cuttings, or unwanted pots they want to sell, give away, or rehome. GreenCorner brings these two needs together in one space. Users can post plant care guides and tips for others to learn from, while also creating plant listings for sale, free adoption, or rehoming. The platform is designed as a lightweight, community-first alternative to both generic marketplaces and plant reminder apps.
+Tech Stack
+CSS3, HTML5, JavaScript (ES6 modules), Node.js, Express, React with Hooks (frontend rendering), MongoDB using the Node.js driver.
+No Axios, No Mongoose, No CORS helper libraries, and no other prohibited libraries.
+Defines PropTypes for every React collection component.
+User Personas
+Beginner Plant Owner - Wants simple, trustworthy advice for keeping houseplants alive.
+Experienced Plant Enthusiast - Wants to share care knowledge and plant care tips with others.
+Moving or Downsizing Plant Owner - Wants to sell, give away, or rehome plants when they no longer have space or time to care for them.
+Budget-Conscious Plant Lover - Wants affordable or free plants from a local plant community.
+User Stories
+[Yi-Peng Chiang] - Plant Care Posts (Collection: carePosts)
+As a plant owner, I want to create a care post with plant type, lighting, watering, and care tips, so I can share useful knowledge with others.
+As a plant owner, I want to view, edit, and delete my care posts, so I can keep my content accurate and updated.
+As a beginner, I want to browse care posts filtered by plant type, care difficulty, and tags, so I can find advice that matches my needs.
+As a user, I want to read posts about common problems like overwatering, pests, or yellow leaves, so I can learn from other people’s experience.
+As a plant enthusiast, I want to mark posts as beginner-friendly or low-maintenance, so new plant owners can find helpful content more easily.
+[Jiahui Zhou] - Plant Listings (Collection: plantListings)
+As a plant owner, I want to create a plant listing with plant type, condition, price, and location, so I can sell or rehome my plant.
+As a plant owner, I want to mark a listing as free, for sale, or rehoming, so I can clearly show what kind of exchange I want.
+As a seller, I want to view, edit, and delete my listings, so I can manage my available plants.
+As a buyer, I want to browse plant listings filtered by plant type, price, location, and free-only status, so I can find plants that fit my budget and interest.
+As a student, I want to find low-cost or free plants nearby, so I can grow my collection affordably.

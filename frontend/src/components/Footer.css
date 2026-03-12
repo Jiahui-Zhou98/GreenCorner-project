@@ -1,0 +1,15 @@
+/* ── Footer ───────────────────────────────────────── */
+.site-footer {
+  background: linear-gradient(to top, #c7d8ac 70%, #e4f0e4 100%);
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.footer-text {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #2c4f34;
+  letter-spacing: 0.4px;
+}

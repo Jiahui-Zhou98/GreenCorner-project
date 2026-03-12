@@ -1,0 +1,154 @@
+/* ── Navbar Shell ─────────────────────────────────── */
+nav.app-navbar {
+  background: linear-gradient(to bottom, #c7d8ac 70%, #e4f0e4 100%);
+  padding: 0;
+  box-shadow: 0 2px 16px rgba(44, 79, 52, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav.app-navbar .container {
+  padding-top: 18px;
+  padding-bottom: 24px;
+}
+
+/* ── Brand / Logo ─────────────────────────────────── */
+nav.app-navbar .navbar-brand-custom {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.brand-text {
+  line-height: 1;
+  letter-spacing: 0.2px;
+}
+
+.brand-green {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #2c4f34;
+  transition: color 0.2s ease;
+}
+
+.brand-corner {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #2c4f34;
+  transition: color 0.2s ease;
+}
+
+nav.app-navbar .navbar-brand-custom:hover .brand-green,
+nav.app-navbar .navbar-brand-custom:hover .brand-corner {
+  color: #4a7c4a;
+}
+
+.navbar-leaf-icon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+nav.app-navbar .navbar-brand-custom:hover .navbar-leaf-icon {
+  transform: rotate(-8deg) scale(1.08);
+}
+
+/* ── Nav Links ────────────────────────────────────── */
+nav.app-navbar .nav-link {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.93rem;
+  color: #2c4f34;
+  padding: 8px 14px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+  transition: color 0.18s ease;
+  position: relative;
+}
+
+nav.app-navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: calc(100% - 20px);
+  height: 3px;
+  background-color: #2c4f34;
+  border-radius: 3px;
+  transform-origin: center;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+nav.app-navbar .nav-link:hover {
+  color: #1e3a24;
+  background-color: transparent;
+}
+
+nav.app-navbar .nav-link:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+nav.app-navbar .nav-link.active {
+  color: #1e3a24;
+  font-weight: 600;
+  background-color: transparent;
+}
+
+nav.app-navbar .nav-link.active::after {
+  transform: translateX(-50%) scaleX(1);
+  box-shadow: 0 1px 8px rgba(44, 79, 52, 0.35);
+}
+
+/* ── Sign In Button ───────────────────────────────── */
+.signin-btn {
+  --bs-btn-bg: #2c4f34;
+  --bs-btn-border-color: #2c4f34;
+  --bs-btn-color: #f1ece4;
+  --bs-btn-hover-bg: transparent;
+  --bs-btn-hover-border-color: #2c4f34;
+  --bs-btn-hover-color: #2c4f34;
+  --bs-btn-active-bg: #2c4f34;
+  --bs-btn-active-border-color: #2c4f34;
+  --bs-btn-active-color: #f1ece4;
+  --bs-btn-focus-shadow-rgb: 44, 79, 52;
+  border-radius: 10px;
+  padding: 8px 22px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  letter-spacing: 0.4px;
+  border-width: 1.5px;
+  transition:
+    background-color 0.22s ease,
+    color 0.22s ease,
+    transform 0.18s ease,
+    box-shadow 0.22s ease;
+}
+
+.signin-btn:hover {
+  transform: scale(1.05);
+  box-shadow:
+    0 0 16px rgba(44, 79, 52, 0.3),
+    0 4px 12px rgba(44, 79, 52, 0.15);
+}
+
+/* ── Mobile Toggle ────────────────────────────────── */
+nav.app-navbar .navbar-toggler {
+  border-color: rgba(44, 79, 52, 0.4);
+  padding: 4px 8px;
+}
+
+nav.app-navbar .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2844%2C79%2C52%2C0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+nav.app-navbar .navbar-toggler:focus {
+  box-shadow: 0 0 0 3px rgba(44, 79, 52, 0.2);
+}
