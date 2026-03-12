@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Container, Row, Col, Form, Button, Spinner } from "react-bootstrap";
 import ListingCard from "./ListingCard.jsx";
 import "./PlantListingsPage.css";
@@ -31,13 +32,22 @@ const DEFAULT_FILTERS = {
 };
 
 export default function PlantListingsPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [listings, setListings] = useState([]);
   const [total, setTotal] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
-  const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [filters, setFilters] = useState(DEFAULT_FILTERS);
+
+  // Read current state from URL
+  const page = Number(searchParams.get("page") || 1);
+  const filters = {
+    plantType: searchParams.get("plantType") || "",
+    listingType: searchParams.get("listingType") || "",
+    condition: searchParams.get("condition") || "",
+    maxPrice: searchParams.get("maxPrice") || "",
+    status: searchParams.get("status") || "",
+  };
 
   useEffect(() => {
     async function fetchListings() {
@@ -69,16 +79,29 @@ export default function PlantListingsPage() {
     }
 
     fetchListings();
-  }, [filters, page]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   function handleFilterChange(key, value) {
-    setFilters((prev) => ({ ...prev, [key]: value }));
-    setPage(1);
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (value) next.set(key, value);
+      else next.delete(key);
+      next.set("page", "1");
+      return next;
+    });
   }
 
   function handleReset() {
-    setFilters(DEFAULT_FILTERS);
-    setPage(1);
+    setSearchParams({});
+  }
+
+  function handlePageChange(newPage) {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      next.set("page", String(newPage));
+      return next;
+    });
   }
 
   return (
@@ -220,7 +243,7 @@ export default function PlantListingsPage() {
                 <button
                   className="page-btn"
                   disabled={page === 1}
-                  onClick={() => setPage((p) => p - 1)}
+                  onClick={() => handlePageChange(page - 1)}
                 >
                   Prev
                 </button>
@@ -244,7 +267,7 @@ export default function PlantListingsPage() {
                       <button
                         key={item}
                         className={`page-btn ${page === item ? "active" : ""}`}
-                        onClick={() => setPage(item)}
+                        onClick={() => handlePageChange(item)}
                       >
                         {item}
                       </button>
@@ -254,7 +277,7 @@ export default function PlantListingsPage() {
                 <button
                   className="page-btn"
                   disabled={page === totalPages}
-                  onClick={() => setPage((p) => p + 1)}
+                  onClick={() => handlePageChange(page + 1)}
                 >
                   Next
                 </button>
