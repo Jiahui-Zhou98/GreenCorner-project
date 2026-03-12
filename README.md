@@ -10,7 +10,7 @@ A community platform for plant lovers to share plant care knowledge and exchange
 ## Class Link
 
 - [CS5610-2026-Spring](https://johnguerra.co/classes/webDevelopment_online_spring_2026/)
-- This is Project 3 for this class
+- This is Project3 for this class
 
 ## Website Link
 
@@ -55,7 +55,7 @@ GreenCorner is a community platform for plant lovers to both share plant care kn
 
 ## Design Document
 
-- [Find user stories and design mockup here]()
+- [Find user stories and design mockup here](./design_doc/DesignDoc.md)
 
 ## Tech Stack
 
@@ -71,7 +71,9 @@ plant-community/
 ├── server/                              # Node.js + Express backend
 │   ├── backend.js                       # Express server entry point
 │   ├── db/
-│   │   └── connection.js                # MongoDB singleton connection
+│   │   ├── connection.js                # MongoDB singleton connection
+│   │   ├── CarePostsDB.js
+│   │   └── PlantListingsDB.js
 │   ├── routes/
 │   │   ├── carePosts.js                 # API routes for /api/careposts
 │   │   └── plantListings.js             # API routes for /api/plant-listings
@@ -82,6 +84,8 @@ plant-community/
 ├── frontend/                            # Vite + React frontend
 │   ├── index.html
 │   ├── vite.config.js
+│   ├── eslint.config.js
+│   ├── .prettierrc
 │   ├── package.json
 │   └── src/
 │       ├── main.jsx                     # React entry point with BrowserRouter
@@ -130,9 +134,17 @@ plant-community/
 │                   ├── ListingList.jsx
 │                   └── ListingFilter.jsx
 │
+├── design_doc/
+│   ├── DesignDoc.md                     # Design document with data models and mockups
+│   └── mockup/                          # UI mockup images
+│
 ├── .env.example                         # Environment variable template
 ├── .gitignore
+├── .prettierrc
+├── eslint.config.js
+├── LICENSE
 ├── package.json                         # Backend dependencies and scripts
+├── package-lock.json
 └── README.md
 ```
 
