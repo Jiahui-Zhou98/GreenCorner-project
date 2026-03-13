@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { Container, Button, Spinner, Badge, Modal } from "react-bootstrap";
+import { useAuth } from "../../context/useAuth.js";
 import "./ListingDetailPage.css";
 
 const TYPE_EMOJI = {
@@ -50,6 +51,7 @@ export default function ListingDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
+  const { user } = useAuth();
   const backTo = location.state?.from || "/listings";
 
   const [listing, setListing] = useState(null);
@@ -239,21 +241,23 @@ export default function ListingDetailPage() {
               )}
             </div>
 
-            {/* Actions */}
-            <div className="detail-actions">
-              <Button
-                className="btn-green detail-edit-btn"
-                onClick={() => navigate(`/listings/${id}/edit`)}
-              >
-                Edit Listing
-              </Button>
-              <Button
-                className="detail-delete-btn"
-                onClick={() => setShowConfirm(true)}
-              >
-                Delete Listing
-              </Button>
-            </div>
+            {/* Actions — only visible to the listing creator */}
+            {user && user._id === listing.createdBy && (
+              <div className="detail-actions">
+                <Button
+                  className="btn-green detail-edit-btn"
+                  onClick={() => navigate(`/listings/${id}/edit`)}
+                >
+                  Edit Listing
+                </Button>
+                <Button
+                  className="detail-delete-btn"
+                  onClick={() => setShowConfirm(true)}
+                >
+                  Delete Listing
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </Container>

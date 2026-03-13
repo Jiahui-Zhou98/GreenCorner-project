@@ -1,13 +1,19 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { Container } from "react-bootstrap";
+import { useAuth } from "../../context/useAuth.js";
 import ListingForm from "./ListingForm.jsx";
 import "./ListingPageLayout.css";
 
 export default function CreateListingPage() {
   const navigate = useNavigate();
+  const { user, loading } = useAuth();
   const [submitting, setSubmitting] = useState(false);
   const [serverError, setServerError] = useState(null);
+
+  if (!loading && !user) {
+    return <Navigate to="/login" replace />;
+  }
 
   async function handleSubmit(payload) {
     setSubmitting(true);

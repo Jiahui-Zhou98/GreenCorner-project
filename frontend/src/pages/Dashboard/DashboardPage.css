@@ -1,0 +1,93 @@
+/* ── Dashboard Layout ─────────────────────────────── */
+.dash-page {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+}
+
+.dash-container {
+  max-width: 520px;
+}
+
+.dash-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+
+.dash-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow:
+    0 4px 24px rgba(44, 79, 52, 0.08),
+    0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* ── Avatar ──────────────────────────────────────── */
+.dash-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4a7c4a, #2c4f34);
+  color: #f1ece4;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+/* ── User Info ───────────────────────────────────── */
+.dash-name {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: #2c4f34;
+  margin-bottom: 0.15rem;
+}
+
+.dash-email {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+
+/* ── Action Buttons ──────────────────────────────── */
+.dash-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.dash-btn {
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+/* ── Logout ──────────────────────────────────────── */
+.dash-logout {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  cursor: pointer;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.dash-logout:hover {
+  color: #991b1b;
+  background-color: #fef2f2;
+}
