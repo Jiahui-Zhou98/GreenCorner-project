@@ -1,1 +1,359 @@
+/* ── Page wrapper ─────────────────────────────────── */
+.detail-page {
+  background-color: var(--bg-light);
+  min-height: 60vh;
+  padding-bottom: 5rem;
+}
 
+.detail-container {
+  padding-top: 2rem;
+}
+
+/* ── Back link ────────────────────────────────────── */
+.detail-back-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--green-dark);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  display: inline-block;
+  transition: color 0.2s;
+}
+
+.detail-back-link:hover {
+  color: var(--green-mid);
+}
+
+/* ── Two-column layout ────────────────────────────── */
+.detail-layout {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+}
+
+@media (max-width: 767px) {
+  .detail-layout {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+/* ── Left column ──────────────────────────────────── */
+.detail-hero-col {
+  width: 320px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .detail-hero-col {
+    width: 100%;
+  }
+}
+
+.detail-hero {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 20px;
+  background-color: #dceedd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(44, 79, 52, 0.1);
+}
+
+.detail-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detail-hero-emoji {
+  font-size: 7rem;
+  line-height: 1;
+}
+
+/* ── Seller card ──────────────────────────────────── */
+.detail-seller-card {
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(44, 79, 52, 0.08);
+}
+
+.detail-seller-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 0.3rem;
+}
+
+.detail-seller-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--green-dark);
+  margin-bottom: 0.25rem;
+}
+
+.detail-seller-email {
+  font-size: 0.88rem;
+  color: #4a7c4a;
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.detail-seller-email:hover {
+  text-decoration: underline;
+  color: var(--green-dark);
+}
+
+/* ── Right column ─────────────────────────────────── */
+.detail-info-col {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Badges ───────────────────────────────────────── */
+.detail-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.detail-badge-custom {
+  display: inline-block;
+  padding: 0.3em 0.75em;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* ── Title & type ─────────────────────────────────── */
+.detail-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--green-dark);
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
+}
+
+.detail-type {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  letter-spacing: 0.3px;
+}
+
+/* ── Price ────────────────────────────────────────── */
+.detail-price {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  margin-bottom: 1.5rem;
+}
+
+/* ── Section ──────────────────────────────────────── */
+.detail-section {
+  margin-bottom: 1.75rem;
+}
+
+.detail-section-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--green-dark);
+  margin-bottom: 0.6rem;
+}
+
+.detail-description {
+  font-size: 0.97rem;
+  line-height: 1.85;
+  color: var(--text-body);
+}
+
+/* ── Meta grid ────────────────────────────────────── */
+.detail-meta-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  margin-bottom: 2rem;
+  padding: 1.25rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(44, 79, 52, 0.06);
+}
+
+.detail-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.detail-meta-tags {
+  width: 100%;
+}
+
+.detail-meta-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+}
+
+.detail-meta-value {
+  font-size: 0.95rem;
+  color: var(--green-dark);
+  font-weight: 500;
+}
+
+/* ── Tags ─────────────────────────────────────────── */
+.detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.2rem;
+}
+
+.detail-tag {
+  display: inline-block;
+  padding: 0.2em 0.7em;
+  background: #e8f0e8;
+  color: #2c4f34;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+/* ── Action buttons ───────────────────────────────── */
+.detail-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.detail-edit-btn {
+  --bs-btn-bg: #2c4f34;
+  --bs-btn-border-color: #2c4f34;
+  --bs-btn-color: #f1ece4;
+  --bs-btn-hover-bg: #3d6b46;
+  --bs-btn-hover-border-color: #3d6b46;
+  --bs-btn-hover-color: #fff;
+  border-radius: 8px;
+  padding: 9px 24px;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.detail-delete-btn {
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: #c0392b;
+  --bs-btn-color: #c0392b;
+  --bs-btn-hover-bg: #c0392b;
+  --bs-btn-hover-border-color: #c0392b;
+  --bs-btn-hover-color: #fff;
+  border-radius: 8px;
+  padding: 9px 24px;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+/* ── Delete confirm modal ─────────────────────────── */
+.detail-modal-body {
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+}
+
+.detail-modal-icon {
+  font-size: 2.8rem;
+  margin-bottom: 0.75rem;
+  line-height: 1;
+}
+
+.detail-modal-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--green-dark);
+  margin-bottom: 0.5rem;
+}
+
+.detail-modal-text {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 1.75rem;
+  line-height: 1.6;
+}
+
+.detail-modal-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.detail-modal-cancel {
+  padding: 9px 28px;
+  border-radius: 8px;
+  border: 1.5px solid #d0ddd0;
+  background: #fff;
+  color: var(--text-body);
+  font-size: 0.92rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.detail-modal-cancel:hover:not(:disabled) {
+  border-color: #2c4f34;
+  background: #f6faf6;
+}
+
+.detail-modal-confirm {
+  padding: 9px 28px;
+  border-radius: 8px;
+  border: 1.5px solid #c0392b;
+  background: #c0392b;
+  color: #fff;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.detail-modal-confirm:hover:not(:disabled) {
+  background: #a93226;
+  border-color: #a93226;
+}
+
+.detail-modal-confirm:disabled,
+.detail-modal-cancel:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── Loading / error states ───────────────────────── */
+.detail-loading {
+  display: flex;
+  justify-content: center;
+  padding: 6rem 0;
+}
+
+.detail-error {
+  padding: 4rem 0;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.detail-back-btn {
+  --bs-btn-bg: #2c4f34;
+  --bs-btn-border-color: #2c4f34;
+  --bs-btn-color: #f1ece4;
+  --bs-btn-hover-bg: #3d6b46;
+  --bs-btn-hover-border-color: #3d6b46;
+  --bs-btn-hover-color: #fff;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
