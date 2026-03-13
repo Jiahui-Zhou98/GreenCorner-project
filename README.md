@@ -102,7 +102,7 @@ plant-community/
 │           │   ├── HomePage.jsx
 │           │   └── HomePage.css
 │           ├── About/
-│           │   ├── AboutPage.jsx        # About page with 5-section layout
+│           │   ├── AboutPage.jsx        # About page with section layout
 │           │   ├── AboutPage.css
 │           │   ├── BubbleHero.jsx       # Floating bubble image hero component
 │           │   └── BubbleHero.css
@@ -120,19 +120,16 @@ plant-community/
 │           │       ├── CarePostList.jsx
 │           │       └── CarePostFilter.jsx
 │           └── PlantListings/
-│               ├── PlantListingsPage.jsx    # Listings page with sidebar filter
+│               ├── PlantListingsPage.jsx    # Listings browse page with sidebar filters and pagination
 │               ├── PlantListingsPage.css
-│               ├── ListingCard.jsx          # Card component with PropTypes
-│               ├── ListingDetailPage.jsx
+│               ├── ListingCard.jsx          # Single listing card component
+│               ├── ListingDetailPage.jsx    # Detail page with edit/delete actions
 │               ├── ListingDetailPage.css
-│               ├── CreateListingPage.jsx
-│               ├── CreateListingPage.css
-│               ├── EditListingPage.jsx
-│               ├── EditListingPage.css
-│               └── components/
-│                   ├── ListingCard.jsx
-│                   ├── ListingList.jsx
-│                   └── ListingFilter.jsx
+│               ├── ListingForm.jsx          # Shared form component (used by create and edit)
+│               ├── ListingForm.css
+│               ├── ListingPageLayout.css    # Shared layout styles for create/edit pages
+│               ├── CreateListingPage.jsx    # New listing form page
+│               └── EditListingPage.jsx      # Edit existing listing form page
 │
 ├── design_doc/
 │   ├── DesignDoc.md                     # Design document with data models and mockups
