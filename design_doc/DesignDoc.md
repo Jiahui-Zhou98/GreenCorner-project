@@ -94,3 +94,13 @@ GreenCorner is a community platform for plant lovers to both share plant care kn
 ### Market Listing - create/edit form
 
 ![market-create-edit-form](./mockup/create_edit_market_listing.png)
+
+---
+
+### Register & Login
+
+![register-login](./mockup/register_login.png)
+
+---
+
+### Dashboard
