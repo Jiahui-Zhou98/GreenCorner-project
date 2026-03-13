@@ -139,9 +139,10 @@
 .detail-title {
   font-family: var(--font-display);
   font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
   color: var(--green-dark);
   margin-bottom: 0.25rem;
-  line-height: 1.2;
 }
 
 .detail-type {
@@ -167,6 +168,8 @@
 .detail-section-title {
   font-family: var(--font-display);
   font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.3;
   color: var(--green-dark);
   margin-bottom: 0.6rem;
 }
@@ -174,7 +177,7 @@
 .detail-description {
   font-size: 0.97rem;
   line-height: 1.85;
-  color: var(--text-body);
+  color: var(--text-mid);
 }
 
 /* ── Meta grid ────────────────────────────────────── */
@@ -237,12 +240,6 @@
 }
 
 .detail-edit-btn {
-  --bs-btn-bg: #2c4f34;
-  --bs-btn-border-color: #2c4f34;
-  --bs-btn-color: #f1ece4;
-  --bs-btn-hover-bg: #3d6b46;
-  --bs-btn-hover-border-color: #3d6b46;
-  --bs-btn-hover-color: #fff;
   border-radius: 8px;
   padding: 9px 24px;
   font-size: 0.92rem;
@@ -277,6 +274,8 @@
 .detail-modal-title {
   font-family: var(--font-display);
   font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.3;
   color: var(--green-dark);
   margin-bottom: 0.5rem;
 }
@@ -299,11 +298,13 @@
   border-radius: 8px;
   border: 1.5px solid #d0ddd0;
   background: #fff;
-  color: var(--text-body);
+  color: var(--text-mid);
   font-size: 0.92rem;
   font-weight: 500;
   cursor: pointer;
-  transition: border-color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
 }
 
 .detail-modal-cancel:hover:not(:disabled) {
@@ -320,7 +321,9 @@
   font-size: 0.92rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s, border-color 0.2s;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
 }
 
 .detail-modal-confirm:hover:not(:disabled) {
@@ -348,12 +351,6 @@
 }
 
 .detail-back-btn {
-  --bs-btn-bg: #2c4f34;
-  --bs-btn-border-color: #2c4f34;
-  --bs-btn-color: #f1ece4;
-  --bs-btn-hover-bg: #3d6b46;
-  --bs-btn-hover-border-color: #3d6b46;
-  --bs-btn-hover-color: #fff;
   border-radius: 8px;
   margin-top: 1rem;
 }

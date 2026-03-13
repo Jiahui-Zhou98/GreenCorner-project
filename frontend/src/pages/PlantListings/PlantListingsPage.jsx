@@ -240,7 +240,10 @@ export default function PlantListingsPage() {
                   ? "Loading..."
                   : `${total} listing${total !== 1 ? "s" : ""} found`}
               </span>
-              <Button className="create-listing-btn" href="/listings/new">
+              <Button
+                className="btn-green create-listing-btn"
+                href="/listings/new"
+              >
                 + New Listing
               </Button>
             </div>

@@ -356,7 +356,11 @@ export default function ListingForm({
 
       {/* Submit */}
       <div className="lf-submit-row">
-        <Button type="submit" className="lf-submit-btn" disabled={submitting}>
+        <Button
+          type="submit"
+          className="btn-green lf-submit-btn"
+          disabled={submitting}
+        >
           {submitting ? (
             <>
               <Spinner animation="border" size="sm" className="me-2" />

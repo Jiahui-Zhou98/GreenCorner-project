@@ -112,7 +112,7 @@ export default function ListingCard({ listing }) {
 
       <Card.Footer className="listing-card-footer">
         <Button
-          className="listing-detail-btn w-100"
+          className="btn-green listing-detail-btn w-100"
           onClick={() =>
             navigate(`/listings/${listing._id}`, {
               state: { from: location.pathname + location.search },

@@ -109,7 +109,7 @@ export default function ListingDetailPage() {
       <Container className="detail-error">
         <p>Failed to load listing: {error}</p>
         <Button
-          className="detail-back-btn"
+          className="btn-green detail-back-btn"
           onClick={() => navigate("/listings")}
         >
           Back to Listings
@@ -242,7 +242,7 @@ export default function ListingDetailPage() {
             {/* Actions */}
             <div className="detail-actions">
               <Button
-                className="detail-edit-btn"
+                className="btn-green detail-edit-btn"
                 onClick={() => navigate(`/listings/${id}/edit`)}
               >
                 Edit Listing

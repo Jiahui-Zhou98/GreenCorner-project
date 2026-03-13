@@ -25,12 +25,6 @@ body {
   padding: 0;
 }
 
-#root {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
 main {
   flex: 1;
 }
@@ -77,4 +71,23 @@ h3 {
 p {
   color: var(--text-mid);
   line-height: 1.75;
+}
+
+/* ── Override Bootstrap blue focus ring on all buttons ── */
+.btn:focus-visible {
+  box-shadow: 0 0 0 0.25rem rgba(44, 79, 52, 0.4);
+  outline: none;
+}
+
+/* ── Shared green Bootstrap button color theme ────────── */
+.btn-green {
+  --bs-btn-bg: #2c4f34;
+  --bs-btn-border-color: #2c4f34;
+  --bs-btn-color: #f1ece4;
+  --bs-btn-hover-bg: #3d6b46;
+  --bs-btn-hover-border-color: #3d6b46;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-active-bg: #2c4f34;
+  --bs-btn-active-border-color: #2c4f34;
+  --bs-btn-active-color: #f1ece4;
 }

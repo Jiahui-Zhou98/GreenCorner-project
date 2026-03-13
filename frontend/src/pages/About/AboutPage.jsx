@@ -36,7 +36,7 @@ export default function AboutPage() {
       {/* 3. What You Can Do */}
       <section className="about-features">
         <Container>
-          <h2 className="text-center mb-5">What You Can Do?</h2>
+          <h2 className="text-center mb-5">What You Can Do</h2>
           <Row className="g-4 justify-content-center">
             <Col md={4}>
               <Card className="about-card h-100 shadow-sm">
@@ -81,17 +81,31 @@ export default function AboutPage() {
       {/* 4. Call to Action */}
       <section className="about-cta text-center">
         <Container>
-          <h2 className="mb-3">How to use?</h2>
-          <p className="mb-4">
-            Share your knowledge or explore the marketplace now
-          </p>
-          <div className="cta-btn-group">
-            <Button href="/careposts" className="cta-btn">
-              Share Your Knowledge
-            </Button>
-            <Button href="/listings" className="cta-btn">
-              Explore the Marketplace
-            </Button>
+          <h2 className="mb-4">Get Started</h2>
+          <div className="cta-steps">
+            <div className="cta-step">
+              <p className="cta-step-title">Share Care Tips</p>
+              <p className="cta-step-desc">
+                Write a care post about any plant you know well — watering
+                schedules, light needs, propagation tricks, or common problems.
+                Help beginners avoid the mistakes you once made.
+              </p>
+              <Button href="/careposts" className="btn-green cta-btn">
+                Go to Care Posts
+              </Button>
+            </div>
+            <div className="cta-divider" aria-hidden="true" />
+            <div className="cta-step">
+              <p className="cta-step-title">Browse the Marketplace</p>
+              <p className="cta-step-desc">
+                Find plants listed as free, for sale, or rehoming near you.
+                Filter by type, condition, and location — then contact the
+                seller directly to arrange a pickup.
+              </p>
+              <Button href="/listings" className="btn-green cta-btn">
+                Explore Listings
+              </Button>
+            </div>
           </div>
         </Container>
       </section>

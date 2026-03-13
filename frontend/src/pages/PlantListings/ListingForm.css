@@ -33,7 +33,7 @@
   border-color: #d0ddd0;
   border-radius: 8px;
   font-size: 0.95rem;
-  color: var(--text-body);
+  color: var(--text-mid);
   padding: 0.55rem 0.85rem;
   transition:
     border-color 0.2s,
@@ -76,7 +76,7 @@
   border-radius: 20px;
   border: 1.5px solid #c8dac8;
   background: #fff;
-  color: var(--text-body);
+  color: var(--text-mid);
   font-size: 0.83rem;
   cursor: pointer;
   transition: all 0.18s;
@@ -102,12 +102,6 @@
 }
 
 .lf-submit-btn {
-  --bs-btn-bg: #2c4f34;
-  --bs-btn-border-color: #2c4f34;
-  --bs-btn-color: #f1ece4;
-  --bs-btn-hover-bg: #3d6b46;
-  --bs-btn-hover-border-color: #3d6b46;
-  --bs-btn-hover-color: #fff;
   border-radius: 8px;
   padding: 10px 32px;
   font-size: 0.95rem;
