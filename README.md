@@ -148,43 +148,9 @@ plant-community/
 └── README.md
 ```
 
-## Pages & Routes
-
-| Page             | Route                 | Description                        |
-| ---------------- | --------------------- | ---------------------------------- |
-| Home             | `/`                   | Platform landing page              |
-| About            | `/about`              | Project info, features, and CTA    |
-| Care Posts       | `/careposts`          | Browse and filter care posts       |
-| Care Post Detail | `/careposts/:id`      | Read a single care post            |
-| Create Care Post | `/careposts/new`      | Submit a new care post             |
-| Edit Care Post   | `/careposts/:id/edit` | Edit an existing care post         |
-| Plant Listings   | `/listings`           | Browse and filter plant listings   |
-| Listing Detail   | `/listings/:id`       | View a single listing with details |
-| Create Listing   | `/listings/new`       | Submit a new plant listing         |
-| Edit Listing     | `/listings/:id/edit`  | Edit an existing listing           |
-
-## API Endpoints
-
-| Method | Endpoint                  | Description                           |
-| ------ | ------------------------- | ------------------------------------- |
-| GET    | `/api/careposts`          | Get all care posts (supports filters) |
-| GET    | `/api/careposts/:id`      | Get a single care post                |
-| POST   | `/api/careposts`          | Create a new care post                |
-| PUT    | `/api/careposts/:id`      | Update a care post                    |
-| DELETE | `/api/careposts/:id`      | Delete a care post                    |
-| GET    | `/api/plant-listings`     | Get all listings (supports filters)   |
-| GET    | `/api/plant-listings/:id` | Get a single listing                  |
-| POST   | `/api/plant-listings`     | Create a new listing                  |
-| PUT    | `/api/plant-listings/:id` | Update a listing                      |
-| DELETE | `/api/plant-listings/:id` | Delete a listing                      |
-
-### Plant Listings Filter Query Params
-
-`GET /api/plant-listings?plantType=Tropical&listingType=free&condition=good&status=available&maxPrice=20&page=1&limit=18`
-
 ## Work Distribution
 
-- **Yi-Peng Chiang** — Plant Care Posts: `carePosts` collection, `routes/carePosts.js`, seed script, and all Care Posts frontend pages.
+- **Yi-Peng Chiang** — Plant Care Posts: `carePosts` collection, `routes/carePosts.js`, seed script, and all Care Posts frontend pages. Also responsible for Home page.
 - **Jiahui Zhou** — Plant Listings: `plantListings` collection, `routes/plantListings.js`, seed script, and all Plant Listings frontend pages. Also responsible for About page and shared UI components (Navbar, Footer).
 
 ## Screenshots

@@ -1,0 +1,115 @@
+/* ── Form wrapper ─────────────────────────────────── */
+.listing-form {
+  max-width: 720px;
+}
+
+/* ── Field groups ─────────────────────────────────── */
+.lf-group {
+  margin-bottom: 1.4rem;
+}
+
+.lf-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--green-dark);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.lf-required {
+  color: #c0392b;
+  margin-left: 2px;
+}
+
+.lf-note {
+  font-weight: 400;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* ── Inputs ───────────────────────────────────────── */
+.lf-input.form-control,
+.lf-input.form-select {
+  border-color: #d0ddd0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: var(--text-body);
+  padding: 0.55rem 0.85rem;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.lf-input.form-control:focus,
+.lf-input.form-select:focus {
+  border-color: #2c4f34;
+  box-shadow: 0 0 0 3px rgba(44, 79, 52, 0.12);
+}
+
+.lf-input.form-control:disabled {
+  background-color: #f4f6f4;
+  color: var(--text-muted);
+}
+
+.lf-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.lf-hint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+  display: block;
+}
+
+/* ── Tag buttons ──────────────────────────────────── */
+.lf-tags-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.lf-tag-btn {
+  padding: 0.3em 0.85em;
+  border-radius: 20px;
+  border: 1.5px solid #c8dac8;
+  background: #fff;
+  color: var(--text-body);
+  font-size: 0.83rem;
+  cursor: pointer;
+  transition: all 0.18s;
+  line-height: 1.5;
+}
+
+.lf-tag-btn:hover {
+  border-color: #2c4f34;
+  color: #2c4f34;
+}
+
+.lf-tag-btn.selected {
+  background: #2c4f34;
+  border-color: #2c4f34;
+  color: #f1ece4;
+}
+
+/* ── Submit row ───────────────────────────────────── */
+.lf-submit-row {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e4ede4;
+}
+
+.lf-submit-btn {
+  --bs-btn-bg: #2c4f34;
+  --bs-btn-border-color: #2c4f34;
+  --bs-btn-color: #f1ece4;
+  --bs-btn-hover-bg: #3d6b46;
+  --bs-btn-hover-border-color: #3d6b46;
+  --bs-btn-hover-color: #fff;
+  border-radius: 8px;
+  padding: 10px 32px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}

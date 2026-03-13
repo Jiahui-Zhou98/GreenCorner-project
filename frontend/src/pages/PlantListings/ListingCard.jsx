@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Card, Badge, Button } from "react-bootstrap";
 
 const TYPE_EMOJI = {
@@ -38,6 +38,7 @@ const STATUS_STYLE = {
 
 export default function ListingCard({ listing }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const emoji = TYPE_EMOJI[listing.plantType] || "🌱";
   const listingBadge = LISTING_BADGE[listing.listingType] || {
     bg: "secondary",
@@ -112,7 +113,11 @@ export default function ListingCard({ listing }) {
       <Card.Footer className="listing-card-footer">
         <Button
           className="listing-detail-btn w-100"
-          onClick={() => navigate(`/listings/${listing._id}`)}
+          onClick={() =>
+            navigate(`/listings/${listing._id}`, {
+              state: { from: location.pathname + location.search },
+            })
+          }
         >
           View Details
         </Button>

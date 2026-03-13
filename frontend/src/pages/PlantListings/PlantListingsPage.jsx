@@ -23,13 +23,16 @@ const LISTING_TYPES = ["free", "for sale", "rehoming"];
 const CONDITIONS = ["excellent", "good", "fair"];
 const PAGE_SIZE = 18;
 
-const DEFAULT_FILTERS = {
-  plantType: "",
-  listingType: "",
-  condition: "",
-  maxPrice: "",
-  status: "",
-};
+function filtersFromParams(params) {
+  return {
+    plantType: params.get("plantType") || "",
+    listingType: params.get("listingType") || "",
+    condition: params.get("condition") || "",
+    maxPrice: params.get("maxPrice") || "",
+    status: params.get("status") || "",
+    location: params.get("location") || "",
+  };
+}
 
 export default function PlantListingsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -39,15 +42,12 @@ export default function PlantListingsPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Read current state from URL
+  // Applied filters come from URL (used for fetching)
   const page = Number(searchParams.get("page") || 1);
-  const filters = {
-    plantType: searchParams.get("plantType") || "",
-    listingType: searchParams.get("listingType") || "",
-    condition: searchParams.get("condition") || "",
-    maxPrice: searchParams.get("maxPrice") || "",
-    status: searchParams.get("status") || "",
-  };
+  const filters = filtersFromParams(searchParams);
+
+  // Pending filters are bound to sidebar inputs (not applied until Apply is clicked)
+  const [pending, setPending] = useState(() => filtersFromParams(searchParams));
 
   useEffect(() => {
     async function fetchListings() {
@@ -60,6 +60,7 @@ export default function PlantListingsPage() {
         if (filters.condition) params.set("condition", filters.condition);
         if (filters.maxPrice) params.set("maxPrice", filters.maxPrice);
         if (filters.status) params.set("status", filters.status);
+        if (filters.location) params.set("location", filters.location);
         params.set("page", page);
         params.set("limit", PAGE_SIZE);
 
@@ -82,17 +83,25 @@ export default function PlantListingsPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
-  function handleFilterChange(key, value) {
+  function handlePendingChange(key, value) {
+    setPending((prev) => ({ ...prev, [key]: value }));
+  }
+
+  function handleApply() {
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
-      if (value) next.set(key, value);
-      else next.delete(key);
+      Object.entries(pending).forEach(([k, v]) => {
+        if (v) next.set(k, v);
+        else next.delete(k);
+      });
       next.set("page", "1");
       return next;
     });
   }
 
   function handleReset() {
+    const empty = filtersFromParams(new URLSearchParams());
+    setPending(empty);
     setSearchParams({});
   }
 
@@ -112,7 +121,11 @@ export default function PlantListingsPage() {
           <aside className="listings-sidebar">
             <div className="sidebar-header">
               <h6 className="sidebar-title">Filter</h6>
-              <button className="sidebar-reset" onClick={handleReset}>
+              <button
+                type="button"
+                className="sidebar-reset"
+                onClick={handleReset}
+              >
                 Reset
               </button>
             </div>
@@ -121,9 +134,9 @@ export default function PlantListingsPage() {
               <Form.Group className="sidebar-group">
                 <Form.Label>Plant Type</Form.Label>
                 <Form.Select
-                  value={filters.plantType}
+                  value={pending.plantType}
                   onChange={(e) =>
-                    handleFilterChange("plantType", e.target.value)
+                    handlePendingChange("plantType", e.target.value)
                   }
                 >
                   <option value="">All Types</option>
@@ -138,9 +151,9 @@ export default function PlantListingsPage() {
               <Form.Group className="sidebar-group">
                 <Form.Label>Listing Type</Form.Label>
                 <Form.Select
-                  value={filters.listingType}
+                  value={pending.listingType}
                   onChange={(e) =>
-                    handleFilterChange("listingType", e.target.value)
+                    handlePendingChange("listingType", e.target.value)
                   }
                 >
                   <option value="">All</option>
@@ -155,9 +168,9 @@ export default function PlantListingsPage() {
               <Form.Group className="sidebar-group">
                 <Form.Label>Condition</Form.Label>
                 <Form.Select
-                  value={filters.condition}
+                  value={pending.condition}
                   onChange={(e) =>
-                    handleFilterChange("condition", e.target.value)
+                    handlePendingChange("condition", e.target.value)
                   }
                 >
                   <option value="">All</option>
@@ -175,9 +188,21 @@ export default function PlantListingsPage() {
                   type="number"
                   min={0}
                   placeholder="e.g. 20"
-                  value={filters.maxPrice}
+                  value={pending.maxPrice}
                   onChange={(e) =>
-                    handleFilterChange("maxPrice", e.target.value)
+                    handlePendingChange("maxPrice", e.target.value)
+                  }
+                />
+              </Form.Group>
+
+              <Form.Group className="sidebar-group">
+                <Form.Label>Location</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="e.g. Boston"
+                  value={pending.location}
+                  onChange={(e) =>
+                    handlePendingChange("location", e.target.value)
                   }
                 />
               </Form.Group>
@@ -185,8 +210,10 @@ export default function PlantListingsPage() {
               <Form.Group className="sidebar-group">
                 <Form.Label>Status</Form.Label>
                 <Form.Select
-                  value={filters.status}
-                  onChange={(e) => handleFilterChange("status", e.target.value)}
+                  value={pending.status}
+                  onChange={(e) =>
+                    handlePendingChange("status", e.target.value)
+                  }
                 >
                   <option value="">All</option>
                   <option value="available">Available</option>
@@ -194,6 +221,14 @@ export default function PlantListingsPage() {
                   <option value="sold">Sold</option>
                 </Form.Select>
               </Form.Group>
+
+              <button
+                type="button"
+                className="sidebar-apply"
+                onClick={handleApply}
+              >
+                Apply Filters
+              </button>
             </Form>
           </aside>
 
@@ -223,7 +258,11 @@ export default function PlantListingsPage() {
             ) : !error && listings.length === 0 ? (
               <div className="listings-empty">
                 <p>No listings match your filters.</p>
-                <button className="sidebar-reset" onClick={handleReset}>
+                <button
+                  type="button"
+                  className="sidebar-reset"
+                  onClick={handleReset}
+                >
                   Clear filters
                 </button>
               </div>

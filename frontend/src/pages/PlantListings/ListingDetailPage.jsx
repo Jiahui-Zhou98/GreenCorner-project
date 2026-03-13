@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { Container, Button, Spinner, Badge, Modal } from "react-bootstrap";
 import "./ListingDetailPage.css";
 
@@ -49,6 +49,8 @@ function formatDate(dateStr) {
 export default function ListingDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  const backTo = location.state?.from || "/listings";
 
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -138,7 +140,7 @@ export default function ListingDetailPage() {
     <div className="detail-page">
       <Container className="detail-container">
         {/* Back link */}
-        <button className="detail-back-link" onClick={() => navigate(-1)}>
+        <button className="detail-back-link" onClick={() => navigate(backTo)}>
           ← Back to Listings
         </button>
 

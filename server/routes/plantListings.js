@@ -16,6 +16,7 @@ router.get("/", async (req, res) => {
       listingType,
       condition,
       status,
+      location,
       minPrice,
       maxPrice,
       page = 1,
@@ -27,6 +28,7 @@ router.get("/", async (req, res) => {
     if (listingType) filter.listingType = listingType;
     if (condition) filter.condition = condition;
     if (status) filter.status = status;
+    if (location) filter.location = { $regex: location, $options: "i" };
     if (minPrice || maxPrice) {
       filter.price = {};
       if (minPrice) filter.price.$gte = Number(minPrice);
