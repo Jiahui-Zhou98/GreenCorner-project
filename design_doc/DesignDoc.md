@@ -82,3 +82,7 @@ GreenCorner is a community platform for plant lovers to both share plant care kn
 ### Market Listings
 
 ![market-mockup](./mockup/market.png)
+
+### Market listing - detailed page
+
+![market-detailed-page](./mockup/detailed_listing.png)
