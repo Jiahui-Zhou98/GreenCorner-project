@@ -1,0 +1,65 @@
+ .carepost-form {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 14px rgba(44, 79, 52, 0.08);
+}
+
+.cpf-group {
+  margin-bottom: 1.2rem;
+}
+
+.cpf-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--green-dark);
+  margin-bottom: 0.45rem;
+}
+
+.cpf-required {
+  color: #c0392b;
+}
+
+.cpf-note {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.cpf-input {
+  border-radius: 10px;
+  border: 1px solid #d0ddd0;
+  font-size: 0.92rem;
+}
+
+.cpf-input:focus {
+  border-color: #2c4f34;
+  box-shadow: 0 0 0 3px rgba(44, 79, 52, 0.12);
+}
+
+.cpf-textarea {
+  resize: vertical;
+}
+
+.cpf-hint {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.cpf-submit-row {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cpf-submit-btn {
+  --bs-btn-bg: #2c4f34;
+  --bs-btn-border-color: #2c4f34;
+  --bs-btn-color: #f1ece4;
+  --bs-btn-hover-bg: #3d6b46;
+  --bs-btn-hover-border-color: #3d6b46;
+  --bs-btn-hover-color: #fff;
+  border-radius: 8px;
+  padding: 9px 22px;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
