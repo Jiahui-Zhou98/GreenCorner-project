@@ -69,14 +69,15 @@ GreenCorner is a community platform for plant lovers to both share plant care kn
 ```
 plant-community/
 ├── server/                              # Node.js + Express backend
-│   ├── backend.js                       # Express server entry point
+│   ├── backend.js                       # Express server entry point (express-session)
 │   ├── db/
 │   │   ├── connection.js                # MongoDB singleton connection
 │   │   ├── CarePostsDB.js
 │   │   └── PlantListingsDB.js
 │   ├── routes/
 │   │   ├── carePosts.js                 # API routes for /api/careposts
-│   │   └── plantListings.js             # API routes for /api/plant-listings
+│   │   ├── plantListings.js             # API routes for /api/plant-listings
+│   │   └── users.js                     # API routes for /api/users (auth)
 │   └── seed/
 │       ├── seedCarePosts.js             # Seed script for care posts
 │       └── seedPlantListings.js         # Seed script for plant listings (1000 entries)
@@ -86,12 +87,19 @@ plant-community/
 │   ├── vite.config.js
 │   ├── eslint.config.js
 │   ├── .prettierrc
+│   ├── .gitignore
 │   ├── package.json
 │   └── src/
 │       ├── main.jsx                     # React entry point with BrowserRouter
 │       ├── App.jsx                      # Root component with route definitions
 │       ├── styles/
 │       │   └── main.css                 # Global CSS variables, layout, typography
+│       ├── assets/
+│       │   └── about/                   # Images for the About page bubble hero
+│       ├── context/
+│       │   ├── AuthContextDef.js        # React context object (createContext)
+│       │   ├── AuthContext.jsx           # AuthProvider component (session check, login, register, logout)
+│       │   └── useAuth.js               # useAuth hook
 │       ├── components/
 │       │   ├── Navbar.jsx               # Sticky navigation bar
 │       │   ├── Navbar.css
@@ -106,15 +114,23 @@ plant-community/
 │           │   ├── AboutPage.css
 │           │   ├── BubbleHero.jsx       # Floating bubble image hero component
 │           │   └── BubbleHero.css
+│           ├── Auth/
+│           │   ├── RegisterPage.jsx     # User registration page
+│           │   ├── LoginPage.jsx        # User login page
+│           │   └── AuthPages.css        # Shared styles for auth pages
+│           ├── Dashboard/
+│           │   ├── DashboardPage.jsx    # User dashboard
+│           │   └── DashboardPage.css
 │           ├── CarePosts/
 │           │   ├── CarePostsPage.jsx
 │           │   ├── CarePostsPage.css
 │           │   ├── CarePostDetailPage.jsx
 │           │   ├── CarePostDetailPage.css
 │           │   ├── CreateCarePostPage.jsx
-│           │   ├── CreateCarePostPage.css
 │           │   ├── EditCarePostPage.jsx
-│           │   ├── EditCarePostPage.css
+│           │   ├── CarePostForm.jsx     # Shared form component (used by create and edit)
+│           │   ├── CarePostForm.css
+│           │   ├── PostPageLayout.css   # Shared layout styles for create/edit pages
 │           │   └── components/
 │           │       ├── CarePostCard.jsx
 │           │       ├── CarePostList.jsx
@@ -149,6 +165,8 @@ plant-community/
 
 - **Yi-Peng Chiang** — Plant Care Posts: `carePosts` collection, `routes/carePosts.js`, seed script, and all Care Posts frontend pages. Also responsible for Home page.
 - **Jiahui Zhou** — Plant Listings: `plantListings` collection, `routes/plantListings.js`, seed script, and all Plant Listings frontend pages. Also responsible for About page and shared UI components (Navbar, Footer).
+
+- **Shared Work** - Register page, Login page and Dashboard page.
 
 ## Screenshots
 
