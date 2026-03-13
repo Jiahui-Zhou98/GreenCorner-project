@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38" fill="none" width="38" height="38"><defs>
+    <linearGradient id="leafGradMain" x1="30%" y1="0%" x2="70%" y2="100%">
+      <stop offset="0%" stop-color="#5a9a5a"></stop>
+      <stop offset="100%" stop-color="#2c4f34"></stop>
+    </linearGradient>
+    <linearGradient id="leafGradSide" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4a7c4a"></stop>
+      <stop offset="100%" stop-color="#2c4f34"></stop>
+    </linearGradient>
+  </defs><path d="M19 25 C13 21 10 13 19 7 C28 13 25 21 19 25Z" fill="url(#leafGradSide)" opacity="0.45" transform="rotate(-46 19 25)"></path><path d="M19 25 C13 21 10 13 19 7 C28 13 25 21 19 25Z" fill="url(#leafGradSide)" opacity="0.45" transform="rotate(46 19 25)"></path><path d="M19 26 C13 22 10 14 19 7 C28 14 25 22 19 26Z" fill="url(#leafGradMain)"></path><line x1="19" y1="26" x2="19" y2="14" stroke="rgba(255,255,255,0.5)" stroke-width="0.9" stroke-linecap="round"></line><line x1="19" y1="21" x2="15" y2="17" stroke="rgba(255,255,255,0.35)" stroke-width="0.7" stroke-linecap="round"></line><line x1="19" y1="18" x2="23" y2="14" stroke="rgba(255,255,255,0.35)" stroke-width="0.7" stroke-linecap="round"></line><line x1="19" y1="26" x2="19" y2="33" stroke="#2c4f34" stroke-width="1.6" stroke-linecap="round"></line></svg>
