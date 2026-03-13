@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { Form, Button, Row, Col, Spinner } from "react-bootstrap";
 import "./ListingForm.css";
 
@@ -374,3 +375,11 @@ export default function ListingForm({
     </Form>
   );
 }
+
+ListingForm.propTypes = {
+  initialValues: PropTypes.object,
+  onSubmit: PropTypes.func.isRequired,
+  submitting: PropTypes.bool,
+  submitLabel: PropTypes.string,
+  showStatus: PropTypes.bool,
+};

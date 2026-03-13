@@ -124,6 +124,14 @@
   font-weight: 600;
 }
 
+.create-listing-btn:disabled {
+  --bs-btn-disabled-bg: #a3bfa3;
+  --bs-btn-disabled-border-color: #a3bfa3;
+  --bs-btn-disabled-color: #f1ece4;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
 .listings-loading {
   display: flex;
   justify-content: center;

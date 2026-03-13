@@ -1,5 +1,6 @@
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/useAuth.js";
 import "./Navbar.css";
 
 function TripleLeafIcon() {
@@ -82,6 +83,9 @@ function TripleLeafIcon() {
 }
 
 export default function AppNavbar() {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
   return (
     <Navbar expand="lg" className="app-navbar">
       <Container>
@@ -107,7 +111,21 @@ export default function AppNavbar() {
             <Nav.Link as={NavLink} to="/listings">
               Market
             </Nav.Link>
-            <Button className="ms-3 signin-btn">Sign in</Button>
+            {user ? (
+              <Button
+                className="ms-3 signin-btn"
+                onClick={() => navigate("/dashboard")}
+              >
+                Dashboard
+              </Button>
+            ) : (
+              <Button
+                className="ms-3 signin-btn"
+                onClick={() => navigate("/login")}
+              >
+                Sign in
+              </Button>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

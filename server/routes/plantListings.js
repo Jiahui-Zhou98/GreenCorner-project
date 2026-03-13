@@ -103,6 +103,12 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
+    if (!req.session.userId) {
+      return res
+        .status(401)
+        .json({ error: "You must be logged in to create a listing." });
+    }
+
     const newListing = {
       plantName,
       plantType,
@@ -116,6 +122,7 @@ router.post("/", async (req, res) => {
       sellerEmail: sellerEmail || "",
       tags: tags || [],
       imageUrl: imageUrl || null,
+      createdBy: req.session.userId,
       createdAt: new Date(),
     };
 
@@ -129,11 +136,29 @@ router.post("/", async (req, res) => {
 // PUT /api/plant-listings/:id
 router.put("/:id", async (req, res) => {
   try {
+    if (!req.session.userId) {
+      return res
+        .status(401)
+        .json({ error: "You must be logged in to edit a listing." });
+    }
+
     const db = await connectDB();
     const collection = db.collection("plantListings");
 
     if (!ObjectId.isValid(req.params.id)) {
       return res.status(400).json({ error: "Invalid listing ID" });
+    }
+
+    const existing = await collection.findOne({
+      _id: new ObjectId(req.params.id),
+    });
+    if (!existing) {
+      return res.status(404).json({ error: "Listing not found" });
+    }
+    if (existing.createdBy !== req.session.userId) {
+      return res
+        .status(403)
+        .json({ error: "You can only edit your own listings." });
     }
 
     const allowedFields = [
@@ -179,6 +204,12 @@ router.put("/:id", async (req, res) => {
 // DELETE /api/plant-listings/:id
 router.delete("/:id", async (req, res) => {
   try {
+    if (!req.session.userId) {
+      return res
+        .status(401)
+        .json({ error: "You must be logged in to delete a listing." });
+    }
+
     const db = await connectDB();
     const collection = db.collection("plantListings");
 
@@ -186,13 +217,19 @@ router.delete("/:id", async (req, res) => {
       return res.status(400).json({ error: "Invalid listing ID" });
     }
 
-    const result = await collection.deleteOne({
+    const existing = await collection.findOne({
       _id: new ObjectId(req.params.id),
     });
-
-    if (result.deletedCount === 0) {
+    if (!existing) {
       return res.status(404).json({ error: "Listing not found" });
     }
+    if (existing.createdBy !== req.session.userId) {
+      return res
+        .status(403)
+        .json({ error: "You can only delete your own listings." });
+    }
+
+    await collection.deleteOne({ _id: new ObjectId(req.params.id) });
 
     res.json({ message: "Listing deleted successfully" });
   } catch (err) {

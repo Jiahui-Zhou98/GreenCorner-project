@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { Container, Row, Col, Form, Button, Spinner } from "react-bootstrap";
+import { useAuth } from "../../context/useAuth.js";
 import ListingCard from "./ListingCard.jsx";
 import "./PlantListingsPage.css";
 
@@ -35,6 +36,8 @@ function filtersFromParams(params) {
 }
 
 export default function PlantListingsPage() {
+  const { user } = useAuth();
+  const navigateTo = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [listings, setListings] = useState([]);
   const [total, setTotal] = useState(0);
@@ -242,7 +245,9 @@ export default function PlantListingsPage() {
               </span>
               <Button
                 className="btn-green create-listing-btn"
-                href="/listings/new"
+                disabled={!user}
+                title={!user ? "Please sign in to create a listing" : ""}
+                onClick={() => navigateTo("/listings/new")}
               >
                 + New Listing
               </Button>
