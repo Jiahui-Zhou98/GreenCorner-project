@@ -6,7 +6,7 @@ import "./HomePage.css";
 export default function HomePage() {
   return (
     <div className="home-page">
-      {/* Hero Section using your banner.png */}
+      {/* Hero Section */}
       <section 
         className="hero-section" 
         style={{ backgroundImage: `url('/banner.png')` }}
@@ -15,11 +15,12 @@ export default function HomePage() {
 
         <Container className="hero-inner">
           <div className="hero-content">
-            <h1 className="display-3 fw-bold">
+            {/* Added banner-text class for targeted styling */}
+            <h1 className="display-3 fw-bold banner-text">
               GreenCorner <br />
               Happy Growing
             </h1>
-            <p className="lead">
+            <p className="lead banner-text">
               A community platform connecting plant lovers. <br />
               A simple bridge for direct connection and expert care.
             </p>
@@ -27,7 +28,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* Main Call to Action Section */}
+      {/* Main Call to Action Section (Stays dark/normal text) */}
       <section className="py-5 bg-light">
         <Container className="text-center py-5">
           <h2 className="section-title fw-bold">Ready to Get Started?</h2>
