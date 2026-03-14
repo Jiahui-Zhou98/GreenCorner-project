@@ -21,6 +21,15 @@ const PLANT_TYPES = [
 
 const DIFFICULTIES = ["easy", "medium", "hard"];
 const LIGHT_OPTIONS = ["low", "medium", "bright indirect", "direct sunlight"];
+const PAGE_SIZE = 6;
+
+function filtersFromParams(params) {
+  return {
+    plantType: params.get("plantType") || "",
+    difficulty: params.get("difficulty") || "",
+    light: params.get("light") || "",
+  };
+}
 
 function CarePostCard({ post }) {
   return (
@@ -34,32 +43,24 @@ function CarePostCard({ post }) {
       ) : (
         <div className="carepost-card-hero">🌿</div>
       )}
-
       <div className="carepost-card-body">
         <div className="carepost-card-meta">
           <span className="carepost-meta-badge">{post.plantType}</span>
           <span className="carepost-meta-badge">{post.difficulty}</span>
         </div>
-
         <h3 className="carepost-card-title">{post.title}</h3>
-
         <p className="carepost-card-text">
           {post.content?.length > 120
             ? `${post.content.slice(0, 120)}...`
             : post.content}
         </p>
-
         <div className="carepost-card-details">
           <span>Light: {post.light || "N/A"}</span>
           <span>Watering: {post.watering || "N/A"}</span>
         </div>
-
         <div className="carepost-card-footer">
           <span className="carepost-card-author">By {post.author}</span>
-          <Button
-            className="carepost-detail-btn"
-            href={`/careposts/${post._id}`}
-          >
+          <Button className="carepost-detail-btn" href={`/careposts/${post._id}`}>
             Read More
           </Button>
         </div>
@@ -70,16 +71,15 @@ function CarePostCard({ post }) {
 
 export default function CarePostsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const page = Number(searchParams.get("page") || 1);
+  const filters = filtersFromParams(searchParams);
+
+  const [pending, setPending] = useState(() => filtersFromParams(searchParams));
   const [posts, setPosts] = useState([]);
-  const [filteredPosts, setFilteredPosts] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  const filters = {
-    plantType: searchParams.get("plantType") || "",
-    difficulty: searchParams.get("difficulty") || "",
-    light: searchParams.get("light") || "",
-  };
 
   useEffect(() => {
     async function fetchPosts() {
@@ -87,12 +87,20 @@ export default function CarePostsPage() {
       try {
         setError(null);
 
-        const res = await fetch("/api/careposts");
-        if (!res.ok) throw new Error(`Server error: ${res.status}`);
+        const params = new URLSearchParams();
+        if (filters.plantType) params.set("plantType", filters.plantType);
+        if (filters.difficulty) params.set("difficulty", filters.difficulty);
+        if (filters.light) params.set("light", filters.light);
+        params.set("page", page);
+        params.set("limit", PAGE_SIZE);
 
+        const res = await fetch(`/api/careposts?${params.toString()}`);
+        if (!res.ok) throw new Error(`Server error: ${res.status}`);
         const data = await res.json();
-        const postsArray = Array.isArray(data) ? data : [];
-        setPosts(postsArray);
+
+        setPosts(data.posts ?? []);
+        setTotal(data.total ?? 0);
+        setTotalPages(data.totalPages ?? 1);
       } catch (err) {
         console.error("Failed to fetch care posts:", err);
         setError(err.message);
@@ -103,37 +111,36 @@ export default function CarePostsPage() {
     }
 
     fetchPosts();
-  }, []);
+  }, [searchParams]);
 
-  useEffect(() => {
-    let result = [...posts];
+  function handlePendingChange(key, value) {
+    setPending((prev) => ({ ...prev, [key]: value }));
+  }
 
-    if (filters.plantType) {
-      result = result.filter((post) => post.plantType === filters.plantType);
-    }
-
-    if (filters.difficulty) {
-      result = result.filter((post) => post.difficulty === filters.difficulty);
-    }
-
-    if (filters.light) {
-      result = result.filter((post) => post.light === filters.light);
-    }
-
-    setFilteredPosts(result);
-  }, [posts, filters.plantType, filters.difficulty, filters.light]);
-
-  function handleFilterChange(key, value) {
+  function handleApply() {
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
-      if (value) next.set(key, value);
-      else next.delete(key);
+      Object.entries(pending).forEach(([k, v]) => {
+        if (v) next.set(k, v);
+        else next.delete(k);
+      });
+      next.set("page", "1");
       return next;
     });
   }
 
   function handleReset() {
+    const empty = filtersFromParams(new URLSearchParams());
+    setPending(empty);
     setSearchParams({});
+  }
+
+  function handlePageChange(newPage) {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      next.set("page", String(newPage));
+      return next;
+    });
   }
 
   return (
@@ -152,16 +159,12 @@ export default function CarePostsPage() {
               <Form.Group className="sidebar-group">
                 <Form.Label>Plant Type</Form.Label>
                 <Form.Select
-                  value={filters.plantType}
-                  onChange={(e) =>
-                    handleFilterChange("plantType", e.target.value)
-                  }
+                  value={pending.plantType}
+                  onChange={(e) => handlePendingChange("plantType", e.target.value)}
                 >
                   <option value="">All Types</option>
-                  {PLANT_TYPES.map((type) => (
-                    <option key={type} value={type}>
-                      {type}
-                    </option>
+                  {PLANT_TYPES.map((t) => (
+                    <option key={t} value={t}>{t}</option>
                   ))}
                 </Form.Select>
               </Form.Group>
@@ -169,16 +172,12 @@ export default function CarePostsPage() {
               <Form.Group className="sidebar-group">
                 <Form.Label>Difficulty</Form.Label>
                 <Form.Select
-                  value={filters.difficulty}
-                  onChange={(e) =>
-                    handleFilterChange("difficulty", e.target.value)
-                  }
+                  value={pending.difficulty}
+                  onChange={(e) => handlePendingChange("difficulty", e.target.value)}
                 >
                   <option value="">All</option>
-                  {DIFFICULTIES.map((level) => (
-                    <option key={level} value={level}>
-                      {level.charAt(0).toUpperCase() + level.slice(1)}
-                    </option>
+                  {DIFFICULTIES.map((d) => (
+                    <option key={d} value={d}>{d.charAt(0).toUpperCase() + d.slice(1)}</option>
                   ))}
                 </Form.Select>
               </Form.Group>
@@ -186,60 +185,63 @@ export default function CarePostsPage() {
               <Form.Group className="sidebar-group">
                 <Form.Label>Light</Form.Label>
                 <Form.Select
-                  value={filters.light}
-                  onChange={(e) => handleFilterChange("light", e.target.value)}
+                  value={pending.light}
+                  onChange={(e) => handlePendingChange("light", e.target.value)}
                 >
                   <option value="">All</option>
-                  {LIGHT_OPTIONS.map((light) => (
-                    <option key={light} value={light}>
-                      {light.charAt(0).toUpperCase() + light.slice(1)}
-                    </option>
+                  {LIGHT_OPTIONS.map((l) => (
+                    <option key={l} value={l}>{l.charAt(0).toUpperCase() + l.slice(1)}</option>
                   ))}
                 </Form.Select>
               </Form.Group>
+
+              <button type="button" className="sidebar-apply" onClick={handleApply}>
+                Apply Filters
+              </button>
             </Form>
           </aside>
 
           <div className="careposts-main">
             <div className="careposts-toolbar">
               <span className="careposts-count">
-                {loading
-                  ? "Loading..."
-                  : `${filteredPosts.length} post${
-                      filteredPosts.length !== 1 ? "s" : ""
-                    } found`}
+                {loading ? "Loading..." : `${total} post${total !== 1 ? "s" : ""} found`}
               </span>
-
-              <Button className="create-carepost-btn" href="/careposts/new">
-                + New Post
-              </Button>
             </div>
 
-            {error && (
-              <div className="careposts-error">
-                <p>Failed to load care posts: {error}</p>
-              </div>
-            )}
+            {error && <div className="careposts-error"><p>{error}</p></div>}
 
             {loading ? (
-              <div className="careposts-loading">
-                <Spinner animation="border" />
-              </div>
-            ) : !error && filteredPosts.length === 0 ? (
+              <div className="careposts-loading"><Spinner animation="border" /></div>
+            ) : posts.length === 0 ? (
               <div className="careposts-empty">
                 <p>No care posts match your filters.</p>
-                <button className="sidebar-reset" onClick={handleReset}>
-                  Clear filters
-                </button>
+                <button className="sidebar-reset" onClick={handleReset}>Clear filters</button>
               </div>
             ) : (
               <Row className="g-4">
-                {filteredPosts.map((post) => (
+                {posts.map((post) => (
                   <Col key={post._id} xs={12} md={6} lg={4}>
                     <CarePostCard post={post} />
                   </Col>
                 ))}
               </Row>
+            )}
+
+            {/* Pagination */}
+            {totalPages > 1 && !loading && (
+              <div className="careposts-pagination">
+                <button disabled={page === 1} onClick={() => handlePageChange(page - 1)}>Prev</button>
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+                  <button
+                    key={p}
+                    className={p === page ? "active" : ""}
+                    onClick={() => handlePageChange(p)}
+                  >
+                    {p}
+                  </button>
+                ))}
+                <button disabled={page === totalPages} onClick={() => handlePageChange(page + 1)}>Next</button>
+              </div>
             )}
           </div>
         </div>

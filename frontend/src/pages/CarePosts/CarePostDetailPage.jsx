@@ -1,225 +1,204 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { Container, Button, Spinner, Badge, Modal } from "react-bootstrap";
-import "./CarePostDetailPage.css";
+import { Link } from "react-router-dom";
+import { Container, Row, Col, Card, Spinner, Form, Button } from "react-bootstrap";
+import "./CarePostsPage.css";
 
-const DIFFICULTY_STYLE = {
-  easy: { bg: "success", label: "Easy" },
-  medium: { bg: "warning", label: "Medium" },
-  hard: { bg: "danger", label: "Hard" },
-};
-
-function formatDate(dateStr) {
-  if (!dateStr) return "—";
-  return new Date(dateStr).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-}
-
-export default function CarePostDetailPage() {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const backTo = location.state?.from || "/careposts";
-
-  const [post, setPost] = useState(null);
+export default function CarePostsPage() {
+  // --- State Management ---
+  const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
-  const [deleting, setDeleting] = useState(false);
-  const [showConfirm, setShowConfirm] = useState(false);
+  // Active filters (Applied to the API call)
+  const [filters, setFilters] = useState({
+    light: "",
+    difficulty: "",
+    plantType: "",
+  });
 
+  // Temporary filters (Changes as user selects options, but not yet applied)
+  const [tempFilters, setTempFilters] = useState({
+    light: "",
+    difficulty: "",
+    plantType: "",
+  });
+
+  // --- Data Fetching ---
   useEffect(() => {
-    async function fetchPost() {
+    async function fetchPosts() {
       setLoading(true);
       try {
-        const res = await fetch(`/api/careposts/${id}`);
+        const query = new URLSearchParams({
+          page,
+          limit: 12,
+          light: filters.light,
+          difficulty: filters.difficulty,
+          plantType: filters.plantType,
+        }).toString();
 
-        if (!res.ok) {
-          const data = await res.json();
-          throw new Error(data.error || `Error ${res.status}`);
-        }
-
+        const res = await fetch(`/api/careposts?${query}`);
         const data = await res.json();
-        setPost(data);
+
+        setPosts(data.posts || []);
+        setTotalPages(data.totalPages || 1);
       } catch (err) {
-        setError(err.message);
+        console.error("Fetch error:", err);
       } finally {
         setLoading(false);
       }
     }
+    fetchPosts();
+  }, [page, filters]); // Re-fetch only when page or active filters change
 
-    fetchPost();
-  }, [id]);
+  // --- Event Handlers ---
+  const handleApplyFilters = () => {
+    setFilters(tempFilters);
+    setPage(1); // Reset to first page when applying new filters
+  };
 
-  async function handleDelete() {
-    setDeleting(true);
-
-    try {
-      const res = await fetch(`/api/careposts/${id}`, {
-        method: "DELETE",
-      });
-
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || "Delete failed");
-      }
-
-      navigate("/careposts");
-    } catch (err) {
-      console.error("Delete failed:", err.message);
-      setDeleting(false);
-      setShowConfirm(false);
-    }
-  }
-
-  if (loading) {
-    return (
-      <div className="carepost-detail-loading">
-        <Spinner animation="border" />
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <Container className="carepost-detail-error">
-        <p>Failed to load post: {error}</p>
-        <Button onClick={() => navigate("/careposts")}>
-          Back to Care Posts
-        </Button>
-      </Container>
-    );
-  }
-
-  if (!post) return null;
-
-  const difficulty = DIFFICULTY_STYLE[post.difficulty] || {
-    bg: "secondary",
-    label: post.difficulty,
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+    window.scrollTo(0, 0); // Scroll to top on page change
   };
 
   return (
-    <div className="carepost-detail-page">
-      <Container className="carepost-detail-container">
+    <Container className="py-5 careposts-page">
+      <h1 className="mb-4 fw-bold" style={{ color: "#2c4f34" }}>Plant Care Guides</h1>
 
-        <button
-          className="carepost-back-link"
-          onClick={() => navigate(backTo)}
-        >
-          ← Back to Care Posts
-        </button>
-
-        <div className="carepost-detail-layout">
-
-          {/* Hero image */}
-          <div className="carepost-detail-hero">
-            {post.imageUrl ? (
-              <img
-                src={post.imageUrl}
-                alt={post.title}
-                className="carepost-detail-img"
-              />
-            ) : (
-              <div className="carepost-detail-placeholder">🌿</div>
-            )}
-          </div>
-
-          {/* Content */}
-          <div className="carepost-detail-info">
-
-            <div className="carepost-detail-badges">
-              <Badge bg={difficulty.bg}>{difficulty.label}</Badge>
-            </div>
-
-            <h1 className="carepost-detail-title">{post.title}</h1>
-
-            <p className="carepost-detail-type">{post.plantType}</p>
-
-            <div className="carepost-detail-meta">
-              <div>
-                <span className="meta-label">Light</span>
-                <span className="meta-value">{post.light}</span>
-              </div>
-
-              <div>
-                <span className="meta-label">Watering</span>
-                <span className="meta-value">{post.watering}</span>
-              </div>
-
-              <div>
-                <span className="meta-label">Posted</span>
-                <span className="meta-value">
-                  {formatDate(post.createdAt)}
-                </span>
-              </div>
-            </div>
-
-            <div className="carepost-detail-section">
-              <h2>Care Guide</h2>
-              <p>{post.content}</p>
-            </div>
-
-            <div className="carepost-detail-author">
-              Written by <strong>{post.author}</strong>
-            </div>
-
-            <div className="carepost-detail-actions">
-              <Button
-                className="carepost-edit-btn"
-                onClick={() => navigate(`/careposts/${id}/edit`)}
+      {/* --- Filter Section --- */}
+      <div className="filter-bar p-4 mb-5 rounded shadow-sm bg-white">
+        <Row className="align-items-end g-3">
+          <Col md={3}>
+            <Form.Group>
+              <Form.Label className="fw-bold">Light Level</Form.Label>
+              <Form.Select
+                value={tempFilters.light}
+                onChange={(e) => setTempFilters({ ...tempFilters, light: e.target.value })}
               >
-                Edit Post
-              </Button>
+                <option value="">All Light Levels</option>
+                <option value="Bright Indirect">Bright Indirect</option>
+                <option value="Low Light">Low Light</option>
+                <option value="Direct Sunlight">Direct Sunlight</option>
+                <option value="Partial Shade">Partial Shade</option>
+              </Form.Select>
+            </Form.Group>
+          </Col>
 
-              <Button
-                className="carepost-delete-btn"
-                onClick={() => setShowConfirm(true)}
+          <Col md={3}>
+            <Form.Group>
+              <Form.Label className="fw-bold">Difficulty</Form.Label>
+              <Form.Select
+                value={tempFilters.difficulty}
+                onChange={(e) => setTempFilters({ ...tempFilters, difficulty: e.target.value })}
               >
-                Delete Post
-              </Button>
-            </div>
+                <option value="">All Difficulties</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </Form.Select>
+            </Form.Group>
+          </Col>
 
-          </div>
+          <Col md={4}>
+            <Form.Group>
+              <Form.Label className="fw-bold">Plant Type</Form.Label>
+              <Form.Select
+                value={tempFilters.plantType}
+                onChange={(e) => setTempFilters({ ...tempFilters, plantType: e.target.value })}
+              >
+                <option value="">All Types</option>
+                <option value="Tropical">Tropical</option>
+                <option value="Succulent">Succulent</option>
+                <option value="Cactus">Cactus</option>
+                <option value="Fern">Fern</option>
+                <option value="Bonsai">Bonsai</option>
+              </Form.Select>
+            </Form.Group>
+          </Col>
+
+          <Col md={2}>
+            <Button className="w-100 btn-green-apply" onClick={handleApplyFilters}>
+              Apply Filters
+            </Button>
+          </Col>
+        </Row>
+      </div>
+
+      {/* --- Posts Grid --- */}
+      {loading ? (
+        <div className="text-center py-5">
+          <Spinner animation="border" variant="success" />
         </div>
-      </Container>
+      ) : (
+        <Row className="g-4">
+          {posts.map((post) => (
+            <Col key={post._id} xs={12} sm={6} lg={4}>
+              <Card className="h-100 border-0 shadow-sm post-card">
+                <Card.Body>
+                  <div className="mb-2">
+                    <span className={`badge-difficulty ${post.difficulty}`}>
+                      {post.difficulty}
+                    </span>
+                  </div>
+                  <Card.Title className="fw-bold">{post.title}</Card.Title>
+                  <Card.Text className="text-muted small">
+                    {post.content.substring(0, 100)}...
+                  </Card.Text>
+                  <div className="d-flex justify-content-between align-items-center mt-3">
+                    <span className="small text-secondary">By {post.author}</span>
+                    <Link to={`/careposts/${post._id}`} className="btn-read-more">
+                      Read More
+                    </Link>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      )}
 
-      {/* Delete Modal */}
+      {/* --- Pagination --- */}
+      {totalPages > 1 && !loading && (
+        <div className="listings-pagination mt-5">
+          <button
+            className="page-btn"
+            disabled={page === 1}
+            onClick={() => handlePageChange(page - 1)}
+          >
+            Prev
+          </button>
 
-      <Modal show={showConfirm} onHide={() => setShowConfirm(false)} centered>
+          {Array.from({ length: totalPages }, (_, i) => i + 1)
+            .filter((p) => p === 1 || p === totalPages || Math.abs(p - page) <= 2)
+            .reduce((acc, p, i, arr) => {
+              if (i > 0 && p - arr[i - 1] > 1) acc.push("...");
+              acc.push(p);
+              return acc;
+            }, [])
+            .map((item, i) =>
+              item === "..." ? (
+                <span key={`ellipsis-${i}`} className="page-ellipsis">…</span>
+              ) : (
+                <button
+                  key={item}
+                  className={`page-btn ${page === item ? "active" : ""}`}
+                  onClick={() => handlePageChange(item)}
+                >
+                  {item}
+                </button>
+              )
+            )}
 
-        <Modal.Body className="carepost-modal-body">
-
-          <div className="carepost-modal-icon">🗑️</div>
-
-          <h5>Delete this post?</h5>
-
-          <p>
-            <strong>{post.title}</strong> will be permanently removed.
-          </p>
-
-          <div className="carepost-modal-actions">
-
-            <button
-              onClick={() => setShowConfirm(false)}
-              disabled={deleting}
-            >
-              Cancel
-            </button>
-
-            <button
-              onClick={handleDelete}
-              disabled={deleting}
-            >
-              {deleting ? "Deleting…" : "Delete"}
-            </button>
-
-          </div>
-        </Modal.Body>
-
-      </Modal>
-    </div>
+          <button
+            className="page-btn"
+            disabled={page === totalPages}
+            onClick={() => handlePageChange(page + 1)}
+          >
+            Next
+          </button>
+        </div>
+      )}
+    </Container>
   );
 }
