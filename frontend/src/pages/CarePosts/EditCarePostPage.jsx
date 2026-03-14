@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Container, Spinner } from "react-bootstrap";
 import CarePostForm from "./CarePostForm.jsx";
-import "./CarePostPageLayout.css";
+import "./PostPageLayout.css";
 
 export default function EditCarePostPage() {
   const { id } = useParams();
