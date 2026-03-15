@@ -7,6 +7,7 @@
   "scripts": {
     "start": "node server/backend.js",
     "dev": "nodemon server/backend.js",
+    "build": "cd frontend && npm install && npm run build",
     "seed:careposts": "node server/seed/seedCarePosts.js",
     "seed:listings": "node server/seed/seedPlantListings.js"
   },

@@ -2,27 +2,23 @@ import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 import session from "express-session";
+import path from "path";
+import { fileURLToPath } from "url";
 import { connectDB } from "./db/connection.js";
 import carePostsRouter from "./routes/carePosts.js";
 import plantListingsRouter from "./routes/plantListings.js";
 import usersRouter from "./routes/users.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, OPTIONS"
-  );
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  if (req.method === "OPTIONS") return res.sendStatus(200);
-  next();
-});
+// In production, serve the frontend build folder as static files
+app.use(express.static(path.join(__dirname, "..", "frontend", "dist")));
 
 app.use(
   session({
@@ -40,6 +36,11 @@ app.use(
 app.use("/api/users", usersRouter);
 app.use("/api/careposts", carePostsRouter);
 app.use("/api/plant-listings", plantListingsRouter);
+
+// For any non-API route, send back the React app (SPA fallback)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "frontend", "dist", "index.html"));
+});
 
 connectDB()
   .then(() => {
