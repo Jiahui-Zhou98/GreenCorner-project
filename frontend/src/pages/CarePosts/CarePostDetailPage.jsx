@@ -75,7 +75,6 @@ export default function CarePostDetailPage() {
       navigate("/careposts");
     } catch (err) {
       console.error("Delete failed:", err.message);
-      alert(err.message); // Temporarily alert the error to see what's happening
       setDeleting(false);
       setShowConfirm(false);
     }
