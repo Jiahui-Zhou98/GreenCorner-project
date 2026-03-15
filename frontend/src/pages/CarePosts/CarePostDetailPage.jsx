@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { Container, Button, Spinner, Badge, Modal } from "react-bootstrap";
+import { useAuth } from "../../context/useAuth.js"; 
 import "./CarePostDetailPage.css";
 
 const DIFFICULTY_STYLE = {
@@ -19,6 +20,7 @@ function formatDate(dateStr) {
 }
 
 export default function CarePostDetailPage() {
+  const { user } = useAuth(); 
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -60,16 +62,20 @@ export default function CarePostDetailPage() {
     try {
       const res = await fetch(`/api/careposts/${id}`, {
         method: "DELETE",
+        // ADD THIS LINE:
+        credentials: "include", 
       });
 
       if (!res.ok) {
         const data = await res.json();
-        throw new Error(data.error || "Delete failed");
+        // This will tell you exactly why the server said no
+        throw new Error(data.error || `Delete failed: ${res.status}`);
       }
 
       navigate("/careposts");
     } catch (err) {
       console.error("Delete failed:", err.message);
+      alert(err.message); // Temporarily alert the error to see what's happening
       setDeleting(false);
       setShowConfirm(false);
     }
@@ -104,7 +110,6 @@ export default function CarePostDetailPage() {
   return (
     <div className="carepost-detail-page">
       <Container className="carepost-detail-container">
-
         <button
           className="carepost-back-link"
           onClick={() => navigate(backTo)}
@@ -113,7 +118,6 @@ export default function CarePostDetailPage() {
         </button>
 
         <div className="carepost-detail-layout">
-
           {/* Hero image */}
           <div className="carepost-detail-hero">
             {post.imageUrl ? (
@@ -129,13 +133,11 @@ export default function CarePostDetailPage() {
 
           {/* Content */}
           <div className="carepost-detail-info">
-
             <div className="carepost-detail-badges">
               <Badge bg={difficulty.bg}>{difficulty.label}</Badge>
             </div>
 
             <h1 className="carepost-detail-title">{post.title}</h1>
-
             <p className="carepost-detail-type">{post.plantType}</p>
 
             <div className="carepost-detail-meta">
@@ -143,12 +145,10 @@ export default function CarePostDetailPage() {
                 <span className="meta-label">Light</span>
                 <span className="meta-value">{post.light}</span>
               </div>
-
               <div>
                 <span className="meta-label">Watering</span>
                 <span className="meta-value">{post.watering}</span>
               </div>
-
               <div>
                 <span className="meta-label">Posted</span>
                 <span className="meta-value">
@@ -166,59 +166,52 @@ export default function CarePostDetailPage() {
               Written by <strong>{post.author}</strong>
             </div>
 
-            <div className="carepost-detail-actions">
-              <Button
-                className="carepost-edit-btn"
-                onClick={() => navigate(`/careposts/${id}/edit`)}
-              >
-                Edit Post
-              </Button>
+            {user && String(user._id) === String(post.createdBy) && (
+              <div className="carepost-detail-actions">
+                <Button
+                  className="carepost-edit-btn"
+                  onClick={() => navigate(`/careposts/${id}/edit`)}
+                >
+                  Edit Post
+                </Button>
 
-              <Button
-                className="carepost-delete-btn"
-                onClick={() => setShowConfirm(true)}
-              >
-                Delete Post
-              </Button>
-            </div>
-
+                <Button
+                  className="carepost-delete-btn"
+                  onClick={() => setShowConfirm(true)}
+                >
+                  Delete Post
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </Container>
 
-      {/* Delete Modal */}
-
+      {/* Delete Modal stays the same */}
       <Modal show={showConfirm} onHide={() => setShowConfirm(false)} centered>
-
         <Modal.Body className="carepost-modal-body">
-
           <div className="carepost-modal-icon">🗑️</div>
-
           <h5>Delete this post?</h5>
-
           <p>
             <strong>{post.title}</strong> will be permanently removed.
           </p>
-
           <div className="carepost-modal-actions">
-
             <button
+              className="modal-cancel-btn"
               onClick={() => setShowConfirm(false)}
               disabled={deleting}
             >
               Cancel
             </button>
-
             <button
+              className="modal-delete-btn"
               onClick={handleDelete}
               disabled={deleting}
             >
               {deleting ? "Deleting…" : "Delete"}
             </button>
-
           </div>
         </Modal.Body>
-
       </Modal>
     </div>
   );
