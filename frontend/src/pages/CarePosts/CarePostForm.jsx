@@ -239,7 +239,11 @@ export default function CarePostForm({
 
       {/* Submit */}
       <div className="cpf-submit-row">
-        <Button type="submit" className="cpf-submit-btn" disabled={submitting}>
+        <Button
+          type="submit"
+          className="btn-green cpf-submit-btn"
+          disabled={submitting}
+        >
           {submitting ? (
             <>
               <Spinner animation="border" size="sm" className="me-2" />

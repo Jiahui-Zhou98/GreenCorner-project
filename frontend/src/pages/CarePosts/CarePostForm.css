@@ -1,4 +1,4 @@
- .carepost-form {
+.carepost-form {
   background: #fff;
   border-radius: 16px;
   padding: 1.5rem;
@@ -52,12 +52,6 @@
 }
 
 .cpf-submit-btn {
-  --bs-btn-bg: #2c4f34;
-  --bs-btn-border-color: #2c4f34;
-  --bs-btn-color: #f1ece4;
-  --bs-btn-hover-bg: #3d6b46;
-  --bs-btn-hover-border-color: #3d6b46;
-  --bs-btn-hover-color: #fff;
   border-radius: 8px;
   padding: 9px 22px;
   font-size: 0.92rem;

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { Container, Button, Spinner, Badge, Modal } from "react-bootstrap";
-import { useAuth } from "../../context/useAuth.js"; 
+import { useAuth } from "../../context/useAuth.js";
 import "./CarePostDetailPage.css";
 
 const DIFFICULTY_STYLE = {
@@ -20,7 +20,7 @@ function formatDate(dateStr) {
 }
 
 export default function CarePostDetailPage() {
-  const { user } = useAuth(); 
+  const { user } = useAuth();
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -63,7 +63,7 @@ export default function CarePostDetailPage() {
       const res = await fetch(`/api/careposts/${id}`, {
         method: "DELETE",
         // ADD THIS LINE:
-        credentials: "include", 
+        credentials: "include",
       });
 
       if (!res.ok) {
@@ -93,7 +93,7 @@ export default function CarePostDetailPage() {
     return (
       <Container className="carepost-detail-error">
         <p>Failed to load post: {error}</p>
-        <Button onClick={() => navigate("/careposts")}>
+        <Button className="btn-green" onClick={() => navigate("/careposts")}>
           Back to Care Posts
         </Button>
       </Container>
@@ -110,10 +110,7 @@ export default function CarePostDetailPage() {
   return (
     <div className="carepost-detail-page">
       <Container className="carepost-detail-container">
-        <button
-          className="carepost-back-link"
-          onClick={() => navigate(backTo)}
-        >
+        <button className="carepost-back-link" onClick={() => navigate(backTo)}>
           ← Back to Care Posts
         </button>
 
@@ -151,9 +148,7 @@ export default function CarePostDetailPage() {
               </div>
               <div>
                 <span className="meta-label">Posted</span>
-                <span className="meta-value">
-                  {formatDate(post.createdAt)}
-                </span>
+                <span className="meta-value">{formatDate(post.createdAt)}</span>
               </div>
             </div>
 
@@ -169,7 +164,7 @@ export default function CarePostDetailPage() {
             {user && String(user._id) === String(post.createdBy) && (
               <div className="carepost-detail-actions">
                 <Button
-                  className="carepost-edit-btn"
+                  className="btn-green carepost-edit-btn"
                   onClick={() => navigate(`/careposts/${id}/edit`)}
                 >
                   Edit Post

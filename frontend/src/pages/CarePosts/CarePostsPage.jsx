@@ -5,13 +5,28 @@ import { useAuth } from "../../context/useAuth.js";
 import "./CarePostsPage.css";
 
 const PLANT_TYPES = [
-  "Tropical", "Succulent", "Herb", "Fern", "Flowering", 
-  "Cactus", "Foliage", "Trailing", "Aquatic", 
-  "Carnivorous", "Bulb", "Air Plant", "Bonsai",
+  "Tropical",
+  "Succulent",
+  "Herb",
+  "Fern",
+  "Flowering",
+  "Cactus",
+  "Foliage",
+  "Trailing",
+  "Aquatic",
+  "Carnivorous",
+  "Bulb",
+  "Air Plant",
+  "Bonsai",
 ];
 
 const DIFFICULTIES = ["easy", "medium", "hard"];
-const LIGHT_OPTIONS = ["Bright Indirect", "Low Light", "Direct Sunlight", "Partial Shade"];
+const LIGHT_OPTIONS = [
+  "Bright Indirect",
+  "Low Light",
+  "Direct Sunlight",
+  "Partial Shade",
+];
 const PAGE_SIZE = 6;
 
 function filtersFromParams(params) {
@@ -26,7 +41,11 @@ function CarePostCard({ post }) {
   return (
     <div className="carepost-card">
       {post.imageUrl ? (
-        <img src={post.imageUrl} alt={post.title} className="carepost-card-image" />
+        <img
+          src={post.imageUrl}
+          alt={post.title}
+          className="carepost-card-image"
+        />
       ) : (
         <div className="carepost-card-hero">🌿</div>
       )}
@@ -37,7 +56,9 @@ function CarePostCard({ post }) {
         </div>
         <h3 className="carepost-card-title">{post.title}</h3>
         <p className="carepost-card-text">
-          {post.content?.length > 120 ? `${post.content.slice(0, 120)}...` : post.content}
+          {post.content?.length > 120
+            ? `${post.content.slice(0, 120)}...`
+            : post.content}
         </p>
         <div className="carepost-card-details">
           <span>Light: {post.light || "N/A"}</span>
@@ -45,7 +66,10 @@ function CarePostCard({ post }) {
         </div>
         <div className="carepost-card-footer">
           <span className="carepost-card-author">By {post.author}</span>
-          <Button className="carepost-detail-btn" href={`/careposts/${post._id}`}>
+          <Button
+            className="btn-green carepost-detail-btn"
+            href={`/careposts/${post._id}`}
+          >
             Read More
           </Button>
         </div>
@@ -59,7 +83,6 @@ export default function CarePostsPage() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const page = Number(searchParams.get("page") || 1);
-  const filters = filtersFromParams(searchParams);
 
   const [pending, setPending] = useState(() => filtersFromParams(searchParams));
   const [posts, setPosts] = useState([]);
@@ -69,15 +92,20 @@ export default function CarePostsPage() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    const currentFilters = filtersFromParams(searchParams);
+    const currentPage = Number(searchParams.get("page") || 1);
+
     async function fetchPosts() {
       setLoading(true);
       try {
         setError(null);
         const params = new URLSearchParams();
-        if (filters.plantType) params.set("plantType", filters.plantType);
-        if (filters.difficulty) params.set("difficulty", filters.difficulty);
-        if (filters.light) params.set("light", filters.light);
-        params.set("page", page);
+        if (currentFilters.plantType)
+          params.set("plantType", currentFilters.plantType);
+        if (currentFilters.difficulty)
+          params.set("difficulty", currentFilters.difficulty);
+        if (currentFilters.light) params.set("light", currentFilters.light);
+        params.set("page", currentPage);
         params.set("limit", PAGE_SIZE);
 
         const res = await fetch(`/api/careposts?${params.toString()}`);
@@ -136,7 +164,9 @@ export default function CarePostsPage() {
           <aside className="careposts-sidebar">
             <div className="sidebar-header">
               <h6 className="sidebar-title">Filter</h6>
-              <button className="sidebar-reset" onClick={handleReset}>Reset</button>
+              <button className="sidebar-reset" onClick={handleReset}>
+                Reset
+              </button>
             </div>
             <Form>
               {/* ... All your Form Groups stay here ... */}
@@ -144,10 +174,16 @@ export default function CarePostsPage() {
                 <Form.Label>Plant Type</Form.Label>
                 <Form.Select
                   value={pending.plantType}
-                  onChange={(e) => handlePendingChange("plantType", e.target.value)}
+                  onChange={(e) =>
+                    handlePendingChange("plantType", e.target.value)
+                  }
                 >
                   <option value="">All Types</option>
-                  {PLANT_TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
+                  {PLANT_TYPES.map((t) => (
+                    <option key={t} value={t}>
+                      {t}
+                    </option>
+                  ))}
                 </Form.Select>
               </Form.Group>
 
@@ -155,11 +191,15 @@ export default function CarePostsPage() {
                 <Form.Label>Difficulty</Form.Label>
                 <Form.Select
                   value={pending.difficulty}
-                  onChange={(e) => handlePendingChange("difficulty", e.target.value)}
+                  onChange={(e) =>
+                    handlePendingChange("difficulty", e.target.value)
+                  }
                 >
                   <option value="">All</option>
                   {DIFFICULTIES.map((d) => (
-                    <option key={d} value={d}>{d.charAt(0).toUpperCase() + d.slice(1)}</option>
+                    <option key={d} value={d}>
+                      {d.charAt(0).toUpperCase() + d.slice(1)}
+                    </option>
                   ))}
                 </Form.Select>
               </Form.Group>
@@ -172,43 +212,55 @@ export default function CarePostsPage() {
                 >
                   <option value="">All</option>
                   {LIGHT_OPTIONS.map((l) => (
-                    <option key={l} value={l}>{l.charAt(0).toUpperCase() + l.slice(1)}</option>
+                    <option key={l} value={l}>
+                      {l.charAt(0).toUpperCase() + l.slice(1)}
+                    </option>
                   ))}
                 </Form.Select>
               </Form.Group>
-              <button type="button" className="sidebar-apply" onClick={handleApply}>Apply Filters</button>
+              <button
+                type="button"
+                className="sidebar-apply"
+                onClick={handleApply}
+              >
+                Apply Filters
+              </button>
             </Form>
           </aside>
-
           {/* Main Content Area */}
           <div className="careposts-main">
             <div className="careposts-toolbar">
               <span className="careposts-count">
-                {loading ? "Loading..." : `${total} post${total !== 1 ? "s" : ""} found`}
+                {loading
+                  ? "Loading..."
+                  : `${total} post${total !== 1 ? "s" : ""} found`}
               </span>
-              
+
               <Button
-                className="create-carepost-btn"
+                className="btn-green create-carepost-btn"
                 disabled={!user}
                 title={!user ? "Please sign in to create a care post" : ""}
                 onClick={() => navigate("/careposts/new")}
               >
                 + New Care Post
               </Button>
-            </div> {/* END TOOLBAR */}
-
+            </div>{" "}
+            {/* END TOOLBAR */}
             {error && (
               <div className="careposts-error">
                 <p>Failed to load posts: {error}</p>
               </div>
             )}
-
             {loading ? (
-              <div className="careposts-loading"><Spinner animation="border" /></div>
+              <div className="careposts-loading">
+                <Spinner animation="border" />
+              </div>
             ) : posts.length === 0 ? (
               <div className="careposts-empty">
                 <p>No care posts match your filters.</p>
-                <button className="sidebar-reset" onClick={handleReset}>Clear filters</button>
+                <button className="sidebar-reset" onClick={handleReset}>
+                  Clear filters
+                </button>
               </div>
             ) : (
               <Row className="g-4">
@@ -219,7 +271,6 @@ export default function CarePostsPage() {
                 ))}
               </Row>
             )}
-
             {/* Pagination Section */}
             {totalPages > 1 && !loading && (
               <div className="careposts-pagination">
@@ -232,7 +283,10 @@ export default function CarePostsPage() {
                 </button>
 
                 {Array.from({ length: totalPages }, (_, i) => i + 1)
-                  .filter((p) => p === 1 || p === totalPages || Math.abs(p - page) <= 2)
+                  .filter(
+                    (p) =>
+                      p === 1 || p === totalPages || Math.abs(p - page) <= 2
+                  )
                   .reduce((acc, p, i, arr) => {
                     if (i > 0 && p - arr[i - 1] > 1) acc.push("...");
                     acc.push(p);
@@ -240,7 +294,9 @@ export default function CarePostsPage() {
                   }, [])
                   .map((item, i) =>
                     item === "..." ? (
-                      <span key={`ellipsis-${i}`} className="page-ellipsis">…</span>
+                      <span key={`ellipsis-${i}`} className="page-ellipsis">
+                        …
+                      </span>
                     ) : (
                       <button
                         key={item}
@@ -261,8 +317,10 @@ export default function CarePostsPage() {
                 </button>
               </div>
             )}
-          </div> {/* END MAIN CONTENT */}
-        </div> {/* END LAYOUT */}
+          </div>{" "}
+          {/* END MAIN CONTENT */}
+        </div>{" "}
+        {/* END LAYOUT */}
       </Container>
     </div>
   );
