@@ -38,7 +38,7 @@ app.use("/api/careposts", carePostsRouter);
 app.use("/api/plant-listings", plantListingsRouter);
 
 // For any non-API route, send back the React app (SPA fallback)
-app.get("*", (req, res) => {
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, "..", "frontend", "dist", "index.html"));
 });
 
