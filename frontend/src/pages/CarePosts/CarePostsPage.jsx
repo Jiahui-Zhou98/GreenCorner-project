@@ -4,19 +4,9 @@ import { Container, Row, Col, Form, Button, Spinner } from "react-bootstrap";
 import "./CarePostsPage.css";
 
 const PLANT_TYPES = [
-  "Tropical",
-  "Succulent",
-  "Herb",
-  "Fern",
-  "Flowering",
-  "Cactus",
-  "Foliage",
-  "Trailing",
-  "Aquatic",
-  "Carnivorous",
-  "Bulb",
-  "Air Plant",
-  "Bonsai",
+  "Tropical", "Succulent", "Herb", "Fern", "Flowering", 
+  "Cactus", "Foliage", "Trailing", "Aquatic", 
+  "Carnivorous", "Bulb", "Air Plant", "Bonsai",
 ];
 
 const DIFFICULTIES = ["easy", "medium", "hard"];
@@ -35,11 +25,7 @@ function CarePostCard({ post }) {
   return (
     <div className="carepost-card">
       {post.imageUrl ? (
-        <img
-          src={post.imageUrl}
-          alt={post.title}
-          className="carepost-card-image"
-        />
+        <img src={post.imageUrl} alt={post.title} className="carepost-card-image" />
       ) : (
         <div className="carepost-card-hero">🌿</div>
       )}
@@ -50,9 +36,7 @@ function CarePostCard({ post }) {
         </div>
         <h3 className="carepost-card-title">{post.title}</h3>
         <p className="carepost-card-text">
-          {post.content?.length > 120
-            ? `${post.content.slice(0, 120)}...`
-            : post.content}
+          {post.content?.length > 120 ? `${post.content.slice(0, 120)}...` : post.content}
         </p>
         <div className="carepost-card-details">
           <span>Light: {post.light || "N/A"}</span>
@@ -86,7 +70,6 @@ export default function CarePostsPage() {
       setLoading(true);
       try {
         setError(null);
-
         const params = new URLSearchParams();
         if (filters.plantType) params.set("plantType", filters.plantType);
         if (filters.difficulty) params.set("difficulty", filters.difficulty);
@@ -109,7 +92,6 @@ export default function CarePostsPage() {
         setLoading(false);
       }
     }
-
     fetchPosts();
   }, [searchParams]);
 
@@ -130,8 +112,7 @@ export default function CarePostsPage() {
   }
 
   function handleReset() {
-    const empty = filtersFromParams(new URLSearchParams());
-    setPending(empty);
+    setPending(filtersFromParams(new URLSearchParams()));
     setSearchParams({});
   }
 
@@ -141,20 +122,19 @@ export default function CarePostsPage() {
       next.set("page", String(newPage));
       return next;
     });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   return (
     <div className="careposts-page">
       <Container className="careposts-body">
         <div className="careposts-layout">
+          {/* Sidebar */}
           <aside className="careposts-sidebar">
             <div className="sidebar-header">
               <h6 className="sidebar-title">Filter</h6>
-              <button className="sidebar-reset" onClick={handleReset}>
-                Reset
-              </button>
+              <button className="sidebar-reset" onClick={handleReset}>Reset</button>
             </div>
-
             <Form>
               <Form.Group className="sidebar-group">
                 <Form.Label>Plant Type</Form.Label>
@@ -163,9 +143,7 @@ export default function CarePostsPage() {
                   onChange={(e) => handlePendingChange("plantType", e.target.value)}
                 >
                   <option value="">All Types</option>
-                  {PLANT_TYPES.map((t) => (
-                    <option key={t} value={t}>{t}</option>
-                  ))}
+                  {PLANT_TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
                 </Form.Select>
               </Form.Group>
 
@@ -194,13 +172,11 @@ export default function CarePostsPage() {
                   ))}
                 </Form.Select>
               </Form.Group>
-
-              <button type="button" className="sidebar-apply" onClick={handleApply}>
-                Apply Filters
-              </button>
+              <button type="button" className="sidebar-apply" onClick={handleApply}>Apply Filters</button>
             </Form>
           </aside>
 
+          {/* Main Content */}
           <div className="careposts-main">
             <div className="careposts-toolbar">
               <span className="careposts-count">
@@ -227,20 +203,45 @@ export default function CarePostsPage() {
               </Row>
             )}
 
-            {/* Pagination */}
+            {/* Pagination Section - 已經按照你的邏輯修改 */}
             {totalPages > 1 && !loading && (
               <div className="careposts-pagination">
-                <button disabled={page === 1} onClick={() => handlePageChange(page - 1)}>Prev</button>
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-                  <button
-                    key={p}
-                    className={p === page ? "active" : ""}
-                    onClick={() => handlePageChange(p)}
-                  >
-                    {p}
-                  </button>
-                ))}
-                <button disabled={page === totalPages} onClick={() => handlePageChange(page + 1)}>Next</button>
+                <button
+                  className="page-btn"
+                  disabled={page === 1}
+                  onClick={() => handlePageChange(page - 1)}
+                >
+                  Prev
+                </button>
+
+                {Array.from({ length: totalPages }, (_, i) => i + 1)
+                  .filter((p) => p === 1 || p === totalPages || Math.abs(p - page) <= 2)
+                  .reduce((acc, p, i, arr) => {
+                    if (i > 0 && p - arr[i - 1] > 1) acc.push("...");
+                    acc.push(p);
+                    return acc;
+                  }, [])
+                  .map((item, i) =>
+                    item === "..." ? (
+                      <span key={`ellipsis-${i}`} className="page-ellipsis">…</span>
+                    ) : (
+                      <button
+                        key={item}
+                        className={`page-btn ${page === item ? "active" : ""}`}
+                        onClick={() => handlePageChange(item)}
+                      >
+                        {item}
+                      </button>
+                    )
+                  )}
+
+                <button
+                  className="page-btn"
+                  disabled={page === totalPages}
+                  onClick={() => handlePageChange(page + 1)}
+                >
+                  Next
+                </button>
               </div>
             )}
           </div>
