@@ -8,6 +8,8 @@
     "start": "node server/backend.js",
     "dev": "nodemon server/backend.js",
     "build": "cd frontend && npm install && npm run build",
+    "lint": "eslint . && cd frontend && eslint .",
+    "format": "prettier --write .",
     "seed:careposts": "node server/seed/seedCarePosts.js",
     "seed:listings": "node server/seed/seedPlantListings.js"
   },
@@ -24,6 +26,7 @@
     "@eslint/js": "^10.0.1",
     "eslint": "^10.0.3",
     "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.4.0",
     "nodemon": "^3.1.14",
     "prettier": "^3.8.1"
   }

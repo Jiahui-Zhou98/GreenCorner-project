@@ -68,7 +68,16 @@ router.post("/", async (req, res) => {
     const db = await connectDB();
     const collection = db.collection("carePosts");
 
-    const { title, plantType, difficulty, light, watering, content, author, imageUrl } = req.body;
+    const {
+      title,
+      plantType,
+      difficulty,
+      light,
+      watering,
+      content,
+      author,
+      imageUrl,
+    } = req.body;
 
     if (!title || !plantType || !content || !author) {
       return res.status(400).json({ error: "Missing required fields" });
@@ -110,15 +119,28 @@ router.put("/:id", async (req, res) => {
     }
 
     // 2. Fetch existing post to check ownership
-    const existing = await collection.findOne({ _id: new ObjectId(req.params.id) });
+    const existing = await collection.findOne({
+      _id: new ObjectId(req.params.id),
+    });
     if (!existing) return res.status(404).json({ error: "Post not found" });
 
     // 3. Authorize: Compare session ID with post creator ID
     if (existing.createdBy !== req.session.userId) {
-      return res.status(403).json({ error: "Forbidden: You do not own this post." });
+      return res
+        .status(403)
+        .json({ error: "Forbidden: You do not own this post." });
     }
 
-    const allowedFields = ["title", "plantType", "difficulty", "light", "watering", "content", "author", "imageUrl"];
+    const allowedFields = [
+      "title",
+      "plantType",
+      "difficulty",
+      "light",
+      "watering",
+      "content",
+      "author",
+      "imageUrl",
+    ];
     const updates = {};
     for (const field of allowedFields) {
       if (req.body[field] !== undefined) updates[field] = req.body[field];
@@ -152,12 +174,16 @@ router.delete("/:id", async (req, res) => {
     }
 
     // 2. Fetch existing post to check ownership
-    const existing = await collection.findOne({ _id: new ObjectId(req.params.id) });
+    const existing = await collection.findOne({
+      _id: new ObjectId(req.params.id),
+    });
     if (!existing) return res.status(404).json({ error: "Post not found" });
 
     // 3. Authorize: Only the creator can delete
     if (existing.createdBy !== req.session.userId) {
-      return res.status(403).json({ error: "Forbidden: You do not own this post." });
+      return res
+        .status(403)
+        .json({ error: "Forbidden: You do not own this post." });
     }
 
     await collection.deleteOne({ _id: new ObjectId(req.params.id) });
