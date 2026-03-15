@@ -305,3 +305,15 @@
   color: var(--text-muted);
   padding: 0 4px;
 }
+
+/* ── Mobile Responsive ───────────────────────────── */
+@media (max-width: 768px) {
+  .listings-layout {
+    flex-direction: column;
+  }
+
+  .listings-sidebar {
+    width: 100%;
+    position: static;
+  }
+}
