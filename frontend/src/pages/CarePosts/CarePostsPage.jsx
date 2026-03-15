@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { Container, Row, Col, Form, Button, Spinner } from "react-bootstrap";
+import PropTypes from "prop-types";
 import { useAuth } from "../../context/useAuth.js";
 import "./CarePostsPage.css";
 
@@ -77,6 +78,20 @@ function CarePostCard({ post }) {
     </div>
   );
 }
+
+CarePostCard.propTypes = {
+  post: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    plantType: PropTypes.string,
+    difficulty: PropTypes.string,
+    content: PropTypes.string,
+    light: PropTypes.string,
+    watering: PropTypes.string,
+    author: PropTypes.string,
+    imageUrl: PropTypes.string,
+  }).isRequired,
+};
 
 export default function CarePostsPage() {
   const { user } = useAuth();
@@ -318,9 +333,7 @@ export default function CarePostsPage() {
               </div>
             )}
           </div>{" "}
-          {/* END MAIN CONTENT */}
         </div>{" "}
-        {/* END LAYOUT */}
       </Container>
     </div>
   );
