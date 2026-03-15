@@ -11,7 +11,7 @@ const PLANT_TYPES = [
 ];
 
 const DIFFICULTIES = ["easy", "medium", "hard"];
-const LIGHT_OPTIONS = ["low", "medium", "bright indirect", "direct sunlight"];
+const LIGHT_OPTIONS = ["Bright Indirect", "Low Light", "Direct Sunlight", "Partial Shade"];
 const PAGE_SIZE = 6;
 
 function filtersFromParams(params) {
