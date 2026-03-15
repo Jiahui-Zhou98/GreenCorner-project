@@ -96,6 +96,7 @@
   color: var(--text-muted);
 }
 
+/* Button Styles */
 .create-carepost-btn {
   --bs-btn-bg: #2c4f34;
   --bs-btn-border-color: #2c4f34;
@@ -107,6 +108,16 @@
   padding: 7px 18px;
   font-size: 0.88rem;
   font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+/* Disabled state when user is not logged in */
+.create-carepost-btn:disabled {
+  --bs-btn-disabled-bg: #a3bfa3;
+  --bs-btn-disabled-border-color: #a3bfa3;
+  --bs-btn-disabled-color: #f1ece4;
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 .careposts-loading {

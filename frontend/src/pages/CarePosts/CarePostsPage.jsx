@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { Container, Row, Col, Form, Button, Spinner } from "react-bootstrap";
+import { useAuth } from "../../context/useAuth.js";
 import "./CarePostsPage.css";
 
 const PLANT_TYPES = [
@@ -54,6 +55,8 @@ function CarePostCard({ post }) {
 }
 
 export default function CarePostsPage() {
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const page = Number(searchParams.get("page") || 1);
   const filters = filtersFromParams(searchParams);
@@ -136,6 +139,7 @@ export default function CarePostsPage() {
               <button className="sidebar-reset" onClick={handleReset}>Reset</button>
             </div>
             <Form>
+              {/* ... All your Form Groups stay here ... */}
               <Form.Group className="sidebar-group">
                 <Form.Label>Plant Type</Form.Label>
                 <Form.Select
@@ -176,15 +180,28 @@ export default function CarePostsPage() {
             </Form>
           </aside>
 
-          {/* Main Content */}
+          {/* Main Content Area */}
           <div className="careposts-main">
             <div className="careposts-toolbar">
               <span className="careposts-count">
                 {loading ? "Loading..." : `${total} post${total !== 1 ? "s" : ""} found`}
               </span>
-            </div>
+              
+              <Button
+                className="create-carepost-btn"
+                disabled={!user}
+                title={!user ? "Please sign in to create a care post" : ""}
+                onClick={() => navigate("/careposts/new")}
+              >
+                + New Care Post
+              </Button>
+            </div> {/* END TOOLBAR */}
 
-            {error && <div className="careposts-error"><p>{error}</p></div>}
+            {error && (
+              <div className="careposts-error">
+                <p>Failed to load posts: {error}</p>
+              </div>
+            )}
 
             {loading ? (
               <div className="careposts-loading"><Spinner animation="border" /></div>
@@ -203,7 +220,7 @@ export default function CarePostsPage() {
               </Row>
             )}
 
-            {/* Pagination Section - 已經按照你的邏輯修改 */}
+            {/* Pagination Section */}
             {totalPages > 1 && !loading && (
               <div className="careposts-pagination">
                 <button
@@ -244,8 +261,8 @@ export default function CarePostsPage() {
                 </button>
               </div>
             )}
-          </div>
-        </div>
+          </div> {/* END MAIN CONTENT */}
+        </div> {/* END LAYOUT */}
       </Container>
     </div>
   );
