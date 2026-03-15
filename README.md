@@ -14,8 +14,8 @@ A community platform for plant lovers to share plant care knowledge and exchange
 
 ## Website Link
 
-- [GreenCorner]()
-- Deployment: todo
+- [GreenCorner](https://greencorner-bjn0.onrender.com/)
+- Deployment: Render, MongoDB Atlas
 
 ## How to Use the Website
 
