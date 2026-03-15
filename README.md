@@ -97,7 +97,7 @@ plant-community/
 │       │   └── about/                   # Images for the About page bubble hero
 │       ├── context/
 │       │   ├── AuthContextDef.js        # React context object (createContext)
-│       │   ├── AuthContext.jsx           # AuthProvider component (session check, login, register, logout)
+│       │   ├── AuthContext.jsx          # AuthProvider component (session check, login, register, logout)
 │       │   └── useAuth.js               # useAuth hook
 │       ├── components/
 │       │   ├── Navbar.jsx / Navbar.css  # Sticky navigation bar
@@ -122,7 +122,7 @@ plant-community/
 │           │   ├── CreateCarePostPage.jsx
 │           │   ├── EditCarePostPage.jsx
 │           │   ├── CarePostForm.jsx / CarePostForm.css
-│           │   └── PostPageLayout.css   # Shared layout for create/edit pages
+│           │   └── PostPageLayout.css       # Shared layout for create/edit pages
 │           └── PlantListings/
 │               ├── PlantListingsPage.jsx / PlantListingsPage.css
 │               ├── ListingCard.jsx          # Single listing card component
