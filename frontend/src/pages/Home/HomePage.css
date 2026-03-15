@@ -1,13 +1,13 @@
 .home-page {
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   min-height: 100vh;
 }
 
 /* Hero Section */
 .hero-section {
   position: relative;
-  height: 75vh;
-  min-height: 500px;
+  width: 100vw;
+  height: 100vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -33,7 +33,12 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4); /* Dark overlay helps the light text stand out */
+  background: rgba(
+    0,
+    0,
+    0,
+    0.4
+  ); /* Dark overlay helps the light text stand out */
   z-index: 1;
 }
 

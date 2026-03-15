@@ -7,8 +7,8 @@ export default function HomePage() {
   return (
     <div className="home-page">
       {/* Hero Section */}
-      <section 
-        className="hero-section" 
+      <section
+        className="hero-section"
         style={{ backgroundImage: `url('/banner.png')` }}
       >
         <div className="hero-layer"></div>
@@ -21,8 +21,8 @@ export default function HomePage() {
               Happy Growing
             </h1>
             <p className="lead banner-text">
-              A community platform connecting plant lovers. <br />
-              A simple bridge for direct connection and expert care.
+              A community platform connecting plant lovers. <br />A simple
+              bridge for direct connection and expert care.
             </p>
           </div>
         </Container>
@@ -33,14 +33,15 @@ export default function HomePage() {
         <Container className="text-center py-5">
           <h2 className="section-title fw-bold">Ready to Get Started?</h2>
           <p className="section-subtitle text-muted mb-4">
-            Join our growing community of plant owners, collectors, and nature lovers.
+            Join our growing community of plant owners, collectors, and nature
+            lovers.
           </p>
-          
+
           <div className="d-flex justify-content-center gap-3 flex-wrap">
             <Link to="/listings" className="btn-primary-custom">
               Browse Plant Listings
             </Link>
-            
+
             <Link to="/careposts" className="btn-secondary-custom">
               Explore Care Guides
             </Link>
