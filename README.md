@@ -71,9 +71,7 @@ plant-community/
 ├── server/                              # Node.js + Express backend
 │   ├── backend.js                       # Express server entry point (express-session)
 │   ├── db/
-│   │   ├── connection.js                # MongoDB singleton connection
-│   │   ├── CarePostsDB.js
-│   │   └── PlantListingsDB.js
+│   │   └── connection.js                # MongoDB singleton connection
 │   ├── routes/
 │   │   ├── carePosts.js                 # API routes for /api/careposts
 │   │   ├── plantListings.js             # API routes for /api/plant-listings
@@ -84,10 +82,11 @@ plant-community/
 │
 ├── frontend/                            # Vite + React frontend
 │   ├── index.html
+│   ├── public/                          # Static assets (favicon, manifest icons, banner)
+│   ├── .gitignore
 │   ├── vite.config.js
 │   ├── eslint.config.js
 │   ├── .prettierrc
-│   ├── .gitignore
 │   ├── package.json
 │   └── src/
 │       ├── main.jsx                     # React entry point with BrowserRouter
@@ -101,51 +100,37 @@ plant-community/
 │       │   ├── AuthContext.jsx           # AuthProvider component (session check, login, register, logout)
 │       │   └── useAuth.js               # useAuth hook
 │       ├── components/
-│       │   ├── Navbar.jsx               # Sticky navigation bar
-│       │   ├── Navbar.css
-│       │   ├── Footer.jsx
-│       │   └── Footer.css
+│       │   ├── Navbar.jsx / Navbar.css  # Sticky navigation bar
+│       │   └── Footer.jsx / Footer.css  # Site footer
 │       └── pages/
 │           ├── Home/
 │           │   ├── HomePage.jsx
 │           │   └── HomePage.css
 │           ├── About/
-│           │   ├── AboutPage.jsx        # About page with section layout
-│           │   ├── AboutPage.css
-│           │   ├── BubbleHero.jsx       # Floating bubble image hero component
-│           │   └── BubbleHero.css
+│           │   ├── AboutPage.jsx / AboutPage.css
+│           │   └── BubbleHero.jsx / BubbleHero.css
 │           ├── Auth/
 │           │   ├── RegisterPage.jsx     # User registration page
 │           │   ├── LoginPage.jsx        # User login page
 │           │   └── AuthPages.css        # Shared styles for auth pages
 │           ├── Dashboard/
-│           │   ├── DashboardPage.jsx    # User dashboard
+│           │   ├── DashboardPage.jsx
 │           │   └── DashboardPage.css
 │           ├── CarePosts/
-│           │   ├── CarePostsPage.jsx
-│           │   ├── CarePostsPage.css
-│           │   ├── CarePostDetailPage.jsx
-│           │   ├── CarePostDetailPage.css
+│           │   ├── CarePostsPage.jsx / CarePostsPage.css
+│           │   ├── CarePostDetailPage.jsx / CarePostDetailPage.css
 │           │   ├── CreateCarePostPage.jsx
 │           │   ├── EditCarePostPage.jsx
-│           │   ├── CarePostForm.jsx     # Shared form component (used by create and edit)
-│           │   ├── CarePostForm.css
-│           │   ├── PostPageLayout.css   # Shared layout styles for create/edit pages
-│           │   └── components/
-│           │       ├── CarePostCard.jsx
-│           │       ├── CarePostList.jsx
-│           │       └── CarePostFilter.jsx
+│           │   ├── CarePostForm.jsx / CarePostForm.css
+│           │   └── PostPageLayout.css   # Shared layout for create/edit pages
 │           └── PlantListings/
-│               ├── PlantListingsPage.jsx    # Listings browse page with sidebar filters and pagination
-│               ├── PlantListingsPage.css
+│               ├── PlantListingsPage.jsx / PlantListingsPage.css
 │               ├── ListingCard.jsx          # Single listing card component
-│               ├── ListingDetailPage.jsx    # Detail page with edit/delete actions
-│               ├── ListingDetailPage.css
-│               ├── ListingForm.jsx          # Shared form component (used by create and edit)
-│               ├── ListingForm.css
-│               ├── ListingPageLayout.css    # Shared layout styles for create/edit pages
-│               ├── CreateListingPage.jsx    # New listing form page
-│               └── EditListingPage.jsx      # Edit existing listing form page
+│               ├── ListingDetailPage.jsx / ListingDetailPage.css
+│               ├── CreateListingPage.jsx
+│               ├── EditListingPage.jsx
+│               ├── ListingForm.jsx / ListingForm.css
+│               └── ListingPageLayout.css    # Shared layout for create/edit pages
 │
 ├── design_doc/
 │   ├── DesignDoc.md                     # Design document with data models and mockups
@@ -157,7 +142,6 @@ plant-community/
 ├── eslint.config.js
 ├── LICENSE
 ├── package.json                         # Backend dependencies and scripts
-├── package-lock.json
 └── README.md
 ```
 
@@ -166,7 +150,7 @@ plant-community/
 - **Yi-Peng Chiang** — Plant Care Posts: `carePosts` collection, `routes/carePosts.js`, seed script, and all Care Posts frontend pages. Also responsible for Home page.
 - **Jiahui Zhou** — Plant Listings: `plantListings` collection, `routes/plantListings.js`, seed script, and all Plant Listings frontend pages. Also responsible for About page and shared UI components (Navbar, Footer).
 
-- **Shared Work** - Register page, Login page and Dashboard page.
+- **Shared Work** — Register page, Login page and Dashboard page.
 
 ## Screenshots
 

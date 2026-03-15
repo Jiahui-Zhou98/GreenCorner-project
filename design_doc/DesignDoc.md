@@ -97,10 +97,6 @@ GreenCorner is a community platform for plant lovers to both share plant care kn
 
 ---
 
-### Register & Login
+### Register & Login & Dashboard
 
-![register-login](./mockup/register_login.png)
-
----
-
-### Dashboard
+![register-login](./mockup/register_login_dashboard.png)
