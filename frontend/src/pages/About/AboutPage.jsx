@@ -1,4 +1,5 @@
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import BubbleHero from "./BubbleHero.jsx";
 import "./AboutPage.css";
 
@@ -78,35 +79,44 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* 4. Call to Action */}
+      {/* 4. Get Started */}
       <section className="about-cta text-center">
         <Container>
-          <h2 className="mb-4">Get Started</h2>
-          <div className="cta-steps">
-            <div className="cta-step">
-              <p className="cta-step-title">Share Care Tips</p>
-              <p className="cta-step-desc">
-                Write a care post about any plant you know well — watering
-                schedules, light needs, propagation tricks, or common problems.
-                Help beginners avoid the mistakes you once made.
-              </p>
-              <Button href="/careposts" className="btn-green cta-btn">
-                Go to Care Posts
-              </Button>
-            </div>
-            <div className="cta-divider" aria-hidden="true" />
-            <div className="cta-step">
-              <p className="cta-step-title">Browse the Marketplace</p>
-              <p className="cta-step-desc">
-                Find plants listed as free, for sale, or rehoming near you.
-                Filter by type, condition, and location — then contact the
-                seller directly to arrange a pickup.
-              </p>
-              <Button href="/listings" className="btn-green cta-btn">
-                Explore Listings
-              </Button>
-            </div>
-          </div>
+          <h2 className="text-center mb-5">Get Started</h2>
+          <Row className="g-4 justify-content-center">
+            <Col md={6}>
+              <Card className="about-card h-100 shadow-sm">
+                <Card.Body className="p-5">
+                  <Card.Title>
+                    <Link to="/careposts" className="cta-link">
+                      Share Care Tips
+                    </Link>
+                  </Card.Title>
+                  <Card.Text>
+                    Write a care post about any plant you know well — watering
+                    schedules, light needs, propagation tricks, or common
+                    problems. Help beginners avoid the mistakes you once made.
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col md={6}>
+              <Card className="about-card h-100 shadow-sm">
+                <Card.Body className="p-5">
+                  <Card.Title>
+                    <Link to="/listings" className="cta-link">
+                      Browse the Marketplace
+                    </Link>
+                  </Card.Title>
+                  <Card.Text>
+                    Find plants listed as free, for sale, or rehoming near you.
+                    Filter by type, condition, and location — then contact the
+                    seller directly to arrange a pickup.
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
         </Container>
       </section>
     </>
