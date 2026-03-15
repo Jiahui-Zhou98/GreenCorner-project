@@ -35,6 +35,7 @@ function filtersFromParams(params) {
     plantType: params.get("plantType") || "",
     difficulty: params.get("difficulty") || "",
     light: params.get("light") || "",
+    onlyMyPosts: params.get("onlyMyPosts") === "true",
   };
 }
 
@@ -120,10 +121,15 @@ export default function CarePostsPage() {
         if (currentFilters.difficulty)
           params.set("difficulty", currentFilters.difficulty);
         if (currentFilters.light) params.set("light", currentFilters.light);
+
+        if (currentFilters.onlyMyPosts) params.set("onlyMyPosts", "true");
+
         params.set("page", currentPage);
         params.set("limit", PAGE_SIZE);
 
-        const res = await fetch(`/api/careposts?${params.toString()}`);
+        const res = await fetch(`/api/careposts?${params.toString()}`, {
+          credentials: "include" 
+        });
         if (!res.ok) throw new Error(`Server error: ${res.status}`);
         const data = await res.json();
 
@@ -184,7 +190,6 @@ export default function CarePostsPage() {
               </button>
             </div>
             <Form>
-              {/* ... All your Form Groups stay here ... */}
               <Form.Group className="sidebar-group">
                 <Form.Label>Plant Type</Form.Label>
                 <Form.Select
@@ -233,6 +238,19 @@ export default function CarePostsPage() {
                   ))}
                 </Form.Select>
               </Form.Group>
+              
+              <Form.Group className="sidebar-group mb-3">
+                <Form.Check 
+                  type="checkbox"
+                  id="filterMyPosts"
+                  label="My Posts"
+                  disabled={!user}
+                  checked={pending.onlyMyPosts}
+                  onChange={(e) => handlePendingChange("onlyMyPosts", e.target.checked)}
+                  className={!user ? "text-muted" : ""}
+                />
+              </Form.Group>
+
               <button
                 type="button"
                 className="sidebar-apply"

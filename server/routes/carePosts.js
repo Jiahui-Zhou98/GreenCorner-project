@@ -12,12 +12,15 @@ router.get("/", async (req, res) => {
 
     const page = Number(req.query.page) || 1;
     const limit = Number(req.query.limit) || 9;
-    const { plantType, difficulty, light } = req.query;
+    const { plantType, difficulty, light, onlyMyPosts } = req.query;
 
     const filter = {};
     if (plantType) filter.plantType = plantType;
     if (difficulty) filter.difficulty = difficulty;
     if (light) filter.light = light;
+    if (onlyMyPosts === "true" && req.session.userId) {
+      filter.createdBy = req.session.userId;
+    }
 
     const skip = (page - 1) * limit;
     const total = await collection.countDocuments(filter);
