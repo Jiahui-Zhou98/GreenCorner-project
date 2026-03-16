@@ -128,7 +128,7 @@ export default function CarePostsPage() {
         params.set("limit", PAGE_SIZE);
 
         const res = await fetch(`/api/careposts?${params.toString()}`, {
-          credentials: "include" 
+          credentials: "include",
         });
         if (!res.ok) throw new Error(`Server error: ${res.status}`);
         const data = await res.json();
@@ -238,15 +238,17 @@ export default function CarePostsPage() {
                   ))}
                 </Form.Select>
               </Form.Group>
-              
+
               <Form.Group className="sidebar-group mb-3">
-                <Form.Check 
+                <Form.Check
                   type="checkbox"
                   id="filterMyPosts"
                   label="My Posts"
                   disabled={!user}
                   checked={pending.onlyMyPosts}
-                  onChange={(e) => handlePendingChange("onlyMyPosts", e.target.checked)}
+                  onChange={(e) =>
+                    handlePendingChange("onlyMyPosts", e.target.checked)
+                  }
                   className={!user ? "text-muted" : ""}
                 />
               </Form.Group>
