@@ -34,6 +34,9 @@ router.get("/", async (req, res) => {
       if (minPrice) filter.price.$gte = Number(minPrice);
       if (maxPrice) filter.price.$lte = Number(maxPrice);
     }
+    if (req.query.onlyMyPosts === "true" && req.session.userId) {
+      filter.createdBy = req.session.userId;
+    }
 
     const skip = (Number(page) - 1) * Number(limit);
     const total = await collection.countDocuments(filter);

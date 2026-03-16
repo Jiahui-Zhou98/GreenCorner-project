@@ -32,6 +32,7 @@ function filtersFromParams(params) {
     maxPrice: params.get("maxPrice") || "",
     status: params.get("status") || "",
     location: params.get("location") || "",
+    onlyMyPosts: params.get("onlyMyPosts") || "",
   };
 }
 
@@ -64,10 +65,13 @@ export default function PlantListingsPage() {
         if (filters.maxPrice) params.set("maxPrice", filters.maxPrice);
         if (filters.status) params.set("status", filters.status);
         if (filters.location) params.set("location", filters.location);
+        if (filters.onlyMyPosts) params.set("onlyMyPosts", filters.onlyMyPosts);
         params.set("page", page);
         params.set("limit", PAGE_SIZE);
 
-        const res = await fetch(`/api/plant-listings?${params.toString()}`);
+        const res = await fetch(`/api/plant-listings?${params.toString()}`, {
+          credentials: "include",
+        });
         if (!res.ok) throw new Error(`Server error: ${res.status}`);
         const data = await res.json();
         setListings(data.listings ?? []);
@@ -223,6 +227,22 @@ export default function PlantListingsPage() {
                   <option value="pending">Pending</option>
                   <option value="sold">Sold</option>
                 </Form.Select>
+              </Form.Group>
+
+              <Form.Group className="sidebar-group">
+                <Form.Check
+                  type="checkbox"
+                  label="My Listings"
+                  disabled={!user}
+                  title={!user ? "Please sign in to filter your listings" : ""}
+                  checked={pending.onlyMyPosts === "true"}
+                  onChange={(e) =>
+                    handlePendingChange(
+                      "onlyMyPosts",
+                      e.target.checked ? "true" : ""
+                    )
+                  }
+                />
               </Form.Group>
 
               <button
