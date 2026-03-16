@@ -62,13 +62,11 @@ export default function CarePostDetailPage() {
     try {
       const res = await fetch(`/api/careposts/${id}`, {
         method: "DELETE",
-        // ADD THIS LINE:
         credentials: "include",
       });
 
       if (!res.ok) {
         const data = await res.json();
-        // This will tell you exactly why the server said no
         throw new Error(data.error || `Delete failed: ${res.status}`);
       }
 
@@ -181,7 +179,6 @@ export default function CarePostDetailPage() {
         </div>
       </Container>
 
-      {/* Delete Modal stays the same */}
       <Modal show={showConfirm} onHide={() => setShowConfirm(false)} centered>
         <Modal.Body className="carepost-modal-body">
           <div className="carepost-modal-icon">🗑️</div>
