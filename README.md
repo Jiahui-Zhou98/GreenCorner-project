@@ -154,6 +154,33 @@ plant-community/
 
 ## Screenshots
 
+- **Home**
+  ![home-page](./design_doc/screenshots/about.png)
+
+- **About**
+  ![about-page](./design_doc/screenshots/about.png)
+
+- **Care Posts**
+  ![care-posts](./design_doc/screenshots/carepost.png)
+
+- **Market Listings**
+  ![market-listings](./design_doc/screenshots/market.png)
+
+- **Detailed Page**
+  ![detailed-page](./design_doc/screenshots/detail_page.png)
+
+- **Create/Edit Form**
+  ![create-edit-form](./design_doc/screenshots/form.png)
+
+- **Register**
+  ![register](./design_doc/screenshots/register.png)
+
+- **Login**
+  ![login](./design_doc/screenshots/signin.png)
+
+- **Dashboard**
+  ![dashboard](./design_doc/screenshots/dashboard.png)
+
 ## Instructions (How to get started)
 
 ### Prerequisites
