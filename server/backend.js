@@ -8,6 +8,7 @@ import { connectDB } from "./db/connection.js";
 import carePostsRouter from "./routes/carePosts.js";
 import plantListingsRouter from "./routes/plantListings.js";
 import usersRouter from "./routes/users.js";
+import passport from "./config/passport.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -32,6 +33,9 @@ app.use(
     },
   })
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use("/api/users", usersRouter);
 app.use("/api/careposts", carePostsRouter);

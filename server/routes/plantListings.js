@@ -34,8 +34,8 @@ router.get("/", async (req, res) => {
       if (minPrice) filter.price.$gte = Number(minPrice);
       if (maxPrice) filter.price.$lte = Number(maxPrice);
     }
-    if (req.query.onlyMyPosts === "true" && req.session.userId) {
-      filter.createdBy = req.session.userId;
+    if (req.query.onlyMyPosts === "true" && req.user?._id?.toString()) {
+      filter.createdBy = req.user?._id?.toString();
     }
 
     const skip = (Number(page) - 1) * Number(limit);
@@ -106,7 +106,7 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
-    if (!req.session.userId) {
+    if (!req.isAuthenticated()) {
       return res
         .status(401)
         .json({ error: "You must be logged in to create a listing." });
@@ -125,7 +125,7 @@ router.post("/", async (req, res) => {
       sellerEmail: sellerEmail || "",
       tags: tags || [],
       imageUrl: imageUrl || null,
-      createdBy: req.session.userId,
+      createdBy: req.user?._id?.toString(),
       createdAt: new Date(),
     };
 
@@ -139,7 +139,7 @@ router.post("/", async (req, res) => {
 // PUT /api/plant-listings/:id
 router.put("/:id", async (req, res) => {
   try {
-    if (!req.session.userId) {
+    if (!req.isAuthenticated()) {
       return res
         .status(401)
         .json({ error: "You must be logged in to edit a listing." });
@@ -158,7 +158,7 @@ router.put("/:id", async (req, res) => {
     if (!existing) {
       return res.status(404).json({ error: "Listing not found" });
     }
-    if (existing.createdBy !== req.session.userId) {
+    if (existing.createdBy !== req.user?._id?.toString()) {
       return res
         .status(403)
         .json({ error: "You can only edit your own listings." });
@@ -207,7 +207,7 @@ router.put("/:id", async (req, res) => {
 // DELETE /api/plant-listings/:id
 router.delete("/:id", async (req, res) => {
   try {
-    if (!req.session.userId) {
+    if (!req.isAuthenticated()) {
       return res
         .status(401)
         .json({ error: "You must be logged in to delete a listing." });
@@ -226,7 +226,7 @@ router.delete("/:id", async (req, res) => {
     if (!existing) {
       return res.status(404).json({ error: "Listing not found" });
     }
-    if (existing.createdBy !== req.session.userId) {
+    if (existing.createdBy !== req.user?._id?.toString()) {
       return res
         .status(403)
         .json({ error: "You can only delete your own listings." });

@@ -18,8 +18,8 @@ router.get("/", async (req, res) => {
     if (plantType) filter.plantType = plantType;
     if (difficulty) filter.difficulty = difficulty;
     if (light) filter.light = light;
-    if (onlyMyPosts === "true" && req.session.userId) {
-      filter.createdBy = req.session.userId;
+    if (onlyMyPosts === "true" && req.user?._id?.toString()) {
+      filter.createdBy = req.user?._id?.toString();
     }
 
     const skip = (page - 1) * limit;
@@ -63,8 +63,7 @@ router.get("/:id", async (req, res) => {
 // POST /api/careposts
 router.post("/", async (req, res) => {
   try {
-    // 1. Authenticate user session
-    if (!req.session.userId) {
+    if (!req.isAuthenticated()) {
       return res.status(401).json({ error: "Unauthorized: Please log in." });
     }
 
@@ -95,7 +94,7 @@ router.post("/", async (req, res) => {
       content,
       author,
       imageUrl: imageUrl || null,
-      createdBy: req.session.userId, // Link post to the logged-in user ID
+      createdBy: req.user?._id?.toString(),
       createdAt: new Date(),
     };
 
@@ -109,8 +108,7 @@ router.post("/", async (req, res) => {
 // PUT /api/careposts/:id
 router.put("/:id", async (req, res) => {
   try {
-    // 1. Authenticate user session
-    if (!req.session.userId) {
+    if (!req.isAuthenticated()) {
       return res.status(401).json({ error: "Unauthorized: Please log in." });
     }
 
@@ -121,14 +119,11 @@ router.put("/:id", async (req, res) => {
       return res.status(400).json({ error: "Invalid post ID" });
     }
 
-    // 2. Fetch existing post to check ownership
     const existing = await collection.findOne({
       _id: new ObjectId(req.params.id),
     });
     if (!existing) return res.status(404).json({ error: "Post not found" });
-
-    // 3. Authorize: Compare session ID with post creator ID
-    if (existing.createdBy !== req.session.userId) {
+    if (existing.createdBy !== req.user?._id?.toString()) {
       return res
         .status(403)
         .json({ error: "Forbidden: You do not own this post." });
@@ -164,8 +159,7 @@ router.put("/:id", async (req, res) => {
 // DELETE /api/careposts/:id
 router.delete("/:id", async (req, res) => {
   try {
-    // 1. Authenticate user session
-    if (!req.session.userId) {
+    if (!req.isAuthenticated()) {
       return res.status(401).json({ error: "Unauthorized: Please log in." });
     }
 
@@ -176,14 +170,11 @@ router.delete("/:id", async (req, res) => {
       return res.status(400).json({ error: "Invalid post ID" });
     }
 
-    // 2. Fetch existing post to check ownership
     const existing = await collection.findOne({
       _id: new ObjectId(req.params.id),
     });
     if (!existing) return res.status(404).json({ error: "Post not found" });
-
-    // 3. Authorize: Only the creator can delete
-    if (existing.createdBy !== req.session.userId) {
+    if (existing.createdBy !== req.user?._id?.toString()) {
       return res
         .status(403)
         .json({ error: "Forbidden: You do not own this post." });
