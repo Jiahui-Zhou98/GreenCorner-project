@@ -155,7 +155,7 @@ plant-community/
 ## Screenshots
 
 - **Home**
-  ![home-page](./design_doc/screenshots/home.png)
+  ![home-page](./design_doc/screenshots/about.png)
 
 - **About**
   ![about-page](./design_doc/screenshots/about.png)
