@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Container, Form, Button, Spinner, InputGroup } from "react-bootstrap";
 import { useAuth } from "../../context/useAuth.js";
-import "./AuthPages.css";
+import "./LoginPage.css";
 
 export default function LoginPage() {
   const navigate = useNavigate();

@@ -103,38 +103,35 @@ plant-community/
 │       │   ├── AuthContextDef.js        # React context object (createContext)
 │       │   ├── AuthContext.jsx          # AuthProvider component (session check, login, register, logout)
 │       │   └── useAuth.js               # useAuth hook
-│       ├── components/
-│       │   ├── Navbar.jsx / Navbar.css  # Sticky navigation bar
-│       │   └── Footer.jsx / Footer.css  # Site footer
+│       ├── components/                  # Shared UI components (each with its own CSS)
+│       │   ├── Navbar.jsx / Navbar.css
+│       │   ├── Footer.jsx / Footer.css
+│       │   └── TripleLeafIcon.jsx / TripleLeafIcon.css
 │       └── pages/
 │           ├── Home/
-│           │   ├── HomePage.jsx
-│           │   └── HomePage.css
+│           │   └── HomePage.jsx / HomePage.css
 │           ├── About/
 │           │   ├── AboutPage.jsx / AboutPage.css
 │           │   └── BubbleHero.jsx / BubbleHero.css
 │           ├── Auth/
-│           │   ├── RegisterPage.jsx     # User registration page
-│           │   ├── LoginPage.jsx        # User login page
-│           │   └── AuthPages.css        # Shared styles for auth pages
+│           │   ├── LoginPage.jsx / LoginPage.css
+│           │   └── RegisterPage.jsx / RegisterPage.css
 │           ├── Dashboard/
-│           │   ├── DashboardPage.jsx
-│           │   └── DashboardPage.css
+│           │   └── DashboardPage.jsx / DashboardPage.css
 │           ├── CarePosts/
 │           │   ├── CarePostsPage.jsx / CarePostsPage.css
+│           │   ├── CarePostCard.jsx / CarePostCard.css
 │           │   ├── CarePostDetailPage.jsx / CarePostDetailPage.css
-│           │   ├── CreateCarePostPage.jsx
-│           │   ├── EditCarePostPage.jsx
-│           │   ├── CarePostForm.jsx / CarePostForm.css
-│           │   └── PostPageLayout.css       # Shared layout for create/edit pages
+│           │   ├── CreateCarePostPage.jsx / CreateCarePostPage.css
+│           │   ├── EditCarePostPage.jsx / EditCarePostPage.css
+│           │   └── CarePostForm.jsx / CarePostForm.css
 │           └── PlantListings/
 │               ├── PlantListingsPage.jsx / PlantListingsPage.css
-│               ├── ListingCard.jsx          # Single listing card component
+│               ├── ListingCard.jsx / ListingCard.css
 │               ├── ListingDetailPage.jsx / ListingDetailPage.css
-│               ├── CreateListingPage.jsx
-│               ├── EditListingPage.jsx
-│               ├── ListingForm.jsx / ListingForm.css
-│               └── ListingPageLayout.css    # Shared layout for create/edit pages
+│               ├── CreateListingPage.jsx / CreateListingPage.css
+│               ├── EditListingPage.jsx / EditListingPage.css
+│               └── ListingForm.jsx / ListingForm.css
 │
 ├── design_doc/
 │   ├── DesignDoc.md                     # Design document with data models and mockups

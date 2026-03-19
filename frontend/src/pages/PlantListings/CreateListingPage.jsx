@@ -3,7 +3,7 @@ import { useNavigate, Navigate } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import { useAuth } from "../../context/useAuth.js";
 import ListingForm from "./ListingForm.jsx";
-import "./ListingPageLayout.css";
+import "./CreateListingPage.css";
 
 export default function CreateListingPage() {
   const navigate = useNavigate();

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Container, Spinner } from "react-bootstrap";
 import ListingForm from "./ListingForm.jsx";
-import "./ListingPageLayout.css";
+import "./EditListingPage.css";
 
 export default function EditListingPage() {
   const { id } = useParams();

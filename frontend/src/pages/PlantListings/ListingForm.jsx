@@ -377,7 +377,20 @@ export default function ListingForm({
 }
 
 ListingForm.propTypes = {
-  initialValues: PropTypes.object,
+  initialValues: PropTypes.shape({
+    plantName: PropTypes.string,
+    plantType: PropTypes.string,
+    description: PropTypes.string,
+    condition: PropTypes.string,
+    listingType: PropTypes.string,
+    price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    location: PropTypes.string,
+    status: PropTypes.string,
+    sellerName: PropTypes.string,
+    sellerEmail: PropTypes.string,
+    imageUrl: PropTypes.string,
+    tags: PropTypes.arrayOf(PropTypes.string),
+  }),
   onSubmit: PropTypes.func.isRequired,
   submitting: PropTypes.bool,
   submitLabel: PropTypes.string,

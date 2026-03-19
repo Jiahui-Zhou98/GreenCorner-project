@@ -1,11 +1,16 @@
-import PropTypes from "prop-types";
 import { Button } from "react-bootstrap";
+import PropTypes from "prop-types";
+import "./CarePostCard.css";
 
 export default function CarePostCard({ post }) {
   return (
     <div className="carepost-card">
       {post.imageUrl ? (
-        <img src={post.imageUrl} alt={post.title} className="carepost-card-image" />
+        <img
+          src={post.imageUrl}
+          alt={post.title}
+          className="carepost-card-image"
+        />
       ) : (
         <div className="carepost-card-hero">🌿</div>
       )}
@@ -16,7 +21,9 @@ export default function CarePostCard({ post }) {
         </div>
         <h3 className="carepost-card-title">{post.title}</h3>
         <p className="carepost-card-text">
-          {post.content?.length > 120 ? `${post.content.slice(0, 120)}...` : post.content}
+          {post.content?.length > 120
+            ? `${post.content.slice(0, 120)}...`
+            : post.content}
         </p>
         <div className="carepost-card-details">
           <span>Light: {post.light || "N/A"}</span>
@@ -24,7 +31,10 @@ export default function CarePostCard({ post }) {
         </div>
         <div className="carepost-card-footer">
           <span className="carepost-card-author">By {post.author}</span>
-          <Button className="btn-green carepost-detail-btn" href={`/careposts/${post._id}`}>
+          <Button
+            className="btn-green carepost-detail-btn"
+            href={`/careposts/${post._id}`}
+          >
             Read More
           </Button>
         </div>

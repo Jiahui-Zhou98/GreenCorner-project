@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { Container, Row, Col, Form, Button, Spinner } from "react-bootstrap";
-import CarePostCard from "./CarePostCard.jsx";
 import { useAuth } from "../../context/useAuth.js";
+import CarePostCard from "./CarePostCard.jsx";
 import "./CarePostsPage.css";
 
 const PLANT_TYPES = [

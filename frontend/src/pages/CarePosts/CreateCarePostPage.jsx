@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import CarePostForm from "./CarePostForm.jsx";
-import "./PostPageLayout.css";
+import "./CreateCarePostPage.css";
 
 export default function CreateCarePostPage() {
   const navigate = useNavigate();

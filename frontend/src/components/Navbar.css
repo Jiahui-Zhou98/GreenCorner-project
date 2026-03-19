@@ -47,13 +47,6 @@ nav.app-navbar .navbar-brand-custom:hover .brand-corner {
   color: #4a7c4a;
 }
 
-.navbar-leaf-icon {
-  width: 36px;
-  height: 36px;
-  flex-shrink: 0;
-  transition: transform 0.25s ease;
-}
-
 nav.app-navbar .navbar-brand-custom:hover .navbar-leaf-icon {
   transform: rotate(-8deg) scale(1.08);
 }
