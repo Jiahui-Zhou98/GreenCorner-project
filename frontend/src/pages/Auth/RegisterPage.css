@@ -1,0 +1,131 @@
+/* ── Auth Page Layout ─────────────────────────────── */
+.auth-page {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+}
+
+.auth-container {
+  max-width: 480px;
+}
+
+.auth-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  box-shadow:
+    0 4px 24px rgba(44, 79, 52, 0.08),
+    0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* ── Title ────────────────────────────────────────── */
+.auth-title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: #2c4f34;
+  margin-bottom: 0.25rem;
+  text-align: center;
+}
+
+.auth-subtitle {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 1.75rem;
+}
+
+/* ── Form Groups ─────────────────────────────────── */
+.auth-group {
+  margin-bottom: 1.1rem;
+}
+
+.auth-label {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--text-dark);
+  margin-bottom: 0.35rem;
+}
+
+.auth-input {
+  border: 1.5px solid #d6e8d6;
+  border-radius: 10px;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.93rem;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.auth-input:focus {
+  border-color: #4a7c4a;
+  box-shadow: 0 0 0 3px rgba(74, 124, 74, 0.15);
+}
+
+/* ── Eye Toggle Button ───────────────────────────── */
+.auth-eye-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1.5px solid #d6e8d6;
+  border-left: none;
+  border-radius: 0 10px 10px 0;
+  padding: 0 0.75rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.auth-eye-btn:hover {
+  color: #2c4f34;
+}
+
+/* When eye button is present, remove right border-radius from input */
+.auth-group .input-group .auth-input {
+  border-radius: 10px 0 0 10px;
+}
+
+/* ── Error Alert ─────────────────────────────────── */
+.auth-error {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #991b1b;
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+
+/* ── Submit Button ───────────────────────────────── */
+.auth-submit-btn {
+  width: 100%;
+  padding: 0.65rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  margin-top: 0.5rem;
+}
+
+/* ── Switch Link ─────────────────────────────────── */
+.auth-switch {
+  text-align: center;
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.auth-switch-link {
+  color: #2c4f34;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.auth-switch-link:hover {
+  color: #4a7c4a;
+  text-decoration: underline;
+}

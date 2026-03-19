@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { Form, Button, Row, Col, Spinner } from "react-bootstrap";
 import "./CarePostForm.css";
 
@@ -257,3 +258,19 @@ export default function CarePostForm({
     </Form>
   );
 }
+
+CarePostForm.propTypes = {
+  initialValues: PropTypes.shape({
+    title: PropTypes.string,
+    plantType: PropTypes.string,
+    difficulty: PropTypes.string,
+    light: PropTypes.string,
+    watering: PropTypes.string,
+    content: PropTypes.string,
+    author: PropTypes.string,
+    imageUrl: PropTypes.string,
+  }),
+  onSubmit: PropTypes.func.isRequired,
+  submitting: PropTypes.bool,
+  submitLabel: PropTypes.string,
+};
