@@ -19,8 +19,8 @@ A community platform for plant lovers to share plant care knowledge and exchange
 
 ## How to Use the Website
 
-- [Slides]()
-- [Video]()
+- [Slides](https://docs.google.com/presentation/d/1LnWWnQOCxzixeKAkMZd1oNm0J4kHvYwN4OkCSqmKE0w/edit?usp=sharing)
+- [Video](https://drive.google.com/file/d/1ra1BNOxGSG91-IlCSzw4A4OJffBhDnLR/view?usp=sharing)
 
 ## Project Link
 
@@ -69,16 +69,20 @@ GreenCorner is a community platform for plant lovers to both share plant care kn
 ```
 plant-community/
 ├── server/                              # Node.js + Express backend
-│   ├── backend.js                       # Express server entry point (express-session)
+│   ├── backend.js                       # Express server entry point (session + Passport)
+│   ├── config/
+│   │   └── passport.js                  # Passport.js local strategy
 │   ├── db/
 │   │   └── connection.js                # MongoDB singleton connection
+│   ├── models/
+│   │   └── users.js                     # User lookup helpers (findByEmail, findById)
 │   ├── routes/
 │   │   ├── carePosts.js                 # API routes for /api/careposts
 │   │   ├── plantListings.js             # API routes for /api/plant-listings
 │   │   └── users.js                     # API routes for /api/users (auth)
 │   └── seed/
 │       ├── seedCarePosts.js             # Seed script for care posts
-│       └── seedPlantListings.js         # Seed script for plant listings (1000 entries)
+│       └── seedPlantListings.js         # Seed script for plant listings
 │
 ├── frontend/                            # Vite + React frontend
 │   ├── index.html
@@ -136,7 +140,6 @@ plant-community/
 │   ├── DesignDoc.md                     # Design document with data models and mockups
 │   └── mockup/                          # UI mockup images
 │
-├── .env.example                         # Environment variable template
 ├── .gitignore
 ├── .prettierrc
 ├── eslint.config.js
