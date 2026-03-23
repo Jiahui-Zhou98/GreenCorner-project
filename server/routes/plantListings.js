@@ -28,6 +28,7 @@ router.get("/", async (req, res) => {
     if (listingType) filter.listingType = listingType;
     if (condition) filter.condition = condition;
     if (status) filter.status = status;
+    // Unescaped Regex
     if (location) filter.location = { $regex: location, $options: "i" };
     if (minPrice || maxPrice) {
       filter.price = {};
