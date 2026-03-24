@@ -111,6 +111,11 @@ router.post("/", async (req, res) => {
       imageUrl,
     } = req.body;
 
+    // The auth check runs AFTER the required fields validation.
+    // As such unauthenticated users can probe which fields are required
+    // by watching for 400 vs 401 responses.
+    // Move the isAuthenticated() check above the field validation
+    
     if (!plantName || !plantType || !listingType || !location || !sellerName) {
       return res.status(400).json({ error: "Missing required fields" });
     }
