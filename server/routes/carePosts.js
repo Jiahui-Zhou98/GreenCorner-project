@@ -85,6 +85,11 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
+    // imageUrl is accepted as is from the client with no validation.
+    // if (imageUrl && !/^https?:\/\//i.test(imageUrl)) {
+    //   return res.status(400).json({ error: "Image URL must be an http(s) link" });
+    // }
+    
     const newPost = {
       title,
       plantType,
