@@ -77,6 +77,14 @@ router.get("/:id", async (req, res) => {
       return res.status(404).json({ error: "Listing not found" });
     }
 
+    // sellerEmail is exposed to unauthenticated users.
+    // strip from the response when the requester isn't logged in to prevent
+    // email scraping/spam. Something like:
+    //
+    // if (!req.isAuthenticated()) {
+    //   delete listing.sellerEmail;
+    // }
+
     res.json(listing);
   } catch (err) {
     res.status(500).json({ error: err.message });
