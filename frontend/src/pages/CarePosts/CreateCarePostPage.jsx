@@ -4,6 +4,18 @@ import { Container } from "react-bootstrap";
 import CarePostForm from "./CarePostForm.jsx";
 import "./CreateCarePostPage.css";
 
+  // No auth guard, unauthenticated users can navigate directly to
+  // /careposts/new and see the full form. The submit will 401 on the
+  // backend, but the form still renders. CreateListingPage already has
+  // a guard. Add the same pattern here:
+  //
+  // const { user, loading } = useAuth();
+  // if (!loading && !user) {
+  //   return <Navigate to="/login" replace />;
+  // }
+  //
+  // (Same issue exists in EditCarePostPage.jsx)
+
 export default function CreateCarePostPage() {
   const navigate = useNavigate();
   const [submitting, setSubmitting] = useState(false);
