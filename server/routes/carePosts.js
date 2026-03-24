@@ -97,6 +97,9 @@ router.post("/", async (req, res) => {
       light: light || "",
       watering: watering || "",
       content,
+      // "author" is taken from req.body, so any logged in user can
+      // claim to be someone else. Could maybe do
+      // author: req.user.name,
       author,
       imageUrl: imageUrl || null,
       createdBy: req.user?._id?.toString(),
