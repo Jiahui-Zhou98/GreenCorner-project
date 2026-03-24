@@ -28,6 +28,7 @@ router.get("/", async (req, res) => {
     if (listingType) filter.listingType = listingType;
     if (condition) filter.condition = condition;
     if (status) filter.status = status;
+    // Unescaped Regex
     if (location) filter.location = { $regex: location, $options: "i" };
     if (minPrice || maxPrice) {
       filter.price = {};
@@ -76,6 +77,14 @@ router.get("/:id", async (req, res) => {
       return res.status(404).json({ error: "Listing not found" });
     }
 
+    // sellerEmail is exposed to unauthenticated users.
+    // strip from the response when the requester isn't logged in to prevent
+    // email scraping/spam. Something like:
+    //
+    // if (!req.isAuthenticated()) {
+    //   delete listing.sellerEmail;
+    // }
+
     res.json(listing);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -102,6 +111,11 @@ router.post("/", async (req, res) => {
       imageUrl,
     } = req.body;
 
+    // The auth check runs AFTER the required fields validation.
+    // As such unauthenticated users can probe which fields are required
+    // by watching for 400 vs 401 responses.
+    // Move the isAuthenticated() check above the field validation
+    
     if (!plantName || !plantType || !listingType || !location || !sellerName) {
       return res.status(400).json({ error: "Missing required fields" });
     }

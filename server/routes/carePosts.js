@@ -85,6 +85,11 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
+    // imageUrl is accepted as is from the client with no validation.
+    // if (imageUrl && !/^https?:\/\//i.test(imageUrl)) {
+    //   return res.status(400).json({ error: "Image URL must be an http(s) link" });
+    // }
+    
     const newPost = {
       title,
       plantType,
@@ -92,6 +97,9 @@ router.post("/", async (req, res) => {
       light: light || "",
       watering: watering || "",
       content,
+      // "author" is taken from req.body, so any logged in user can
+      // claim to be someone else. Could maybe do
+      // author: req.user.name,
       author,
       imageUrl: imageUrl || null,
       createdBy: req.user?._id?.toString(),
