@@ -29,9 +29,9 @@ export default function CreateCarePostPage() {
       navigate(`/careposts/${created._id}`, { replace: true });
     } catch (err) {
       setServerError(err.message);
+    } finally {
       setSubmitting(false);
     }
-  }
 
   return (
     <div className="carepost-form-page">
