@@ -10,11 +10,31 @@ A community platform for plant lovers to share plant care knowledge and exchange
 ## Class Link
 
 - [CS5610-2026-Spring](https://johnguerra.co/classes/webDevelopment_online_spring_2026/)
-- This is Project3 for the class
+- This is **Project4** for the class (Accessibility & Design improvements)
+- For Project 3, see the [`project3`](https://github.com/Jiahui-Zhou98/GreenCorner-project/tree/project3) branch or `main` branch
+
+## Branch Guide
+
+| Branch                                                                           | Purpose                                          | Deployed URL                                                            |
+| -------------------------------------------------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------------------- |
+| `main`                                                                           | Original Project 3 code                          | [greencorner-bjn0.onrender.com](https://greencorner-bjn0.onrender.com/) |
+| [`project3`](https://github.com/Jiahui-Zhou98/GreenCorner-project/tree/project3) | Project 3 snapshot (same as main)                | same as above                                                           |
+| [`project4`](https://github.com/Jiahui-Zhou98/GreenCorner-project/tree/project4) | **Project 4 — current** (accessibility & design) | TBD                                                                     |
+
+## What's New in Project 4
+
+- Improved accessibility: all Lighthouse/axe errors resolved
+- Full keyboard navigability across all pages
+- Semantic HTML improvements (proper heading hierarchy, landmarks, ARIA labels)
+- Color contrast fixes to meet WCAG AA standards
+- Image optimization for better performance
+- SEO improvements (meta description, robots.txt)
+- Usability study report with 3 participants per member
 
 ## Website Link
 
-- [GreenCorner](https://greencorner-bjn0.onrender.com/)
+- **Project 4**: TBD (will be deployed on a separate Render service)
+- **Project 3**: [greencorner-bjn0.onrender.com](https://greencorner-bjn0.onrender.com/)
 - Deployment: Render, MongoDB Atlas
 
 ## How to Use the Website
