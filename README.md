@@ -10,7 +10,20 @@ A community platform for plant lovers to share plant care knowledge and exchange
 ## Class Link
 
 - [CS5610-2026-Spring](https://johnguerra.co/classes/webDevelopment_online_spring_2026/)
-- This is Project3 for the class
+
+## Branch Guide
+
+This repo contains multiple project versions. Please switch to the correct branch for grading:
+
+| Branch                                                                           | Purpose                                             | Deployed URL                                                            |
+| -------------------------------------------------------------------------------- | --------------------------------------------------- | ----------------------------------------------------------------------- |
+| `main`                                                                           | Original Project 3 code (this branch)               | [greencorner-bjn0.onrender.com](https://greencorner-bjn0.onrender.com/) |
+| [`project3`](https://github.com/Jiahui-Zhou98/GreenCorner-project/tree/project3) | Project 3 snapshot (same as main)                   | same as above                                                           |
+| [`project4`](https://github.com/Jiahui-Zhou98/GreenCorner-project/tree/project4) | **Project 4** — Accessibility & Design improvements | TBD                                                                     |
+
+> **Project 3?** You're on the right branch (`main`).
+>
+> **Project 4?** Please switch to the [`project4`](https://github.com/Jiahui-Zhou98/GreenCorner-project/tree/project4) branch.
 
 ## Website Link
 
