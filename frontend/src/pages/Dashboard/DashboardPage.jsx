@@ -39,33 +39,33 @@ export default function DashboardPage() {
         {/* Quick links */}
         <div className="dash-sections">
           <div className="dash-section">
-            <div className="dash-section-top">
-              <h2 className="dash-section-title">My Care Guides</h2>
-              <Link to="/careposts/new" className="dash-create-link">
-                + New Guide
-              </Link>
-            </div>
+            <h2 className="dash-section-title">My Care Guides</h2>
             <p className="dash-section-desc">
               Care tips and grow guides you have written for the community.
             </p>
-            <Link to="/careposts?onlyMyPosts=true" className="dash-view-link">
-              View my care guides
-            </Link>
+            <div className="dash-section-actions">
+              <Link to="/careposts?onlyMyPosts=true" className="dash-view-btn">
+                View my care guides
+              </Link>
+              <Link to="/careposts/new" className="dash-create-btn">
+                + New Guide
+              </Link>
+            </div>
           </div>
 
           <div className="dash-section">
-            <div className="dash-section-top">
-              <h2 className="dash-section-title">My Plant Listings</h2>
-              <Link to="/listings/new" className="dash-create-link">
-                + New Listing
-              </Link>
-            </div>
+            <h2 className="dash-section-title">My Plant Listings</h2>
             <p className="dash-section-desc">
               Plants you have posted for sale, free adoption, or rehoming.
             </p>
-            <Link to="/listings?onlyMyPosts=true" className="dash-view-link">
-              View my listings
-            </Link>
+            <div className="dash-section-actions">
+              <Link to="/listings?onlyMyPosts=true" className="dash-view-btn">
+                View my listings
+              </Link>
+              <Link to="/listings/new" className="dash-create-btn">
+                + New Listing
+              </Link>
+            </div>
           </div>
         </div>
 
