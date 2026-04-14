@@ -105,7 +105,7 @@ plant-community/
 │
 ├── frontend/                            # Vite + React frontend
 │   ├── index.html
-│   ├── public/                          # Static assets (favicon, manifest icons, banner)
+│   ├── public/                          # Static assets (favicons, manifest, banner, robots.txt)
 │   ├── .gitignore
 │   ├── vite.config.js
 │   ├── eslint.config.js
@@ -117,7 +117,10 @@ plant-community/
 │       ├── styles/
 │       │   └── main.css                 # Global CSS variables, layout, typography
 │       ├── assets/
-│       │   └── about/                   # Images for the About page bubble hero
+│       │   ├── about/                   # Hero images for the About page
+│       │   │   ├── conversation1.jpg
+│       │   │   └── conversation2.jpg
+│       │   └── plants/                  # Plant type images (13 types)
 │       ├── context/
 │       │   ├── AuthContextDef.js        # React context object (createContext)
 │       │   ├── AuthContext.jsx          # AuthProvider component (session check, login, register, logout)
@@ -130,8 +133,7 @@ plant-community/
 │           ├── Home/
 │           │   └── HomePage.jsx / HomePage.css
 │           ├── About/
-│           │   ├── AboutPage.jsx / AboutPage.css
-│           │   └── BubbleHero.jsx / BubbleHero.css
+│           │   └── AboutPage.jsx / AboutPage.css
 │           ├── Auth/
 │           │   ├── LoginPage.jsx / LoginPage.css
 │           │   └── RegisterPage.jsx / RegisterPage.css
