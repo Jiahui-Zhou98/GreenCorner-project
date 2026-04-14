@@ -107,12 +107,12 @@ export default function RegisterPage() {
             </Form.Group>
 
             <Form.Group className="auth-group" controlId="registerPassword">
-              <Form.Label className="auth-label">Password</Form.Label>
+              <Form.Label className="auth-label">Password (at least 6 letters, numbers, or symbols)</Form.Label>
               <InputGroup>
                 <Form.Control
                   className="auth-input"
                   type={showPassword ? "text" : "password"}
-                  placeholder="At least 6 characters"
+                  placeholder="Enter your password"
                   value={form.password}
                   onChange={(e) => set("password", e.target.value)}
                   isInvalid={!!errors.password}
