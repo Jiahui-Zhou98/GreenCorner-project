@@ -1,23 +1,11 @@
-import { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import community1 from "../../assets/about/community1.png";
-import community2 from "../../assets/about/community2.png";
-import community3 from "../../assets/about/community3.png";
+import conversation1 from "../../assets/about/conversation1.jpg";
+import conversation2 from "../../assets/about/conversation2.jpg";
 import "./AboutPage.css";
-
-const carouselImages = [community1, community2, community3];
 
 export default function AboutPage() {
   const navigate = useNavigate();
-  const [carouselIndex, setCarouselIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCarouselIndex((prev) => (prev + 1) % carouselImages.length);
-    }, 3000);
-    return () => clearInterval(timer);
-  }, []);
 
   return (
     <div className="about-page">
@@ -28,7 +16,8 @@ export default function AboutPage() {
             <Col lg={7}>
               <p className="about-hero-label">About GreenCorner</p>
               <h1 className="about-hero-heading">
-                A community built around plants and the people who love them.
+                Share what you grow, learn from fellow plant lovers, and find
+                your next plant
               </h1>
               <p className="about-hero-sub">
                 GreenCorner is a community platform for plant lovers. Share care
@@ -37,15 +26,17 @@ export default function AboutPage() {
               </p>
             </Col>
             <Col lg={5} className="d-none d-lg-flex justify-content-center">
-              <div className="community-carousel">
-                {carouselImages.map((src, i) => (
-                  <img
-                    key={i}
-                    src={src}
-                    alt={`Community photo ${i + 1}`}
-                    className={`community-carousel-img ${i === carouselIndex ? "community-carousel-active" : ""}`}
-                  />
-                ))}
+              <div className="about-hero-images">
+                <img
+                  src={conversation1}
+                  alt="Plant community conversation"
+                  className="about-hero-photo"
+                />
+                <img
+                  src={conversation2}
+                  alt="Plant community conversation"
+                  className="about-hero-photo"
+                />
               </div>
             </Col>
           </Row>
