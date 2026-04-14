@@ -33,6 +33,7 @@ function filtersFromParams(params) {
     status: params.get("status") || "",
     location: params.get("location") || "",
     onlyMyPosts: params.get("onlyMyPosts") || "",
+    sortBy: params.get("sortBy") || "",
   };
 }
 
@@ -79,6 +80,7 @@ export default function PlantListingsPage() {
         if (filters.status) params.set("status", filters.status);
         if (filters.location) params.set("location", filters.location);
         if (filters.onlyMyPosts) params.set("onlyMyPosts", filters.onlyMyPosts);
+        if (filters.sortBy) params.set("sortBy", filters.sortBy);
         params.set("page", page);
         params.set("limit", PAGE_SIZE);
 
@@ -285,12 +287,22 @@ export default function PlantListingsPage() {
           {/* ── Main Content ── */}
           <div className="listings-main">
             <div className="listings-toolbar">
-              <span className="listings-count">
-                {loading
-                  ? "Loading..."
-                  : `${total} listing${total !== 1 ? "s" : ""} found`}
-              </span>
               <div className="toolbar-actions">
+                <span className="listings-count">
+                  {loading
+                    ? "Loading..."
+                    : `${total} listing${total !== 1 ? "s" : ""} found`}
+                </span>
+                <Form.Select
+                  className="toolbar-sort"
+                  value={filters.sortBy}
+                  onChange={(e) => applyFilter("sortBy", e.target.value)}
+                  aria-label="Sort listings"
+                >
+                  <option value="">Newest</option>
+                  <option value="price-asc">Price: Low to High</option>
+                  <option value="price-desc">Price: High to Low</option>
+                </Form.Select>
                 <label
                   className="toolbar-my-listings"
                   title={!user ? "Please sign in to filter your listings" : ""}

@@ -31,10 +31,9 @@
 }
 
 .listing-card-fallback {
-  width: 100%;
-  height: 100%;
+  width: 60%;
+  height: 60%;
   object-fit: contain;
-  padding: 1rem;
 }
 
 .listing-card-emoji {

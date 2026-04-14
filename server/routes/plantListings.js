@@ -38,11 +38,17 @@ router.get("/", async (req, res) => {
       filter.createdBy = req.user?._id?.toString();
     }
 
+    const sortOptions = {
+      "price-asc": { price: 1 },
+      "price-desc": { price: -1 },
+    };
+    const sortBy = sortOptions[req.query.sortBy] || { createdAt: -1 };
+
     const skip = (Number(page) - 1) * Number(limit);
     const total = await collection.countDocuments(filter);
     const listings = await collection
       .find(filter)
-      .sort({ createdAt: -1 })
+      .sort(sortBy)
       .skip(skip)
       .limit(Number(limit))
       .toArray();
