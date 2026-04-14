@@ -27,7 +27,8 @@ This repo contains multiple project versions. Please switch to the correct branc
 
 ## Website Link
 
-- [GreenCorner](https://greencorner-bjn0.onrender.com/)
+- **Project 4**: TBD (will be deployed on a separate Render service)
+- **Project 3**: [greencorner-bjn0.onrender.com](https://greencorner-bjn0.onrender.com/)
 - Deployment: Render, MongoDB Atlas
 
 ## How to Use the Website
