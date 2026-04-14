@@ -216,10 +216,10 @@ export default function PlantListingsPage() {
               </Form.Group>
 
               <Form.Group className="sidebar-group" controlId="filterLocation">
-                <Form.Label>Location</Form.Label>
+                <Form.Label>City or area</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="e.g. Boston"
+                  placeholder="e.g. Boston, MA"
                   value={localLocation}
                   onChange={(e) => {
                     setLocalLocation(e.target.value);
