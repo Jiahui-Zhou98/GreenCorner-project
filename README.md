@@ -15,11 +15,11 @@ A community platform for plant lovers to share plant care knowledge and exchange
 
 ## Branch Guide
 
-| Branch                                                                           | Purpose                                          | Deployed URL                                                            |
-| -------------------------------------------------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------------------- |
-| `main`                                                                           | Original Project 3 code                          | [greencorner-bjn0.onrender.com](https://greencorner-bjn0.onrender.com/) |
-| [`project3`](https://github.com/Jiahui-Zhou98/GreenCorner-project/tree/project3) | Project 3 snapshot (same as main)                | same as above                                                           |
-| [`project4`](https://github.com/Jiahui-Zhou98/GreenCorner-project/tree/project4) | **Project 4 — current** (accessibility & design) | TBD                                                                     |
+| Branch                                                                           | Purpose                                          | Deployed URL                                                                   |
+| -------------------------------------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `main`                                                                           | Original Project 3 code                          | [greencorner-bjn0.onrender.com](https://greencorner-bjn0.onrender.com/)        |
+| [`project3`](https://github.com/Jiahui-Zhou98/GreenCorner-project/tree/project3) | Project 3 snapshot (same as main)                | same as above                                                                  |
+| [`project4`](https://github.com/Jiahui-Zhou98/GreenCorner-project/tree/project4) | **Project 4 — current** (accessibility & design) | [greencorner-project4.onrender.com](https://greencorner-project4.onrender.com) |
 
 ## What's New in Project 4
 
@@ -33,7 +33,7 @@ A community platform for plant lovers to share plant care knowledge and exchange
 
 ## Website Link
 
-- [GreenCorner]()
+- [GreenCorner](https://greencorner-project4.onrender.com)
 - Deployment: Render, MongoDB Atlas
 
 ## How to Use the Website
