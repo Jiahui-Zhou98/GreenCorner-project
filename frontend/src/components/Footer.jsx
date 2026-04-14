@@ -30,7 +30,7 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <p className="footer-copy">
-            &copy; 2025 GreenCorner. All rights reserved.
+            &copy; 2026 GreenCorner. All rights reserved.
           </p>
         </div>
       </Container>
