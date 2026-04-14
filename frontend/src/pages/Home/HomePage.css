@@ -1,5 +1,5 @@
 .home-page {
-  font-family: "Nunito", sans-serif;
+  font-family: var(--font-body);
   min-height: 100vh;
 }
 

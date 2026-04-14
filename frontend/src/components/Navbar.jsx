@@ -28,10 +28,10 @@ export default function AppNavbar() {
               About
             </Nav.Link>
             <Nav.Link as={NavLink} to="/careposts">
-              Care
+              Care Guides
             </Nav.Link>
             <Nav.Link as={NavLink} to="/listings">
-              Market
+              Marketplace
             </Nav.Link>
             {user ? (
               <Button

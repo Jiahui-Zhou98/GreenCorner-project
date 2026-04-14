@@ -1,28 +1,48 @@
 import PropTypes from "prop-types";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Card, Badge, Button } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import "./ListingCard.css";
 
-const TYPE_EMOJI = {
-  Tropical: "🌿",
-  Succulent: "🪴",
-  Herb: "🌾",
-  Fern: "🍀",
-  Flowering: "🌸",
-  Cactus: "🌵",
-  Foliage: "🍃",
-  Trailing: "🪝",
-  Aquatic: "💧",
-  Carnivorous: "🪲",
-  Bulb: "🌷",
-  "Air Plant": "🌬️",
-  Bonsai: "🎋",
+import tropicalImg from "../../assets/plants/tropical.png";
+import succulentImg from "../../assets/plants/succulent.png";
+import herbImg from "../../assets/plants/herb.png";
+import fernImg from "../../assets/plants/fern.png";
+import floweringImg from "../../assets/plants/flowering.png";
+import cactusImg from "../../assets/plants/cactus.png";
+import foliageImg from "../../assets/plants/foliage.png";
+import trailingImg from "../../assets/plants/trailing.png";
+import aquaticImg from "../../assets/plants/aquatic.png";
+import carnivorousImg from "../../assets/plants/carnivorous.png";
+import bulbImg from "../../assets/plants/bulb.png";
+import airPlantImg from "../../assets/plants/air plant.png";
+import bonsaiImg from "../../assets/plants/bonsai.png";
+
+const TYPE_IMAGE = {
+  Tropical: tropicalImg,
+  Succulent: succulentImg,
+  Herb: herbImg,
+  Fern: fernImg,
+  Flowering: floweringImg,
+  Cactus: cactusImg,
+  Foliage: foliageImg,
+  Trailing: trailingImg,
+  Aquatic: aquaticImg,
+  Carnivorous: carnivorousImg,
+  Bulb: bulbImg,
+  "Air Plant": airPlantImg,
+  Bonsai: bonsaiImg,
 };
 
 const LISTING_BADGE = {
-  free: { bg: "success", label: "Free" },
-  "for sale": { bg: "primary", label: "For Sale" },
-  rehoming: { bg: "warning", label: "Rehoming" },
+  free: { label: "Free", style: { background: "#e8f5e8", color: "#2c4f34" } },
+  "for sale": {
+    label: "For Sale",
+    style: { background: "#2c4f34", color: "#f1ece4" },
+  },
+  rehoming: {
+    label: "Rehoming",
+    style: { background: "#fff3cd", color: "#856404" },
+  },
 };
 
 const CONDITION_STYLE = {
@@ -40,10 +60,10 @@ const STATUS_STYLE = {
 export default function ListingCard({ listing }) {
   const navigate = useNavigate();
   const location = useLocation();
-  const emoji = TYPE_EMOJI[listing.plantType] || "🌱";
+  const fallbackImg = TYPE_IMAGE[listing.plantType] || null;
   const listingBadge = LISTING_BADGE[listing.listingType] || {
-    bg: "secondary",
     label: listing.listingType,
+    style: { background: "#e9ecef", color: "#6c757d" },
   };
   const conditionStyle = CONDITION_STYLE[listing.condition] || {
     background: "#ccc",
@@ -56,8 +76,25 @@ export default function ListingCard({ listing }) {
     label: listing.status,
   };
 
+  function goToDetail() {
+    navigate(`/listings/${listing._id}`, {
+      state: { from: location.pathname + location.search },
+    });
+  }
+
   return (
-    <Card className="listing-card h-100">
+    <Card
+      className="listing-card h-100"
+      role="link"
+      tabIndex={0}
+      onClick={goToDetail}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          goToDetail();
+        }
+      }}
+    >
       <div className="listing-card-hero">
         {listing.imageUrl ? (
           <img
@@ -65,33 +102,35 @@ export default function ListingCard({ listing }) {
             alt={listing.plantName}
             className="listing-card-img"
           />
+        ) : fallbackImg ? (
+          <img
+            src={fallbackImg}
+            alt={listing.plantType}
+            className="listing-card-fallback"
+          />
         ) : (
-          <span className="listing-card-emoji">{emoji}</span>
+          <span className="listing-card-emoji">
+            {listing.plantType.charAt(0)}
+          </span>
         )}
+        <span
+          className="listing-status-overlay"
+          style={{
+            background: statusStyle.background,
+            color: statusStyle.color,
+          }}
+        >
+          {statusStyle.label}
+        </span>
       </div>
 
       <Card.Body className="listing-card-body">
-        <div className="listing-card-badges mb-2">
-          <Badge bg={listingBadge.bg} className="me-1">
+        <div className="listing-card-top">
+          <span className="listing-type-badge" style={listingBadge.style}>
             {listingBadge.label}
-          </Badge>
-          <span
-            className="listing-badge-condition me-1"
-            style={{
-              background: conditionStyle.background,
-              color: conditionStyle.color,
-            }}
-          >
-            {conditionStyle.label}
           </span>
-          <span
-            className="listing-badge-condition"
-            style={{
-              background: statusStyle.background,
-              color: statusStyle.color,
-            }}
-          >
-            {statusStyle.label}
+          <span className="listing-card-price">
+            {listing.price === 0 ? "Free" : `$${listing.price}`}
           </span>
         </div>
 
@@ -99,30 +138,13 @@ export default function ListingCard({ listing }) {
           {listing.plantName}
         </Card.Title>
 
-        <p className="listing-card-type">{listing.plantType}</p>
-
-        <p className="listing-card-desc">{listing.description}</p>
-
         <div className="listing-card-meta">
-          <span className="listing-card-price">
-            {listing.price === 0 ? "Free" : `$${listing.price}`}
-          </span>
-          <span className="listing-card-location">{listing.location}</span>
+          <span className="listing-card-type">{listing.plantType}</span>
+          <span className="listing-card-condition">{conditionStyle.label}</span>
         </div>
-      </Card.Body>
 
-      <Card.Footer className="listing-card-footer">
-        <Button
-          className="btn-green listing-detail-btn w-100"
-          onClick={() =>
-            navigate(`/listings/${listing._id}`, {
-              state: { from: location.pathname + location.search },
-            })
-          }
-        >
-          View Details
-        </Button>
-      </Card.Footer>
+        <span className="listing-card-location">{listing.location}</span>
+      </Card.Body>
     </Card>
   );
 }

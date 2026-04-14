@@ -70,10 +70,14 @@ export default function RegisterPage() {
             Join GreenCorner and start sharing your plants
           </p>
 
-          {serverError && <div className="auth-error">{serverError}</div>}
+          {serverError && (
+            <div className="auth-error" role="alert">
+              {serverError}
+            </div>
+          )}
 
           <Form noValidate onSubmit={handleSubmit}>
-            <Form.Group className="auth-group">
+            <Form.Group className="auth-group" controlId="registerName">
               <Form.Label className="auth-label">Name</Form.Label>
               <Form.Control
                 className="auth-input"
@@ -87,7 +91,7 @@ export default function RegisterPage() {
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group className="auth-group">
+            <Form.Group className="auth-group" controlId="registerEmail">
               <Form.Label className="auth-label">Email</Form.Label>
               <Form.Control
                 className="auth-input"
@@ -102,7 +106,7 @@ export default function RegisterPage() {
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group className="auth-group">
+            <Form.Group className="auth-group" controlId="registerPassword">
               <Form.Label className="auth-label">Password</Form.Label>
               <InputGroup>
                 <Form.Control
@@ -117,7 +121,7 @@ export default function RegisterPage() {
                   type="button"
                   className="auth-eye-btn"
                   onClick={() => setShowPassword((p) => !p)}
-                  tabIndex={-1}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? (
                     <svg
@@ -153,7 +157,10 @@ export default function RegisterPage() {
               </InputGroup>
             </Form.Group>
 
-            <Form.Group className="auth-group">
+            <Form.Group
+              className="auth-group"
+              controlId="registerConfirmPassword"
+            >
               <Form.Label className="auth-label">Confirm Password</Form.Label>
               <InputGroup>
                 <Form.Control
@@ -168,7 +175,11 @@ export default function RegisterPage() {
                   type="button"
                   className="auth-eye-btn"
                   onClick={() => setShowConfirm((p) => !p)}
-                  tabIndex={-1}
+                  aria-label={
+                    showConfirm
+                      ? "Hide password confirmation"
+                      : "Show password confirmation"
+                  }
                 >
                   {showConfirm ? (
                     <svg

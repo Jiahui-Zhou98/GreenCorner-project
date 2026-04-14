@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { Container, Row, Col, Form, Button, Spinner } from "react-bootstrap";
 import { useAuth } from "../../context/useAuth.js";
@@ -46,12 +46,25 @@ export default function PlantListingsPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Applied filters come from URL (used for fetching)
+  const [filtersOpen, setFiltersOpen] = useState(false);
+
   const page = Number(searchParams.get("page") || 1);
   const filters = filtersFromParams(searchParams);
 
-  // Pending filters are bound to sidebar inputs (not applied until Apply is clicked)
-  const [pending, setPending] = useState(() => filtersFromParams(searchParams));
+  const activeFilterCount = useMemo(() => {
+    return Object.values(filters).filter((v) => v !== "").length;
+  }, [filters]);
+
+  // Local state only for text inputs (debounced)
+  const [localMaxPrice, setLocalMaxPrice] = useState(filters.maxPrice);
+  const [localLocation, setLocalLocation] = useState(filters.location);
+  const debounceRef = useRef(null);
+
+  // Keep local text inputs in sync when URL changes externally (e.g. reset)
+  useEffect(() => {
+    setLocalMaxPrice(filters.maxPrice);
+    setLocalLocation(filters.location);
+  }, [filters.maxPrice, filters.location]);
 
   useEffect(() => {
     async function fetchListings() {
@@ -90,25 +103,30 @@ export default function PlantListingsPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
-  function handlePendingChange(key, value) {
-    setPending((prev) => ({ ...prev, [key]: value }));
-  }
-
-  function handleApply() {
-    setSearchParams((prev) => {
-      const next = new URLSearchParams(prev);
-      Object.entries(pending).forEach(([k, v]) => {
-        if (v) next.set(k, v);
-        else next.delete(k);
+  // Immediately apply a filter to the URL (for selects / checkboxes)
+  const applyFilter = useCallback(
+    (key, value) => {
+      setSearchParams((prev) => {
+        const next = new URLSearchParams(prev);
+        if (value) next.set(key, value);
+        else next.delete(key);
+        next.set("page", "1");
+        return next;
       });
-      next.set("page", "1");
-      return next;
-    });
+    },
+    [setSearchParams]
+  );
+
+  // Debounced apply for text inputs (400ms)
+  function applyFilterDebounced(key, value) {
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => applyFilter(key, value), 400);
   }
 
   function handleReset() {
-    const empty = filtersFromParams(new URLSearchParams());
-    setPending(empty);
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    setLocalMaxPrice("");
+    setLocalLocation("");
     setSearchParams({});
   }
 
@@ -123,28 +141,40 @@ export default function PlantListingsPage() {
   return (
     <div className="listings-page">
       <Container className="listings-body">
+        <div className="listings-header">
+          <h1 className="listings-page-title">Plant Marketplace</h1>
+          <p className="listings-page-sub">
+            Browse plants for sale, free adoption, or rehoming in your area.
+          </p>
+        </div>
         <div className="listings-layout">
-          {/* ── Filter Sidebar ── */}
-          <aside className="listings-sidebar">
-            <div className="sidebar-header">
-              <h6 className="sidebar-title">Filter</h6>
-              <button
-                type="button"
-                className="sidebar-reset"
-                onClick={handleReset}
-              >
-                Reset
-              </button>
-            </div>
+          {/* ── Mobile Filter Toggle ── */}
+          <button
+            type="button"
+            className="filters-toggle"
+            onClick={() => setFiltersOpen((o) => !o)}
+          >
+            Filters{activeFilterCount > 0 ? ` (${activeFilterCount})` : ""}
+            <span
+              className={`filters-toggle-arrow ${filtersOpen ? "open" : ""}`}
+            >
+              &#9662;
+            </span>
+          </button>
 
-            <Form>
-              <Form.Group className="sidebar-group">
+          {/* ── Filter Sidebar ── */}
+          <aside
+            className={`listings-sidebar ${filtersOpen ? "sidebar-open" : ""}`}
+          >
+            <h2 className="sidebar-title">Filter</h2>
+
+            <Form onSubmit={(e) => e.preventDefault()}>
+              {/* Plant search filters */}
+              <Form.Group className="sidebar-group" controlId="filterPlantType">
                 <Form.Label>Plant Type</Form.Label>
                 <Form.Select
-                  value={pending.plantType}
-                  onChange={(e) =>
-                    handlePendingChange("plantType", e.target.value)
-                  }
+                  value={filters.plantType}
+                  onChange={(e) => applyFilter("plantType", e.target.value)}
                 >
                   <option value="">All Types</option>
                   {PLANT_TYPES.map((t) => (
@@ -155,30 +185,11 @@ export default function PlantListingsPage() {
                 </Form.Select>
               </Form.Group>
 
-              <Form.Group className="sidebar-group">
-                <Form.Label>Listing Type</Form.Label>
-                <Form.Select
-                  value={pending.listingType}
-                  onChange={(e) =>
-                    handlePendingChange("listingType", e.target.value)
-                  }
-                >
-                  <option value="">All</option>
-                  {LISTING_TYPES.map((t) => (
-                    <option key={t} value={t}>
-                      {t.charAt(0).toUpperCase() + t.slice(1)}
-                    </option>
-                  ))}
-                </Form.Select>
-              </Form.Group>
-
-              <Form.Group className="sidebar-group">
+              <Form.Group className="sidebar-group" controlId="filterCondition">
                 <Form.Label>Condition</Form.Label>
                 <Form.Select
-                  value={pending.condition}
-                  onChange={(e) =>
-                    handlePendingChange("condition", e.target.value)
-                  }
+                  value={filters.condition}
+                  onChange={(e) => applyFilter("condition", e.target.value)}
                 >
                   <option value="">All</option>
                   {CONDITIONS.map((c) => (
@@ -189,68 +200,83 @@ export default function PlantListingsPage() {
                 </Form.Select>
               </Form.Group>
 
-              <Form.Group className="sidebar-group">
+              <Form.Group className="sidebar-group" controlId="filterMaxPrice">
                 <Form.Label>Max Price ($)</Form.Label>
                 <Form.Control
                   type="number"
                   min={0}
                   placeholder="e.g. 20"
-                  value={pending.maxPrice}
-                  onChange={(e) =>
-                    handlePendingChange("maxPrice", e.target.value)
-                  }
+                  value={localMaxPrice}
+                  onChange={(e) => {
+                    setLocalMaxPrice(e.target.value);
+                    applyFilterDebounced("maxPrice", e.target.value);
+                  }}
                 />
               </Form.Group>
 
-              <Form.Group className="sidebar-group">
+              <Form.Group className="sidebar-group" controlId="filterLocation">
                 <Form.Label>Location</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="e.g. Boston"
-                  value={pending.location}
-                  onChange={(e) =>
-                    handlePendingChange("location", e.target.value)
-                  }
+                  value={localLocation}
+                  onChange={(e) => {
+                    setLocalLocation(e.target.value);
+                    applyFilterDebounced("location", e.target.value);
+                  }}
                 />
               </Form.Group>
 
-              <Form.Group className="sidebar-group">
-                <Form.Label>Status</Form.Label>
-                <Form.Select
-                  value={pending.status}
-                  onChange={(e) =>
-                    handlePendingChange("status", e.target.value)
-                  }
-                >
-                  <option value="">All</option>
-                  <option value="available">Available</option>
-                  <option value="pending">Pending</option>
-                  <option value="sold">Sold</option>
-                </Form.Select>
-              </Form.Group>
+              <div className="sidebar-divider"></div>
 
-              <Form.Group className="sidebar-group">
-                <Form.Check
-                  type="checkbox"
-                  label="My Listings"
-                  disabled={!user}
-                  title={!user ? "Please sign in to filter your listings" : ""}
-                  checked={pending.onlyMyPosts === "true"}
-                  onChange={(e) =>
-                    handlePendingChange(
-                      "onlyMyPosts",
-                      e.target.checked ? "true" : ""
-                    )
-                  }
-                />
-              </Form.Group>
+              {/* Listing type chips */}
+              <div className="sidebar-group">
+                <span className="sidebar-chip-label">Listing Type</span>
+                <div className="sidebar-chips">
+                  {LISTING_TYPES.map((t) => (
+                    <button
+                      key={t}
+                      type="button"
+                      className={`sidebar-chip ${filters.listingType === t ? "chip-active" : ""}`}
+                      onClick={() =>
+                        applyFilter(
+                          "listingType",
+                          filters.listingType === t ? "" : t
+                        )
+                      }
+                    >
+                      {t.charAt(0).toUpperCase() + t.slice(1)}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Status chips */}
+              <div className="sidebar-group">
+                <span className="sidebar-chip-label">Status</span>
+                <div className="sidebar-chips">
+                  {["available", "pending", "sold"].map((s) => (
+                    <button
+                      key={s}
+                      type="button"
+                      className={`sidebar-chip ${filters.status === s ? "chip-active" : ""}`}
+                      onClick={() =>
+                        applyFilter("status", filters.status === s ? "" : s)
+                      }
+                    >
+                      {s.charAt(0).toUpperCase() + s.slice(1)}
+                    </button>
+                  ))}
+                </div>
+              </div>
 
               <button
                 type="button"
-                className="sidebar-apply"
-                onClick={handleApply}
+                className="sidebar-reset"
+                onClick={handleReset}
+                aria-label="Reset all filters"
               >
-                Apply Filters
+                Reset filters
               </button>
             </Form>
           </aside>
@@ -263,14 +289,34 @@ export default function PlantListingsPage() {
                   ? "Loading..."
                   : `${total} listing${total !== 1 ? "s" : ""} found`}
               </span>
-              <Button
-                className="btn-green create-listing-btn"
-                disabled={!user}
-                title={!user ? "Please sign in to create a listing" : ""}
-                onClick={() => navigateTo("/listings/new")}
-              >
-                + New Listing
-              </Button>
+              <div className="toolbar-actions">
+                <label
+                  className="toolbar-my-listings"
+                  title={!user ? "Please sign in to filter your listings" : ""}
+                >
+                  <input
+                    type="checkbox"
+                    disabled={!user}
+                    checked={filters.onlyMyPosts === "true"}
+                    onChange={(e) =>
+                      applyFilter("onlyMyPosts", e.target.checked ? "true" : "")
+                    }
+                  />
+                  My Listings
+                </label>
+                <div className="create-listing-wrapper">
+                  <Button
+                    className="btn-green create-listing-btn"
+                    disabled={!user}
+                    onClick={() => navigateTo("/listings/new")}
+                  >
+                    + New Listing
+                  </Button>
+                  {!user && (
+                    <span className="create-listing-hint">Sign in to post</span>
+                  )}
+                </div>
+              </div>
             </div>
 
             {error && (
@@ -285,31 +331,37 @@ export default function PlantListingsPage() {
               </div>
             ) : !error && listings.length === 0 ? (
               <div className="listings-empty">
-                <p>No listings match your filters.</p>
+                <p className="listings-empty-title">No listings found</p>
+                <p className="listings-empty-sub">
+                  Try adjusting your filters or browse all plants.
+                </p>
                 <button
                   type="button"
                   className="sidebar-reset"
                   onClick={handleReset}
                 >
-                  Clear filters
+                  Clear all filters
                 </button>
               </div>
             ) : (
-              <Row className="g-4">
-                {listings.map((listing) => (
-                  <Col key={listing._id} xs={12} sm={6} lg={4}>
-                    <ListingCard listing={listing} />
-                  </Col>
-                ))}
-              </Row>
+              <>
+                <Row className="g-4">
+                  {listings.map((listing) => (
+                    <Col key={listing._id} xs={12} sm={6} lg={4}>
+                      <ListingCard listing={listing} />
+                    </Col>
+                  ))}
+                </Row>
+              </>
             )}
 
             {/* Pagination */}
             {totalPages > 1 && !loading && (
-              <div className="listings-pagination">
+              <nav aria-label="Listing pages" className="listings-pagination">
                 <button
                   className="page-btn"
                   disabled={page === 1}
+                  aria-label="Previous page"
                   onClick={() => handlePageChange(page - 1)}
                 >
                   Prev
@@ -334,6 +386,8 @@ export default function PlantListingsPage() {
                       <button
                         key={item}
                         className={`page-btn ${page === item ? "active" : ""}`}
+                        aria-label={`Page ${item}`}
+                        aria-current={page === item ? "page" : undefined}
                         onClick={() => handlePageChange(item)}
                       >
                         {item}
@@ -344,11 +398,12 @@ export default function PlantListingsPage() {
                 <button
                   className="page-btn"
                   disabled={page === totalPages}
+                  aria-label="Next page"
                   onClick={() => handlePageChange(page + 1)}
                 >
                   Next
                 </button>
-              </div>
+              </nav>
             )}
           </div>
         </div>

@@ -130,7 +130,7 @@
 .careposts-error {
   text-align: center;
   padding: 2rem 0;
-  color: #b00020;
+  color: var(--color-danger);
   font-size: 0.95rem;
 }
 

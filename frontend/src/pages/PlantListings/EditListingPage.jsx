@@ -99,7 +99,11 @@ export default function EditListingPage() {
           Update the details below. Changes will be saved immediately.
         </p>
 
-        {serverError && <div className="lf-server-error">{serverError}</div>}
+        {serverError && (
+          <div className="lf-server-error" role="alert">
+            {serverError}
+          </div>
+        )}
 
         <ListingForm
           initialValues={initialValues}

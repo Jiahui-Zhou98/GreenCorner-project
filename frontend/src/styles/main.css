@@ -6,7 +6,11 @@
   --bg-light: #f5f9f5;
   --text-dark: #1e2e1e;
   --text-mid: #4a5a4a;
-  --text-muted: #7a8a7a;
+  --text-muted: #5a6b5a;
+  --color-danger: #b91c1c;
+  --color-danger-bg: #fef2f2;
+  --color-danger-border: #fca5a5;
+  --color-success: #2c4f34;
   --font-body: "Lato", sans-serif;
   --font-display: "Playfair Display", serif;
 }
@@ -80,6 +84,33 @@ p {
 }
 
 /* ── Shared green Bootstrap button color theme ────────── */
+/* ── Shared sidebar styles (used by multiple pages) ──── */
+.sidebar-apply {
+  display: block;
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 8px 0;
+  background-color: #2c4f34;
+  color: #f1ece4;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sidebar-apply:hover {
+  background-color: #3d6b46;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
 .btn-green {
   --bs-btn-bg: #2c4f34;
   --bs-btn-border-color: #2c4f34;

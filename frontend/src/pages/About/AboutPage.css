@@ -1,90 +1,260 @@
-/* ── 2. Mission ───────────────────────────────────── */
-.about-mission {
-  background-color: var(--bg-light);
-  padding: 0.5rem 0 3rem;
+/* ── About Page ───────────────────────────────────── */
+.about-page {
+  overflow-x: hidden;
 }
 
-.about-mission h2 {
-  font-family: var(--font-display);
-  font-size: 3rem;
+/* ── 1. Hero ─────────────────────────────────────── */
+.about-hero {
+  background: linear-gradient(
+    135deg,
+    var(--green-pale) 0%,
+    var(--bg-light) 100%
+  );
+  padding: 5rem 0 4rem;
+}
+
+.about-hero-label {
+  font-size: 0.85rem;
   font-weight: 700;
-  line-height: 1.2;
-  color: var(--green-dark);
-  text-align: center;
-}
-
-.about-mission p,
-.about-card .card-text {
-  font-size: 1.05rem;
-  color: var(--text-mid);
-  line-height: 1.85;
-}
-
-/* ── 3. Features ──────────────────────────────────── */
-.about-features {
-  padding: 5rem 0;
-  border-top: 10px dotted #e2efd4;
-  border-bottom: 10px dotted #e2efd4;
-}
-
-.about-features h2 {
-  font-family: var(--font-display);
-  font-size: 2.5rem;
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--green-dark);
-}
-
-.about-card {
-  border: none;
-  border-radius: 14px;
-  background-color: #fff;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.about-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 28px rgba(44, 79, 52, 0.15);
-}
-
-.about-card .card-title {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1.3;
-  color: var(--green-dark);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--green-mid);
   margin-bottom: 1rem;
 }
 
-/* ── 4. CTA ───────────────────────────────────────── */
-.about-cta {
+.about-hero-heading {
+  font-family: var(--font-display);
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--green-dark);
+  margin-bottom: 1.25rem;
+  max-width: 520px;
+}
+
+.about-hero-sub {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-mid);
+  max-width: 480px;
+  margin-bottom: 2rem;
+}
+
+/* ── Community Carousel ─────────────────────────── */
+.community-carousel {
+  position: relative;
+  width: 300px;
+  height: 280px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(44, 79, 52, 0.15);
+}
+
+.community-carousel-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.community-carousel-img.community-carousel-active {
+  opacity: 1;
+}
+
+/* ── 2. How It Works ─────────────────────────────── */
+.about-steps {
+  background-color: #fff;
+  padding: 5rem 0;
+}
+
+.about-section-heading {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  margin-bottom: 2.5rem;
+}
+
+.about-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 640px;
+}
+
+.about-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.about-step-num {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--green-pale);
+  color: var(--green-dark);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.about-step-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  margin-bottom: 0.35rem;
+}
+
+.about-step-desc {
+  font-size: 0.95rem;
+  color: var(--text-mid);
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+/* ── 3. Values ───────────────────────────────────── */
+.about-values {
   background-color: var(--bg-light);
   padding: 5rem 0;
 }
 
-.about-cta h2 {
-  font-family: var(--font-display);
-  font-size: 2.5rem;
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--green-dark);
-}
-
-.about-cta p {
-  color: var(--text-mid);
+.about-values-text {
   font-size: 1.05rem;
-  text-align: left;
+  color: var(--text-mid);
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
 }
 
-.cta-link {
+.about-values-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.about-value-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.about-value-marker {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--green-mid);
+  margin-top: 6px;
+}
+
+.about-value-label {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
   color: var(--green-dark);
-  text-decoration: none;
+  margin-bottom: 0.25rem;
+}
+
+.about-value-desc {
+  font-size: 0.92rem;
+  color: var(--text-mid);
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+/* ── 4. Getting Started ──────────────────────────── */
+.about-start {
+  background-color: #fff;
+  padding: 5rem 0;
+}
+
+.about-start-inner {
+  max-width: 600px;
+}
+
+.about-start-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.about-start-list li {
+  font-size: 1.05rem;
+  color: var(--text-mid);
+  line-height: 1.8;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.about-start-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--green-mid);
+}
+
+.about-start-link {
+  color: var(--green-dark);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
   transition: color 0.2s;
 }
 
-.cta-link:hover {
-  color: #3d6b46;
-  text-decoration: underline;
+.about-start-link:hover {
+  color: var(--green-mid);
+}
+
+.about-start-link:focus-visible {
+  outline: 2px solid var(--green-dark);
+  outline-offset: 2px;
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 991px) {
+  .about-hero {
+    padding: 3.5rem 0 3rem;
+  }
+
+  .about-hero-heading {
+    font-size: 2.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-hero-heading {
+    font-size: 2rem;
+    max-width: 100%;
+  }
+
+  .about-hero-sub {
+    max-width: 100%;
+  }
+
+  .about-section-heading {
+    font-size: 1.8rem;
+  }
+
+  .about-steps,
+  .about-values {
+    padding: 3.5rem 0;
+  }
 }

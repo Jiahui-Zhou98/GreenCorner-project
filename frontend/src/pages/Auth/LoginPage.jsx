@@ -53,10 +53,14 @@ export default function LoginPage() {
           <h1 className="auth-title">Welcome Back</h1>
           <p className="auth-subtitle">Sign in to your GreenCorner account</p>
 
-          {serverError && <div className="auth-error">{serverError}</div>}
+          {serverError && (
+            <div className="auth-error" role="alert">
+              {serverError}
+            </div>
+          )}
 
           <Form noValidate onSubmit={handleSubmit}>
-            <Form.Group className="auth-group">
+            <Form.Group className="auth-group" controlId="loginEmail">
               <Form.Label className="auth-label">Email</Form.Label>
               <Form.Control
                 className="auth-input"
@@ -71,7 +75,7 @@ export default function LoginPage() {
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group className="auth-group">
+            <Form.Group className="auth-group" controlId="loginPassword">
               <Form.Label className="auth-label">Password</Form.Label>
               <InputGroup>
                 <Form.Control
@@ -86,7 +90,7 @@ export default function LoginPage() {
                   type="button"
                   className="auth-eye-btn"
                   onClick={() => setShowPassword((p) => !p)}
-                  tabIndex={-1}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? (
                     <svg

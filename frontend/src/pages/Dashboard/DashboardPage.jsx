@@ -1,5 +1,5 @@
-import { useNavigate, Navigate } from "react-router-dom";
-import { Container, Button, Spinner } from "react-bootstrap";
+import { useNavigate, Navigate, Link } from "react-router-dom";
+import { Container, Spinner } from "react-bootstrap";
 import { useAuth } from "../../context/useAuth.js";
 import "./DashboardPage.css";
 
@@ -27,30 +27,51 @@ export default function DashboardPage() {
   return (
     <div className="dash-page">
       <Container className="dash-container">
-        <div className="dash-card">
+        {/* Profile header */}
+        <div className="dash-header">
           <div className="dash-avatar">{user.name.charAt(0).toUpperCase()}</div>
-          <h1 className="dash-name">{user.name}</h1>
-          <p className="dash-email">{user.email}</p>
+          <div className="dash-user-info">
+            <h1 className="dash-name">{user.name}</h1>
+            <p className="dash-email">{user.email}</p>
+          </div>
+        </div>
 
-          <div className="dash-actions">
-            <Button
-              className="btn-green dash-btn"
-              onClick={() => navigate("/careposts")}
-            >
-              View Care Posts
-            </Button>
-            <Button
-              className="btn-green dash-btn"
-              onClick={() => navigate("/listings")}
-            >
-              View Market Listings
-            </Button>
+        {/* Quick links */}
+        <div className="dash-sections">
+          <div className="dash-section">
+            <div className="dash-section-top">
+              <h2 className="dash-section-title">My Care Guides</h2>
+              <Link to="/careposts/new" className="dash-create-link">
+                + New Guide
+              </Link>
+            </div>
+            <p className="dash-section-desc">
+              Care tips and grow guides you have written for the community.
+            </p>
+            <Link to="/careposts?onlyMyPosts=true" className="dash-view-link">
+              View my care guides
+            </Link>
           </div>
 
-          <button className="dash-logout" onClick={handleLogout}>
-            Sign Out
-          </button>
+          <div className="dash-section">
+            <div className="dash-section-top">
+              <h2 className="dash-section-title">My Plant Listings</h2>
+              <Link to="/listings/new" className="dash-create-link">
+                + New Listing
+              </Link>
+            </div>
+            <p className="dash-section-desc">
+              Plants you have posted for sale, free adoption, or rehoming.
+            </p>
+            <Link to="/listings?onlyMyPosts=true" className="dash-view-link">
+              View my listings
+            </Link>
+          </div>
         </div>
+
+        <button className="dash-logout" onClick={handleLogout}>
+          Sign out
+        </button>
       </Container>
     </div>
   );

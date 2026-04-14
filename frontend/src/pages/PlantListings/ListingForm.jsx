@@ -128,7 +128,7 @@ export default function ListingForm({
   return (
     <Form noValidate onSubmit={handleSubmit} className="listing-form">
       {/* Plant name */}
-      <Form.Group className="lf-group">
+      <Form.Group className="lf-group" controlId="lfPlantName">
         <Form.Label className="lf-label">
           Plant Name <span className="lf-required">*</span>
         </Form.Label>
@@ -147,7 +147,7 @@ export default function ListingForm({
       {/* Plant type + condition */}
       <Row className="g-3">
         <Col md={6}>
-          <Form.Group className="lf-group">
+          <Form.Group className="lf-group" controlId="lfPlantType">
             <Form.Label className="lf-label">
               Plant Type <span className="lf-required">*</span>
             </Form.Label>
@@ -170,7 +170,7 @@ export default function ListingForm({
           </Form.Group>
         </Col>
         <Col md={6}>
-          <Form.Group className="lf-group">
+          <Form.Group className="lf-group" controlId="lfCondition">
             <Form.Label className="lf-label">Condition</Form.Label>
             <Form.Select
               className="lf-input"
@@ -188,7 +188,7 @@ export default function ListingForm({
       </Row>
 
       {/* Description */}
-      <Form.Group className="lf-group">
+      <Form.Group className="lf-group" controlId="lfDescription">
         <Form.Label className="lf-label">Description</Form.Label>
         <Form.Control
           as="textarea"
@@ -203,7 +203,7 @@ export default function ListingForm({
       {/* Listing type + price */}
       <Row className="g-3">
         <Col md={6}>
-          <Form.Group className="lf-group">
+          <Form.Group className="lf-group" controlId="lfListingType">
             <Form.Label className="lf-label">
               Listing Type <span className="lf-required">*</span>
             </Form.Label>
@@ -225,7 +225,7 @@ export default function ListingForm({
           </Form.Group>
         </Col>
         <Col md={6}>
-          <Form.Group className="lf-group">
+          <Form.Group className="lf-group" controlId="lfPrice">
             <Form.Label className="lf-label">
               Price ($){isFree && <span className="lf-note"> — Free</span>}
             </Form.Label>
@@ -247,7 +247,7 @@ export default function ListingForm({
       </Row>
 
       {/* Location */}
-      <Form.Group className="lf-group">
+      <Form.Group className="lf-group" controlId="lfLocation">
         <Form.Label className="lf-label">
           Location <span className="lf-required">*</span>
         </Form.Label>
@@ -265,7 +265,7 @@ export default function ListingForm({
 
       {/* Status — edit only */}
       {showStatus && (
-        <Form.Group className="lf-group">
+        <Form.Group className="lf-group" controlId="lfStatus">
           <Form.Label className="lf-label">Status</Form.Label>
           <Form.Select
             className="lf-input"
@@ -284,7 +284,7 @@ export default function ListingForm({
       {/* Seller name + email */}
       <Row className="g-3">
         <Col md={6}>
-          <Form.Group className="lf-group">
+          <Form.Group className="lf-group" controlId="lfSellerName">
             <Form.Label className="lf-label">
               Seller Name <span className="lf-required">*</span>
             </Form.Label>
@@ -301,7 +301,7 @@ export default function ListingForm({
           </Form.Group>
         </Col>
         <Col md={6}>
-          <Form.Group className="lf-group">
+          <Form.Group className="lf-group" controlId="lfSellerEmail">
             <Form.Label className="lf-label">
               Seller Email <span className="lf-required">*</span>
             </Form.Label>
@@ -321,7 +321,7 @@ export default function ListingForm({
       </Row>
 
       {/* Image URL */}
-      <Form.Group className="lf-group">
+      <Form.Group className="lf-group" controlId="lfImageUrl">
         <Form.Label className="lf-label">
           Image URL <span className="lf-note">(optional)</span>
         </Form.Label>
@@ -332,12 +332,12 @@ export default function ListingForm({
           onChange={(e) => set("imageUrl", e.target.value)}
         />
         <Form.Text className="lf-hint">
-          Leave blank to use an emoji based on plant type.
+          Leave blank to use a default image based on plant type.
         </Form.Text>
       </Form.Group>
 
       {/* Tags */}
-      <Form.Group className="lf-group">
+      <Form.Group className="lf-group" controlId="lfTags">
         <Form.Label className="lf-label">
           Tags <span className="lf-note">(optional)</span>
         </Form.Label>
@@ -347,6 +347,7 @@ export default function ListingForm({
               key={tag}
               type="button"
               className={`lf-tag-btn ${form.tags.includes(tag) ? "selected" : ""}`}
+              aria-pressed={form.tags.includes(tag)}
               onClick={() => toggleTag(tag)}
             >
               {tag}

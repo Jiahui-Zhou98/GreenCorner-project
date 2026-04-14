@@ -1,29 +1,49 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { Container, Button, Spinner, Badge, Modal } from "react-bootstrap";
+import { Container, Button, Spinner, Modal } from "react-bootstrap";
 import { useAuth } from "../../context/useAuth.js";
 import "./ListingDetailPage.css";
 
-const TYPE_EMOJI = {
-  Tropical: "🌿",
-  Succulent: "🪴",
-  Herb: "🌾",
-  Fern: "🍀",
-  Flowering: "🌸",
-  Cactus: "🌵",
-  Foliage: "🍃",
-  Trailing: "🪝",
-  Aquatic: "💧",
-  Carnivorous: "🪲",
-  Bulb: "🌷",
-  "Air Plant": "🌬️",
-  Bonsai: "🎋",
+import tropicalImg from "../../assets/plants/tropical.png";
+import succulentImg from "../../assets/plants/succulent.png";
+import herbImg from "../../assets/plants/herb.png";
+import fernImg from "../../assets/plants/fern.png";
+import floweringImg from "../../assets/plants/flowering.png";
+import cactusImg from "../../assets/plants/cactus.png";
+import foliageImg from "../../assets/plants/foliage.png";
+import trailingImg from "../../assets/plants/trailing.png";
+import aquaticImg from "../../assets/plants/aquatic.png";
+import carnivorousImg from "../../assets/plants/carnivorous.png";
+import bulbImg from "../../assets/plants/bulb.png";
+import airPlantImg from "../../assets/plants/air plant.png";
+import bonsaiImg from "../../assets/plants/bonsai.png";
+
+const TYPE_IMAGE = {
+  Tropical: tropicalImg,
+  Succulent: succulentImg,
+  Herb: herbImg,
+  Fern: fernImg,
+  Flowering: floweringImg,
+  Cactus: cactusImg,
+  Foliage: foliageImg,
+  Trailing: trailingImg,
+  Aquatic: aquaticImg,
+  Carnivorous: carnivorousImg,
+  Bulb: bulbImg,
+  "Air Plant": airPlantImg,
+  Bonsai: bonsaiImg,
 };
 
 const LISTING_BADGE = {
-  free: { bg: "success", label: "Free" },
-  "for sale": { bg: "primary", label: "For Sale" },
-  rehoming: { bg: "warning", label: "Rehoming" },
+  free: { label: "Free", style: { background: "#e8f5e8", color: "#2c4f34" } },
+  "for sale": {
+    label: "For Sale",
+    style: { background: "#2c4f34", color: "#f1ece4" },
+  },
+  rehoming: {
+    label: "Rehoming",
+    style: { background: "#fff3cd", color: "#856404" },
+  },
 };
 
 const CONDITION_STYLE = {
@@ -122,10 +142,10 @@ export default function ListingDetailPage() {
 
   if (!listing) return null;
 
-  const emoji = TYPE_EMOJI[listing.plantType] || "🌱";
+  const fallbackImg = TYPE_IMAGE[listing.plantType] || null;
   const listingBadge = LISTING_BADGE[listing.listingType] || {
-    bg: "secondary",
     label: listing.listingType,
+    style: { background: "#e9ecef", color: "#6c757d" },
   };
   const conditionStyle = CONDITION_STYLE[listing.condition] || {
     background: "#ccc",
@@ -155,9 +175,19 @@ export default function ListingDetailPage() {
                   src={listing.imageUrl}
                   alt={listing.plantName}
                   className="detail-hero-img"
+                  width="500"
+                  height="500"
+                />
+              ) : fallbackImg ? (
+                <img
+                  src={fallbackImg}
+                  alt={listing.plantType}
+                  className="detail-hero-fallback"
                 />
               ) : (
-                <span className="detail-hero-emoji">{emoji}</span>
+                <span className="detail-hero-letter">
+                  {listing.plantType.charAt(0)}
+                </span>
               )}
             </div>
 
@@ -178,9 +208,12 @@ export default function ListingDetailPage() {
           <div className="detail-info-col">
             {/* Badges */}
             <div className="detail-badges">
-              <Badge bg={listingBadge.bg} className="me-2">
+              <span
+                className="detail-badge-custom me-2"
+                style={listingBadge.style}
+              >
                 {listingBadge.label}
-              </Badge>
+              </span>
               <span
                 className="detail-badge-custom me-2"
                 style={{

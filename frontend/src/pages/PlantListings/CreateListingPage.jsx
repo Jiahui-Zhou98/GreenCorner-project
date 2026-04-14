@@ -48,7 +48,11 @@ export default function CreateListingPage() {
           marketplace.
         </p>
 
-        {serverError && <div className="lf-server-error">{serverError}</div>}
+        {serverError && (
+          <div className="lf-server-error" role="alert">
+            {serverError}
+          </div>
+        )}
 
         <ListingForm
           onSubmit={handleSubmit}

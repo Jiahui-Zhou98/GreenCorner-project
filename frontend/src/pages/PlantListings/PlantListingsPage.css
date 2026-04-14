@@ -4,10 +4,56 @@
   padding-bottom: 4rem;
 }
 
+/* ── Page Header ─────────────────────────────────── */
+.listings-header {
+  margin-bottom: 1.75rem;
+}
+
+.listings-page-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  margin-bottom: 0.3rem;
+}
+
+.listings-page-sub {
+  font-size: 1rem;
+  color: var(--text-mid);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
 .listings-layout {
   display: flex;
   gap: 2rem;
   align-items: flex-start;
+}
+
+/* ── Mobile Filter Toggle ────────────────────────── */
+.filters-toggle {
+  display: none;
+  width: 100%;
+  padding: 10px 16px;
+  background: #fff;
+  border: 1.5px solid #d0ddd0;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--green-dark);
+  cursor: pointer;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.filters-toggle-arrow {
+  float: right;
+  font-size: 0.75rem;
+  transition: transform 0.2s;
+}
+
+.filters-toggle-arrow.open {
+  transform: rotate(180deg);
 }
 
 /* ── Sidebar ──────────────────────────────────────── */
@@ -22,58 +68,18 @@
   box-shadow: 0 2px 12px rgba(44, 79, 52, 0.08);
 }
 
-.sidebar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.sidebar-title {
+.listings-sidebar .sidebar-title {
   font-family: var(--font-display);
   font-size: 1rem;
   color: var(--green-dark);
-  margin: 0;
+  margin: 0 0 1rem;
 }
 
-.sidebar-reset {
-  background: none;
-  border: none;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  cursor: pointer;
-  padding: 0;
-  text-decoration: underline;
-}
-
-.sidebar-reset:hover {
-  color: var(--green-dark);
-}
-
-.sidebar-apply {
-  display: block;
-  width: 100%;
-  margin-top: 0.5rem;
-  padding: 8px 0;
-  background-color: #2c4f34;
-  color: #f1ece4;
-  border: none;
-  border-radius: 8px;
-  font-size: 0.88rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.sidebar-apply:hover {
-  background-color: #3d6b46;
-}
-
-.sidebar-group {
+.listings-sidebar .sidebar-group {
   margin-bottom: 1.1rem;
 }
 
-.sidebar-group .form-label {
+.listings-sidebar .sidebar-group .form-label {
   font-size: 0.82rem;
   font-weight: 600;
   color: var(--text-mid);
@@ -81,22 +87,95 @@
   letter-spacing: 0.3px;
 }
 
-.sidebar-group .form-select,
-.sidebar-group .form-control {
+.listings-sidebar .sidebar-group .form-select,
+.listings-sidebar .sidebar-group .form-control {
   font-size: 0.88rem;
   border-color: #d0ddd0;
   border-radius: 8px;
 }
 
-.sidebar-group .form-select:focus,
-.sidebar-group .form-control:focus {
+.listings-sidebar .sidebar-group .form-select:focus,
+.listings-sidebar .sidebar-group .form-control:focus {
   border-color: #2c4f34;
   box-shadow: 0 0 0 3px rgba(44, 79, 52, 0.12);
 }
 
-.sidebar-group .form-check-label {
-  font-size: 0.88rem;
+/* ── Divider ─────────────────────────────────────── */
+.sidebar-divider {
+  height: 1px;
+  background: #e8ede8;
+  margin: 0.75rem 0 1rem;
+}
+
+/* ── Chip Filters ────────────────────────────────── */
+.sidebar-chip-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
   color: var(--text-mid);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.3px;
+}
+
+.sidebar-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.sidebar-chip {
+  padding: 5px 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-mid);
+  background: #f5f8f5;
+  border: 1.5px solid #d0ddd0;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.sidebar-chip:hover {
+  background: #e8f0e8;
+  border-color: var(--green-mid);
+}
+
+.sidebar-chip.chip-active {
+  background: var(--green-dark);
+  border-color: var(--green-dark);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ── Reset Button (subtle) ───────────────────────── */
+.listings-sidebar .sidebar-reset {
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+  background: transparent;
+  border: 1.5px solid #d0ddd0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  cursor: pointer;
+  padding: 9px 0;
+  border-radius: 8px;
+  text-decoration: none;
+  transition:
+    background-color 0.15s,
+    color 0.15s,
+    border-color 0.15s;
+}
+
+.listings-sidebar .sidebar-reset:hover {
+  background-color: #f5f5f5;
+  border-color: var(--text-mid);
+  color: var(--green-dark);
+}
+
+.listings-sidebar .sidebar-reset:focus-visible {
+  outline: 2px solid var(--green-dark);
+  outline-offset: 2px;
 }
 
 /* ── Main Content ─────────────────────────────────── */
@@ -112,16 +191,57 @@
   margin-bottom: 1.5rem;
 }
 
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.toolbar-my-listings {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--green-dark);
+  cursor: pointer;
+  user-select: none;
+}
+
+.toolbar-my-listings input[type="checkbox"] {
+  width: 1.2em;
+  height: 1.2em;
+  accent-color: var(--green-dark);
+  cursor: pointer;
+}
+
+.toolbar-my-listings input:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
 .listings-count {
-  font-size: 0.9rem;
-  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-mid);
 }
 
 .create-listing-btn {
-  border-radius: 8px;
-  padding: 7px 18px;
-  font-size: 0.88rem;
-  font-weight: 600;
+  border-radius: 10px;
+  padding: 10px 24px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 8px rgba(44, 79, 52, 0.18);
+  transition:
+    background-color 0.2s,
+    box-shadow 0.2s,
+    transform 0.15s;
+}
+
+.create-listing-btn:hover:not(:disabled) {
+  box-shadow: 0 4px 14px rgba(44, 79, 52, 0.25);
+  transform: translateY(-1px);
 }
 
 .create-listing-btn:disabled {
@@ -130,6 +250,18 @@
   --bs-btn-disabled-color: #f1ece4;
   opacity: 0.7;
   cursor: not-allowed;
+}
+
+.create-listing-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.create-listing-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 4px;
 }
 
 .listings-loading {
@@ -142,13 +274,50 @@
 .listings-empty {
   text-align: center;
   padding: 4rem 0;
+}
+
+.listings-empty-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  margin-bottom: 0.3rem;
+}
+
+.listings-empty-sub {
+  font-size: 0.95rem;
   color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.listings-empty .sidebar-reset {
+  display: inline-block;
+  background: transparent;
+  border: 1.5px solid #d0ddd0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  cursor: pointer;
+  text-decoration: none;
+  padding: 8px 24px;
+  border-radius: 8px;
+  margin-top: 0.75rem;
+  transition:
+    background-color 0.15s,
+    color 0.15s,
+    border-color 0.15s;
+}
+
+.listings-empty .sidebar-reset:hover {
+  background-color: #f5f5f5;
+  border-color: var(--text-mid);
+  color: var(--green-dark);
 }
 
 .listings-error {
   text-align: center;
   padding: 2rem 0;
-  color: #b00020;
+  color: var(--color-danger);
   font-size: 0.95rem;
 }
 
@@ -162,7 +331,7 @@
   flex-wrap: wrap;
 }
 
-.page-btn {
+.listings-pagination .page-btn {
   background: #fff;
   border: 1px solid #d0ddd0;
   border-radius: 8px;
@@ -175,36 +344,70 @@
     color 0.15s;
 }
 
-.page-btn:hover:not(:disabled) {
+.listings-pagination .page-btn:hover:not(:disabled) {
   background: #f0f6f0;
   color: #2c4f34;
 }
 
-.page-btn.active {
+.listings-pagination .page-btn.active {
   background: #2c4f34;
   border-color: #2c4f34;
   color: #f1ece4;
   font-weight: 600;
 }
 
-.page-btn:disabled {
+.listings-pagination .page-btn:focus-visible {
+  outline: 2px solid #2c4f34;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(44, 79, 52, 0.15);
+}
+
+.listings-pagination .page-btn:disabled {
   opacity: 0.4;
   cursor: not-allowed;
 }
 
-.page-ellipsis {
+.listings-pagination .page-ellipsis {
   color: var(--text-muted);
   padding: 0 4px;
 }
 
 /* ── Mobile Responsive ───────────────────────────── */
 @media (max-width: 768px) {
+  .listings-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .listings-page-title {
+    font-size: 1.6rem;
+  }
+
   .listings-layout {
     flex-direction: column;
+  }
+
+  .filters-toggle {
+    display: block;
   }
 
   .listings-sidebar {
     width: 100%;
     position: static;
+    display: none;
+  }
+
+  .listings-sidebar.sidebar-open {
+    display: block;
+  }
+
+  .listings-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .toolbar-actions {
+    width: 100%;
+    justify-content: space-between;
   }
 }
