@@ -60,6 +60,7 @@ export default function ListingForm({
 }) {
   const [form, setForm] = useState({ ...EMPTY_FORM, ...initialValues });
   const [errors, setErrors] = useState({});
+  const [showUrlInput, setShowUrlInput] = useState(false);
 
   function set(key, value) {
     setForm((prev) => {
@@ -320,20 +321,81 @@ export default function ListingForm({
         </Col>
       </Row>
 
-      {/* Image URL */}
-      <Form.Group className="lf-group" controlId="lfImageUrl">
+      {/* Image */}
+      <Form.Group className="lf-group" controlId="lfImage">
         <Form.Label className="lf-label">
-          Image URL <span className="lf-note">(optional)</span>
+          Plant Image <span className="lf-note">(optional, defaults to plant type image)</span>
         </Form.Label>
-        <Form.Control
-          className="lf-input"
-          placeholder="https://…"
-          value={form.imageUrl}
-          onChange={(e) => set("imageUrl", e.target.value)}
-        />
-        <Form.Text className="lf-hint">
-          Leave blank to use a default image based on plant type.
-        </Form.Text>
+
+        {/* Upload box */}
+        <label className="lf-upload-box" htmlFor="lfFileInput">
+          {form.imageUrl ? (
+            <img src={form.imageUrl} alt="Preview" className="lf-preview-img" />
+          ) : (
+            <div className="lf-upload-placeholder">
+              <span className="lf-upload-icon">+</span>
+              <span className="lf-upload-text">Click to upload an image</span>
+              <span className="lf-upload-hint">JPG, PNG, max 3 MB</span>
+            </div>
+          )}
+          <input
+            id="lfFileInput"
+            type="file"
+            accept="image/*"
+            className="lf-file-hidden"
+            onChange={(e) => {
+              const file = e.target.files[0];
+              if (!file) return;
+              if (file.size > 3 * 1024 * 1024) {
+                setErrors((prev) => ({ ...prev, imageUrl: "Image must be under 3 MB." }));
+                return;
+              }
+              const reader = new FileReader();
+              reader.onload = () => set("imageUrl", reader.result);
+              reader.readAsDataURL(file);
+            }}
+          />
+        </label>
+        {errors.imageUrl && (
+          <div className="lf-error">{errors.imageUrl}</div>
+        )}
+
+        {/* Remove button */}
+        {form.imageUrl && (
+          <button
+            type="button"
+            className="lf-remove-btn"
+            onClick={() => set("imageUrl", "")}
+          >
+            Remove image
+          </button>
+        )}
+
+        {/* URL input option */}
+        <div className="lf-url-section">
+          <button
+            type="button"
+            className="lf-url-toggle"
+            onClick={() => setShowUrlInput((prev) => !prev)}
+          >
+            {showUrlInput ? "Hide URL input" : "No file? Paste a public image URL instead"}
+          </button>
+
+          {showUrlInput && (
+            <>
+              <Form.Text className="lf-hint mt-2">
+                The URL must be publicly accessible, or the image will not display.
+              </Form.Text>
+              <Form.Control
+                className="lf-input mt-1"
+                placeholder="https://..."
+                value={form.imageUrl.startsWith("data:") ? "" : form.imageUrl}
+                onChange={(e) => set("imageUrl", e.target.value)}
+              />
+            </>
+          )}
+        </div>
+
       </Form.Group>
 
       {/* Tags */}

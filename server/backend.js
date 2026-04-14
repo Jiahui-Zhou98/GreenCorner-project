@@ -16,7 +16,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(express.json());
+app.use(express.json({ limit: "5mb" }));
 
 // In production, serve the frontend build folder as static files
 app.use(express.static(path.join(__dirname, "..", "frontend", "dist")));

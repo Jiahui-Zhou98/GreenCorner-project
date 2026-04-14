@@ -63,6 +63,108 @@
   display: block;
 }
 
+/* ── Image upload ─────────────────────────────────── */
+.lf-upload-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 280px;
+  min-height: 180px;
+  border: 2px dashed #c8dac8;
+  border-radius: 12px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.lf-upload-box:hover {
+  border-color: var(--green-dark);
+  background-color: #f4f9f4;
+}
+
+.lf-file-hidden {
+  display: none;
+}
+
+.lf-upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 1.5rem;
+}
+
+.lf-upload-icon {
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--green-mid);
+  line-height: 1;
+}
+
+.lf-upload-text {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--green-dark);
+}
+
+.lf-upload-hint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.lf-preview-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+.lf-remove-btn {
+  background: none;
+  border: none;
+  color: #c0392b;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 0.5rem;
+  display: block;
+}
+
+.lf-remove-btn:hover {
+  text-decoration: underline;
+}
+
+.lf-url-section {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e4ede4;
+}
+
+.lf-url-toggle {
+  background: none;
+  border: 1px solid #c8dac8;
+  border-radius: 6px;
+  color: var(--green-dark);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.4rem 0.85rem;
+  display: inline-block;
+}
+
+.lf-url-toggle:hover {
+  background-color: #f4f9f4;
+  border-color: var(--green-dark);
+}
+
+.lf-error {
+  color: #c0392b;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+
 /* ── Tag buttons ──────────────────────────────────── */
 .lf-tags-grid {
   display: flex;
