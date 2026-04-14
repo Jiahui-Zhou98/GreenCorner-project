@@ -252,18 +252,6 @@
   cursor: not-allowed;
 }
 
-.create-listing-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
-.create-listing-hint {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  margin-top: 4px;
-}
-
 .listings-loading {
   display: flex;
   justify-content: center;

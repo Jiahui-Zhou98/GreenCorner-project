@@ -145,6 +145,7 @@ export default function PlantListingsPage() {
           <h1 className="listings-page-title">Plant Marketplace</h1>
           <p className="listings-page-sub">
             Browse plants for sale, free adoption, or rehoming in your area.
+            {!user && " Sign in to create a listing or filter by your own posts."}
           </p>
         </div>
         <div className="listings-layout">
@@ -304,18 +305,13 @@ export default function PlantListingsPage() {
                   />
                   My Listings
                 </label>
-                <div className="create-listing-wrapper">
-                  <Button
-                    className="btn-green create-listing-btn"
-                    disabled={!user}
-                    onClick={() => navigateTo("/listings/new")}
-                  >
-                    + New Listing
-                  </Button>
-                  {!user && (
-                    <span className="create-listing-hint">Sign in to post</span>
-                  )}
-                </div>
+                <Button
+                  className="btn-green create-listing-btn"
+                  disabled={!user}
+                  onClick={() => navigateTo("/listings/new")}
+                >
+                  + New Listing
+                </Button>
               </div>
             </div>
 
