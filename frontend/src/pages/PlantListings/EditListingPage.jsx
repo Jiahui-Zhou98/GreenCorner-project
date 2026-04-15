@@ -69,7 +69,9 @@ export default function EditListingPage() {
   if (loading) {
     return (
       <div className="listing-form-loading">
-        <Spinner animation="border" style={{ color: "#2c4f34" }} />
+        <Spinner animation="border" style={{ color: "#2c4f34" }} role="status">
+          <span className="visually-hidden">Loading listing...</span>
+        </Spinner>
       </div>
     );
   }
@@ -78,7 +80,7 @@ export default function EditListingPage() {
     return (
       <Container className="listing-form-container">
         <p className="lf-server-error">Failed to load listing: {loadError}</p>
-        <button className="lf-back-link" onClick={() => navigate(-1)}>
+        <button className="lf-back-link" onClick={() => navigate(-1)} aria-label="Go back to previous page">
           ← Back
         </button>
       </Container>
@@ -91,6 +93,7 @@ export default function EditListingPage() {
         <button
           className="lf-back-link"
           onClick={() => navigate(`/listings/${id}`)}
+          aria-label="Go back to listing detail"
         >
           ← Back to Listing
         </button>

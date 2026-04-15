@@ -41,19 +41,19 @@ const LISTING_BADGE = {
   },
   rehoming: {
     label: "Rehoming",
-    style: { background: "#fff3cd", color: "#856404" },
+    style: { background: "#fff3cd", color: "#664d03" },
   },
 };
 
 const CONDITION_STYLE = {
   excellent: { background: "#2c4f34", color: "#f1ece4", label: "Excellent" },
-  good: { background: "#6a9e6a", color: "#fff", label: "Good" },
+  good: { background: "#4a7c4a", color: "#fff", label: "Good" },
   fair: { background: "#b8d4b8", color: "#2c4f34", label: "Fair" },
 };
 
 const STATUS_STYLE = {
   available: { background: "#e8f5e8", color: "#2c4f34", label: "Available" },
-  pending: { background: "#fff3cd", color: "#856404", label: "Pending" },
+  pending: { background: "#fff3cd", color: "#664d03", label: "Pending" },
   sold: { background: "#e9ecef", color: "#6c757d", label: "Sold" },
 };
 
@@ -85,8 +85,9 @@ export default function ListingCard({ listing }) {
   return (
     <Card
       className="listing-card h-100"
-      role="link"
+      role="button"
       tabIndex={0}
+      aria-label={`View details for ${listing.plantName}`}
       onClick={goToDetail}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {

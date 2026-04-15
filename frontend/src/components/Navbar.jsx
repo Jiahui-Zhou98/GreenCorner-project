@@ -9,7 +9,7 @@ export default function AppNavbar() {
   const navigate = useNavigate();
 
   return (
-    <Navbar expand="lg" className="app-navbar">
+    <Navbar expand="lg" className="app-navbar" aria-label="Main navigation">
       <Container>
         <Navbar.Brand as={Link} to="/" className="navbar-brand-custom">
           <TripleLeafIcon />

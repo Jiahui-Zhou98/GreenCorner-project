@@ -46,6 +46,11 @@
   text-align: left;
 }
 
+.filters-toggle:focus-visible {
+  outline: 2px solid var(--green-dark);
+  outline-offset: 2px;
+}
+
 .filters-toggle-arrow {
   float: right;
   font-size: 0.75rem;
@@ -145,6 +150,11 @@
   border-color: var(--green-dark);
   color: #fff;
   font-weight: 600;
+}
+
+.sidebar-chip:focus-visible {
+  outline: 2px solid var(--green-dark);
+  outline-offset: 2px;
 }
 
 /* ── Reset Button (subtle) ───────────────────────── */
@@ -257,6 +267,11 @@
 .create-listing-btn:hover:not(:disabled) {
   box-shadow: 0 4px 14px rgba(44, 79, 52, 0.25);
   transform: translateY(-1px);
+}
+
+.create-listing-btn:focus-visible {
+  outline: 2px solid var(--green-dark);
+  outline-offset: 2px;
 }
 
 .create-listing-btn:disabled {

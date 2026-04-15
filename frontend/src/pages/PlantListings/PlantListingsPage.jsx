@@ -241,6 +241,7 @@ export default function PlantListingsPage() {
                       key={t}
                       type="button"
                       className={`sidebar-chip ${filters.listingType === t ? "chip-active" : ""}`}
+                      aria-pressed={filters.listingType === t}
                       onClick={() =>
                         applyFilter(
                           "listingType",
@@ -263,6 +264,7 @@ export default function PlantListingsPage() {
                       key={s}
                       type="button"
                       className={`sidebar-chip ${filters.status === s ? "chip-active" : ""}`}
+                      aria-pressed={filters.status === s}
                       onClick={() =>
                         applyFilter("status", filters.status === s ? "" : s)
                       }
@@ -335,7 +337,9 @@ export default function PlantListingsPage() {
 
             {loading ? (
               <div className="listings-loading">
-                <Spinner animation="border" />
+                <Spinner animation="border" role="status">
+                  <span className="visually-hidden">Loading listings...</span>
+                </Spinner>
               </div>
             ) : !error && listings.length === 0 ? (
               <div className="listings-empty">

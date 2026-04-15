@@ -29,12 +29,12 @@ export default function AboutPage() {
               <div className="about-hero-images">
                 <img
                   src={conversation1}
-                  alt="Plant community conversation"
+                  alt="Plant lovers sharing care tips in a community chat"
                   className="about-hero-photo"
                 />
                 <img
                   src={conversation2}
-                  alt="Plant community conversation"
+                  alt="Community members discussing plant rehoming"
                   className="about-hero-photo"
                 />
               </div>

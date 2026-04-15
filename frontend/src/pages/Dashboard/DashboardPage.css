@@ -126,6 +126,12 @@
   color: #fff;
 }
 
+.dash-view-btn:focus-visible,
+.dash-create-btn:focus-visible {
+  outline: 2px solid var(--green-dark);
+  outline-offset: 2px;
+}
+
 /* ── Sign Out ────────────────────────────────────── */
 .dash-logout {
   background: transparent;

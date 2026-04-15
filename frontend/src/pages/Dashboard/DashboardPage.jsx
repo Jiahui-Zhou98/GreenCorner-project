@@ -10,7 +10,9 @@ export default function DashboardPage() {
   if (loading) {
     return (
       <div className="dash-loading">
-        <Spinner animation="border" style={{ color: "#2c4f34" }} />
+        <Spinner animation="border" style={{ color: "#2c4f34" }} role="status">
+          <span className="visually-hidden">Loading dashboard...</span>
+        </Spinner>
       </div>
     );
   }
