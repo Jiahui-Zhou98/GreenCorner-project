@@ -1,7 +1,7 @@
 /* ── Page wrapper ─────────────────────────────────── */
 .detail-page {
   background-color: var(--bg-light);
-  min-height: 60vh;
+  min-height: 80vh;
   padding-bottom: 5rem;
 }
 
