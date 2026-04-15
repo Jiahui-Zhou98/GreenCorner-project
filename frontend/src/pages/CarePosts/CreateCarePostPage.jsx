@@ -6,8 +6,13 @@ import "./CreateCarePostPage.css";
 
 export default function CreateCarePostPage() {
   const navigate = useNavigate();
+  const { user, loading } = useAuth();
   const [submitting, setSubmitting] = useState(false);
   const [serverError, setServerError] = useState(null);
+
+  if (!loading && !user) {
+    return <Navigate to="/login" replace />;
+  }
 
   async function handleSubmit(payload) {
     setSubmitting(true);
