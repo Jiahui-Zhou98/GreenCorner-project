@@ -3,19 +3,19 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import "./ListingCard.css";
 
-import tropicalImg from "../../assets/plants/tropical.png";
-import succulentImg from "../../assets/plants/succulent.png";
-import herbImg from "../../assets/plants/herb.png";
-import fernImg from "../../assets/plants/fern.png";
-import floweringImg from "../../assets/plants/flowering.png";
-import cactusImg from "../../assets/plants/cactus.png";
-import foliageImg from "../../assets/plants/foliage.png";
-import trailingImg from "../../assets/plants/trailing.png";
-import aquaticImg from "../../assets/plants/aquatic.png";
-import carnivorousImg from "../../assets/plants/carnivorous.png";
-import bulbImg from "../../assets/plants/bulb.png";
-import airPlantImg from "../../assets/plants/air plant.png";
-import bonsaiImg from "../../assets/plants/bonsai.png";
+import tropicalImg from "../../assets/plants/tropical.webp";
+import succulentImg from "../../assets/plants/succulent.webp";
+import herbImg from "../../assets/plants/herb.webp";
+import fernImg from "../../assets/plants/fern.webp";
+import floweringImg from "../../assets/plants/flowering.webp";
+import cactusImg from "../../assets/plants/cactus.webp";
+import foliageImg from "../../assets/plants/foliage.webp";
+import trailingImg from "../../assets/plants/trailing.webp";
+import aquaticImg from "../../assets/plants/aquatic.webp";
+import carnivorousImg from "../../assets/plants/carnivorous.webp";
+import bulbImg from "../../assets/plants/bulb.webp";
+import airPlantImg from "../../assets/plants/air plant.webp";
+import bonsaiImg from "../../assets/plants/bonsai.webp";
 
 const TYPE_IMAGE = {
   Tropical: tropicalImg,
