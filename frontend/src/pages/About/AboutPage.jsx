@@ -149,21 +149,6 @@ export default function AboutPage() {
               <li>
                 In the{" "}
                 <a
-                  href="/listings"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigate("/listings");
-                  }}
-                  className="about-start-link"
-                >
-                  Marketplace
-                </a>
-                , you can browse plant listings near you, post plants for sale
-                or free adoption, and find your next green friend.
-              </li>
-              <li>
-                In the{" "}
-                <a
                   href="/careposts"
                   onClick={(e) => {
                     e.preventDefault();
@@ -175,6 +160,21 @@ export default function AboutPage() {
                 </a>
                 , you can read and write care tips on watering, lighting,
                 propagation, and more.
+              </li>
+              <li>
+                In the{" "}
+                <a
+                  href="/listings"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate("/listings");
+                  }}
+                  className="about-start-link"
+                >
+                  Marketplace
+                </a>
+                , you can browse plant listings near you, post plants for sale
+                or free adoption, and find your next green friend.
               </li>
             </ul>
           </div>
