@@ -118,9 +118,9 @@ plant-community/
 │       │   └── main.css                 # Global CSS variables, layout, typography
 │       ├── assets/
 │       │   ├── about/                   # Hero images for the About page
-│       │   │   ├── conversation1.jpg
-│       │   │   └── conversation2.jpg
-│       │   └── plants/                  # Plant type images (13 types)
+│       │   │   ├── conversation1.webp
+│       │   │   └── conversation2.webp
+│       │   └── plants/                  # Plant type images (13 types, WebP format)
 │       ├── context/
 │       │   ├── AuthContextDef.js        # React context object (createContext)
 │       │   ├── AuthContext.jsx          # AuthProvider component (session check, login, register, logout)
