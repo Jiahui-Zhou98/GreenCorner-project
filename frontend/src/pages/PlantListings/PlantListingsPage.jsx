@@ -6,19 +6,19 @@ import ListingCard from "./ListingCard.jsx";
 import "./PlantListingsPage.css";
 
 const PLANT_TYPES = [
-  "Tropical",
-  "Succulent",
-  "Herb",
-  "Fern",
-  "Flowering",
-  "Cactus",
-  "Foliage",
-  "Trailing",
-  "Aquatic",
-  "Carnivorous",
-  "Bulb",
-  "Air Plant",
-  "Bonsai",
+  { value: "Tropical", hint: "warm-climate, large leaves" },
+  { value: "Succulent", hint: "thick leaves, stores water" },
+  { value: "Herb", hint: "basil, mint, rosemary" },
+  { value: "Fern", hint: "leafy, loves shade" },
+  { value: "Flowering", hint: "blooms with colorful flowers" },
+  { value: "Cactus", hint: "spiny, very low water" },
+  { value: "Foliage", hint: "grown for decorative leaves" },
+  { value: "Trailing", hint: "hangs or cascades down" },
+  { value: "Aquatic", hint: "grows in water" },
+  { value: "Carnivorous", hint: "eats insects" },
+  { value: "Bulb", hint: "grows from a bulb, like tulips" },
+  { value: "Air Plant", hint: "no soil needed" },
+  { value: "Bonsai", hint: "miniature tree art" },
 ];
 const LISTING_TYPES = ["free", "for sale", "rehoming"];
 const CONDITIONS = ["excellent", "good", "fair"];
@@ -181,15 +181,15 @@ export default function PlantListingsPage() {
                 >
                   <option value="">All Types</option>
                   {PLANT_TYPES.map((t) => (
-                    <option key={t} value={t}>
-                      {t}
+                    <option key={t.value} value={t.value}>
+                      {t.value} — {t.hint}
                     </option>
                   ))}
                 </Form.Select>
               </Form.Group>
 
               <Form.Group className="sidebar-group" controlId="filterCondition">
-                <Form.Label>Condition</Form.Label>
+                <Form.Label>Plant Condition</Form.Label>
                 <Form.Select
                   value={filters.condition}
                   onChange={(e) => applyFilter("condition", e.target.value)}
@@ -256,7 +256,7 @@ export default function PlantListingsPage() {
 
               {/* Status chips */}
               <div className="sidebar-group">
-                <span className="sidebar-chip-label">Status</span>
+                <span className="sidebar-chip-label">Listing Status</span>
                 <div className="sidebar-chips">
                   {["available", "pending", "sold"].map((s) => (
                     <button
