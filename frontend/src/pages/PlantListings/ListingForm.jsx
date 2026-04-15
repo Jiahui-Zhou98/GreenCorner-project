@@ -328,7 +328,19 @@ export default function ListingForm({
         </Form.Label>
 
         {/* Upload box */}
-        <label className="lf-upload-box" htmlFor="lfFileInput">
+        <label
+          className="lf-upload-box"
+          htmlFor="lfFileInput"
+          tabIndex={0}
+          role="button"
+          aria-label="Upload a plant image"
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              document.getElementById("lfFileInput").click();
+            }
+          }}
+        >
           {form.imageUrl ? (
             <img src={form.imageUrl} alt="Preview" className="lf-preview-img" />
           ) : (
