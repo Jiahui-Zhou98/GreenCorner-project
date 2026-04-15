@@ -1,22 +1,3 @@
-/* Fallback fonts sized to match Google Fonts and reduce layout shift */
-@font-face {
-  font-family: "Lato Fallback";
-  src: local("Arial");
-  size-adjust: 97.4%;
-  ascent-override: 101%;
-  descent-override: 22%;
-  line-gap-override: 0%;
-}
-
-@font-face {
-  font-family: "Playfair Fallback";
-  src: local("Georgia");
-  size-adjust: 112%;
-  ascent-override: 88%;
-  descent-override: 22%;
-  line-gap-override: 0%;
-}
-
 :root {
   --green-dark: #2d4a2d;
   --green-mid: #4a7c4a;
@@ -30,8 +11,8 @@
   --color-danger-bg: #fef2f2;
   --color-danger-border: #fca5a5;
   --color-success: #2c4f34;
-  --font-body: "Lato", "Lato Fallback", sans-serif;
-  --font-display: "Playfair Display", "Playfair Fallback", serif;
+  --font-body: "Lato", sans-serif;
+  --font-display: "Playfair Display", serif;
 }
 
 *,
