@@ -13,7 +13,7 @@ export function AuthProvider({ children }) {
         const res = await fetch("/api/users/me");
         if (res.ok) {
           const data = await res.json();
-          setUser(data);
+          setUser(data || null);
         }
       } catch {
         // not logged in

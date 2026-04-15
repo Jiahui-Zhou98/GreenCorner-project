@@ -82,7 +82,7 @@ router.post("/login", (req, res, next) => {
 // GET /api/users/me
 router.get("/me", (req, res) => {
   if (!req.isAuthenticated()) {
-    return res.status(401).json({ error: "Not logged in." });
+    return res.json(null);
   }
 
   res.json({
