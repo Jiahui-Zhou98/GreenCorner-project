@@ -54,7 +54,7 @@ const CONDITION_STYLE = {
 const STATUS_STYLE = {
   available: { background: "#e8f5e8", color: "#2c4f34", label: "Available" },
   pending: { background: "#fff3cd", color: "#664d03", label: "Pending" },
-  sold: { background: "#e9ecef", color: "#6c757d", label: "Sold" },
+  sold: { background: "#e9ecef", color: "#495057", label: "Sold" },
 };
 
 export default function ListingCard({ listing }) {
