@@ -1,7 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import conversation1 from "../../assets/about/conversation1.jpg";
-import conversation2 from "../../assets/about/conversation2.jpg";
+import conversation1 from "../../assets/about/conversation1.webp";
+import conversation2 from "../../assets/about/conversation2.webp";
 import "./AboutPage.css";
 
 export default function AboutPage() {
