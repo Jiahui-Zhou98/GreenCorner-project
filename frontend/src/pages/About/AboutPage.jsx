@@ -105,7 +105,7 @@ export default function AboutPage() {
                 <div className="about-value-item">
                   <span className="about-value-marker"></span>
                   <div>
-                    <h4 className="about-value-label">Local first</h4>
+                    <h3 className="about-value-label">Local first</h3>
                     <p className="about-value-desc">
                       Find plants and plant people in your area. No shipping
                       fees, no wilted arrivals.
@@ -115,7 +115,7 @@ export default function AboutPage() {
                 <div className="about-value-item">
                   <span className="about-value-marker"></span>
                   <div>
-                    <h4 className="about-value-label">Knowledge over clout</h4>
+                    <h3 className="about-value-label">Knowledge over clout</h3>
                     <p className="about-value-desc">
                       Care tips ranked by usefulness, not likes. Real advice
                       from real growers.
@@ -125,9 +125,9 @@ export default function AboutPage() {
                 <div className="about-value-item">
                   <span className="about-value-marker"></span>
                   <div>
-                    <h4 className="about-value-label">
+                    <h3 className="about-value-label">
                       Every plant deserves a home
-                    </h4>
+                    </h3>
                     <p className="about-value-desc">
                       Free adoption listings sit right next to paid ones. No
                       gatekeeping.
