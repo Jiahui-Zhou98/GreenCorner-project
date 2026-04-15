@@ -71,7 +71,9 @@ export default function EditCarePostPage() {
   if (loading) {
     return (
       <div className="carepost-form-loading">
-        <Spinner animation="border" style={{ color: "#2c4f34" }} />
+        <Spinner animation="border" style={{ color: "#2c4f34" }} role="status">
+          <span className="visually-hidden">Loading carepost...</span>
+        </Spinner>
       </div>
     );
   }
@@ -80,7 +82,7 @@ export default function EditCarePostPage() {
     return (
       <Container className="carepost-form-container">
         <p className="cpf-server-error">Failed to load post: {loadError}</p>
-        <button className="cpf-back-link" onClick={() => navigate(-1)}>
+        <button className="cpf-back-link" onClick={() => navigate(-1)} aria-label="Go back to previous page">
           ← Back
         </button>
       </Container>
@@ -93,6 +95,7 @@ export default function EditCarePostPage() {
         <button
           className="cpf-back-link"
           onClick={() => navigate(`/careposts/${id}`)}
+          aria-label="Go back to carepost detail"
         >
           ← Back to Post
         </button>
