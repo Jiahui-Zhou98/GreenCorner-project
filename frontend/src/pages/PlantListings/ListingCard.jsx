@@ -63,7 +63,7 @@ export default function ListingCard({ listing }) {
   const fallbackImg = TYPE_IMAGE[listing.plantType] || null;
   const listingBadge = LISTING_BADGE[listing.listingType] || {
     label: listing.listingType,
-    style: { background: "#e9ecef", color: "#6c757d" },
+    style: { background: "#e9ecef", color: "#495057" },
   };
   const conditionStyle = CONDITION_STYLE[listing.condition] || {
     background: "#ccc",
@@ -72,7 +72,7 @@ export default function ListingCard({ listing }) {
   };
   const statusStyle = STATUS_STYLE[listing.status] || {
     background: "#e9ecef",
-    color: "#6c757d",
+    color: "#495057",
     label: listing.status,
   };
 
