@@ -1,8 +1,17 @@
 import { Button } from "react-bootstrap";
+import { useNavigate, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./CarePostCard.css";
 
 export default function CarePostCard({ post }) {
+  const navigate = useNavigate();
+  const location = useLocation(); 
+
+  const handleReadMore = () => {
+    navigate(`/careposts/${post._id}`, { 
+      state: { from: location.pathname + location.search } 
+    });
+  };
   return (
     <div className="carepost-card">
       {post.imageUrl ? (
@@ -26,7 +35,7 @@ export default function CarePostCard({ post }) {
             : post.content}
         </p>
         <div className="carepost-card-details">
-          <span>Light: {post.light || "N/A"}</span>
+          <span>Sunlight Needs: {post.light || "N/A"}</span>
           <span>Watering: {post.watering || "N/A"}</span>
         </div>
         <div className="carepost-card-footer">
