@@ -189,9 +189,11 @@ plant-community/
 
 - **Detailed Page**
   ![detailed-page](./design_doc/screenshots/detail_page.png)
+  ![detailed-page](./design_doc/screenshots/post_detail.png)
 
 - **Create/Edit Form**
   ![create-edit-form](./design_doc/screenshots/form.png)
+  ![create-edit-form](./design_doc/screenshots/post_form.png)
 
 - **Register**
   ![register](./design_doc/screenshots/register.png)
