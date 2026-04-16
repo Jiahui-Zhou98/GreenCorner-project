@@ -26,7 +26,7 @@ export default function HomePage() {
             </h1>
             <p className="lead banner-text">
               Share • Trade • Grow plants together
-            </p>
+            </p>                
           </div>
         </Container>
       </section>
@@ -42,12 +42,12 @@ export default function HomePage() {
           </p>
 
           <div className="d-flex justify-content-center gap-3 flex-wrap">
-            <Link to="/listings" className="btn-primary-custom">
-              Browse Plant Listings
+            <Link to="/register" className="btn-primary-custom">
+              Register
             </Link>
 
-            <Link to="/careposts" className="btn-secondary-custom">
-              Explore Care Guides
+            <Link to="/login" className="btn-secondary-custom">
+              Sign In
             </Link>
           </div>
         </Container>
