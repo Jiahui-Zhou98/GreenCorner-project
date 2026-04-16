@@ -120,22 +120,40 @@ export default function CarePostsPage() {
       return next;
     });
     window.scrollTo({ top: 0, behavior: "smooth" });
+
+    setTimeout(() => {
+      document.getElementById("main-content")?.focus();
+    }, 100);
   }
 
   return (
     <div className="careposts-page">
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
       <Container className="careposts-body">
         <div className="careposts-layout">
           {/* Sidebar */}
           <aside className="careposts-sidebar">
             <div className="sidebar-header">
               <h6 className="sidebar-title">Filter</h6>
-              <button className="sidebar-reset" onClick={handleReset}>
+
+              <button 
+              className="sidebar-reset" 
+                onClick={handleReset}
+                aria-label="Reset all filters"
+              >
                 Reset
               </button>
             </div>
-            <Form>
-              <Form.Group className="sidebar-group">
+
+            <Form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleApply();
+              }}
+            >
+              <Form.Group className="sidebar-group" controlId="filter-plant-type">
                 <Form.Label>Plant Type</Form.Label>
                 <Form.Select
                   value={pending.plantType}
@@ -152,7 +170,7 @@ export default function CarePostsPage() {
                 </Form.Select>
               </Form.Group>
 
-              <Form.Group className="sidebar-group">
+              <Form.Group className="sidebar-group" controlId="filter-difficulty">
                 <Form.Label>Difficulty</Form.Label>
                 <Form.Select
                   value={pending.difficulty}
@@ -169,7 +187,7 @@ export default function CarePostsPage() {
                 </Form.Select>
               </Form.Group>
 
-              <Form.Group className="sidebar-group">
+              <Form.Group className="sidebar-group" controlId="filter-light">
                 <Form.Label>Light</Form.Label>
                 <Form.Select
                   value={pending.light}
@@ -198,19 +216,20 @@ export default function CarePostsPage() {
                 />
               </Form.Group>
 
-              <button
-                type="button"
-                className="sidebar-apply"
-                onClick={handleApply}
-              >
+              <button type="submit" className="sidebar-apply">
                 Apply Filters
               </button>
             </Form>
           </aside>
+
           {/* Main Content Area */}
-          <div className="careposts-main">
+          <div 
+            className="careposts-main"
+            id="main-content"
+            tabIndex="-1"
+          >
             <div className="careposts-toolbar">
-              <span className="careposts-count">
+              <span className="careposts-count" aria-live="polite">
                 {loading
                   ? "Loading..."
                   : `${total} post${total !== 1 ? "s" : ""} found`}
@@ -219,7 +238,12 @@ export default function CarePostsPage() {
               <Button
                 className="btn-green create-carepost-btn"
                 disabled={!user}
-                title={!user ? "Please sign in to create a care post" : ""}
+                aria-disabled={!user}
+                aria-label={
+                  user
+                    ? "Create a new care post"
+                    : "Sign in required to create a care post"
+                }
                 onClick={() => navigate("/careposts/new")}
               >
                 + New Care Post
@@ -232,13 +256,15 @@ export default function CarePostsPage() {
               </div>
             )}
             {loading ? (
-              <div className="careposts-loading">
-                <Spinner animation="border" />
+              <div className="careposts-loading" aria-live="polite">
+                <Spinner animation="border" role="status">
+                  <span className="visually-hidden">Loading careposts...</span>
+                </Spinner>
               </div>
             ) : posts.length === 0 ? (
               <div className="careposts-empty">
                 <p>No care posts match your filters.</p>
-                <button className="sidebar-reset" onClick={handleReset}>
+                <button className="sidebar-reset" onClick={handleReset} aria-label="Clear all filters">
                   Clear filters
                 </button>
               </div>
@@ -253,10 +279,11 @@ export default function CarePostsPage() {
             )}
             {/* Pagination Section */}
             {totalPages > 1 && !loading && (
-              <div className="careposts-pagination">
+              <nav aria-label="Carepost pages" className="careposts-pagination">
                 <button
                   className="page-btn"
                   disabled={page === 1}
+                  aria-label="Previous page"
                   onClick={() => handlePageChange(page - 1)}
                 >
                   Prev
@@ -274,13 +301,15 @@ export default function CarePostsPage() {
                   }, [])
                   .map((item, i) =>
                     item === "..." ? (
-                      <span key={`ellipsis-${i}`} className="page-ellipsis">
+                      <span key={`ellipsis-${i}`} className="page-ellipsis" aria-label="More pages"> 
                         …
                       </span>
                     ) : (
                       <button
                         key={item}
                         className={`page-btn ${page === item ? "active" : ""}`}
+                        aria-label={`Page ${item}`}
+                        aria-current={page === item ? "page" : undefined}
                         onClick={() => handlePageChange(item)}
                       >
                         {item}
@@ -291,14 +320,15 @@ export default function CarePostsPage() {
                 <button
                   className="page-btn"
                   disabled={page === totalPages}
+                  aria-label="Next page"
                   onClick={() => handlePageChange(page + 1)}
                 >
                   Next
                 </button>
-              </div>
+              </nav>
             )}
-          </div>{" "}
-        </div>{" "}
+          </div>
+        </div>
       </Container>
     </div>
   );

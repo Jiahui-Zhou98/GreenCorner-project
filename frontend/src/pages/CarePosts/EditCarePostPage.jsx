@@ -106,8 +106,12 @@ export default function EditCarePostPage() {
           Update your plant care guide and save your changes.
         </p>
 
-        {serverError && <div className="cpf-server-error">{serverError}</div>}
-
+        {serverError && (
+          <div className="cpf-server-error" role="alert">
+            {serverError}
+          </div>
+        )}
+        
         <CarePostForm
           initialValues={initialValues}
           onSubmit={handleSubmit}

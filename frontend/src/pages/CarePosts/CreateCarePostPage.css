@@ -18,22 +18,30 @@
   color: var(--green-dark);
 }
 
-/* ── Back link ────────────────────────────────────── */
+/* ── Back button ────────────────────────────────────── */
 .cpf-back-link {
-  background: none;
-  border: none;
-  padding: 0;
+  display: inline-block;
+  background: #fff; 
+  border: 1.5px solid var(--green-dark); 
+  padding: 8px 20px;
+  border-radius: 8px;
   color: var(--green-dark);
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   margin-bottom: 1.75rem;
-  display: inline-block;
-  transition: color 0.2s;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 }
 
 .cpf-back-link:hover {
   color: var(--green-mid);
+}
+
+.cpf-back-link:focus-visible {
+  outline: 2px solid var(--green-dark);
+  outline-offset: 2px;
 }
 
 /* ── Page heading ─────────────────────────────────── */
@@ -54,9 +62,9 @@
 
 /* ── Server error banner ──────────────────────────── */
 .cpf-server-error {
-  background: #fdecea;
-  color: #c0392b;
-  border: 1px solid #f5c6cb;
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+  border: 1px solid var(--color-danger-border);
   border-radius: 8px;
   padding: 0.75rem 1rem;
   font-size: 0.9rem;

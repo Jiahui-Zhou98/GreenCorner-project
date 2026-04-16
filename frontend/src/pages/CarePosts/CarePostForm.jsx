@@ -87,7 +87,7 @@ export default function CarePostForm({
   return (
     <Form noValidate onSubmit={handleSubmit} className="carepost-form">
       {/* Title */}
-      <Form.Group className="cpf-group">
+      <Form.Group className="cpf-group" controlId="cpfTitle">
         <Form.Label className="cpf-label">
           Title <span className="cpf-required">*</span>
         </Form.Label>
@@ -106,7 +106,7 @@ export default function CarePostForm({
       {/* Plant Type + Difficulty */}
       <Row className="g-3">
         <Col md={6}>
-          <Form.Group className="cpf-group">
+          <Form.Group className="cpf-group" controlId="cpfPlantType">
             <Form.Label className="cpf-label">
               Plant Type <span className="cpf-required">*</span>
             </Form.Label>
@@ -130,7 +130,7 @@ export default function CarePostForm({
         </Col>
 
         <Col md={6}>
-          <Form.Group className="cpf-group">
+          <Form.Group className="cpf-group" controlId="cpfDifficulty">
             <Form.Label className="cpf-label">
               Difficulty <span className="cpf-required">*</span>
             </Form.Label>
@@ -156,7 +156,7 @@ export default function CarePostForm({
       {/* Light + Watering */}
       <Row className="g-3">
         <Col md={6}>
-          <Form.Group className="cpf-group">
+          <Form.Group className="cpf-group" controlId="cpfLight">
             <Form.Label className="cpf-label">Light</Form.Label>
             <Form.Select
               className="cpf-input"
@@ -174,7 +174,7 @@ export default function CarePostForm({
         </Col>
 
         <Col md={6}>
-          <Form.Group className="cpf-group">
+          <Form.Group className="cpf-group" controlId="cpfWatering">
             <Form.Label className="cpf-label">Watering</Form.Label>
             <Form.Control
               className="cpf-input"
@@ -187,7 +187,7 @@ export default function CarePostForm({
       </Row>
 
       {/* Content */}
-      <Form.Group className="cpf-group">
+      <Form.Group className="cpf-group" controlId="cpfCareGuide">
         <Form.Label className="cpf-label">
           Care Guide <span className="cpf-required">*</span>
         </Form.Label>
@@ -206,7 +206,7 @@ export default function CarePostForm({
       </Form.Group>
 
       {/* Author */}
-      <Form.Group className="cpf-group">
+      <Form.Group className="cpf-group" controlId="cpfAuthor">
         <Form.Label className="cpf-label">
           Author <span className="cpf-required">*</span>
         </Form.Label>
@@ -223,7 +223,7 @@ export default function CarePostForm({
       </Form.Group>
 
       {/* Image URL */}
-      <Form.Group className="cpf-group">
+      <Form.Group className="cpf-group" controlId="cpfImageURLㄔㄛ">
         <Form.Label className="cpf-label">
           Image URL <span className="cpf-note">(optional)</span>
         </Form.Label>

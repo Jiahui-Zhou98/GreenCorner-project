@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { Container } from "react-bootstrap";
+import { useAuth } from "../../context/useAuth.js";
 import CarePostForm from "./CarePostForm.jsx";
 import "./CreateCarePostPage.css";
 
@@ -52,7 +53,11 @@ export default function CreateCarePostPage() {
           community.
         </p>
 
-        {serverError && <div className="cpf-server-error">{serverError}</div>}
+        {serverError && (
+          <div className="cpf-server-error" role="alert">
+            {serverError}
+          </div>
+        )}
 
         <CarePostForm
           onSubmit={handleSubmit}
