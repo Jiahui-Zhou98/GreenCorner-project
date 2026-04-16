@@ -142,7 +142,7 @@ export default function CarePostForm({
         <Col md={6}>
           <Form.Group className="cpf-group" controlId="cpfDifficulty">
             <Form.Label className="cpf-label">
-              Difficulty <span className="cpf-required">*</span>
+              Care Difficulty <span className="cpf-required">*</span>
             </Form.Label>
             <Form.Select
               className="cpf-input"
@@ -167,13 +167,13 @@ export default function CarePostForm({
       <Row className="g-3">
         <Col md={6}>
           <Form.Group className="cpf-group" controlId="cpfLight">
-            <Form.Label className="cpf-label">Light</Form.Label>
+            <Form.Label className="cpf-label">Sunlight Needs</Form.Label>
             <Form.Select
               className="cpf-input"
               value={form.light}
               onChange={(e) => set("light", e.target.value)}
             >
-              <option value="">Select light…</option>
+              <option value="">Select level…</option>
               {LIGHT_OPTIONS.map((light) => (
                 <option key={light} value={light}>
                   {light.charAt(0).toUpperCase() + light.slice(1)}
