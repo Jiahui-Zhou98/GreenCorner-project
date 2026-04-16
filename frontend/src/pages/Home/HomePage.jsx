@@ -25,8 +25,7 @@ export default function HomePage() {
               GreenCorner
             </h1>
             <p className="lead banner-text">
-              Discover plant care tips, trade plants with others, and connect with plant lovers. <br />
-              Ask questions, share your plants, and get help when your plants need care.
+              Share • Trade • Grow plants together
             </p>
           </div>
         </Container>
