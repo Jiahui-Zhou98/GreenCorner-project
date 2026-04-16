@@ -22,12 +22,11 @@ export default function HomePage() {
           <div className="hero-content">
             {/* Added banner-text class for targeted styling */}
             <h1 className="display-3 fw-bold banner-text">
-              GreenCorner <br />
-              Happy Growing
+              GreenCorner
             </h1>
             <p className="lead banner-text">
-              A community platform connecting plant lovers. <br />A simple
-              bridge for direct connection and expert care.
+              Discover plant care tips, trade plants with others, and connect with plant lovers. <br />
+              Ask questions, share your plants, and get help when your plants need care.
             </p>
           </div>
         </Container>
