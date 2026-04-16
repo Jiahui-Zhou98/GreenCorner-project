@@ -20,7 +20,7 @@ const PLANT_TYPES = [
 ];
 
 const DIFFICULTIES = ["easy", "medium", "hard"];
-const LIGHT_OPTIONS = ["low", "medium", "bright indirect", "direct sunlight"];
+const LIGHT_OPTIONS = ["Low", "Medium", "Bright Indirect", "Direct Sunlight"];
 
 const EMPTY_FORM = {
   title: "",
