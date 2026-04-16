@@ -35,6 +35,7 @@ function filtersFromParams(params) {
     plantType: params.get("plantType") || "",
     difficulty: params.get("difficulty") || "",
     light: params.get("light") || "",
+    keyword: params.get("keyword") || "",
     onlyMyPosts: params.get("onlyMyPosts") === "true",
   };
 }
@@ -66,7 +67,8 @@ export default function CarePostsPage() {
         if (currentFilters.difficulty)
           params.set("difficulty", currentFilters.difficulty);
         if (currentFilters.light) params.set("light", currentFilters.light);
-
+        if (currentFilters.keyword)
+          params.set("keyword", currentFilters.keyword);
         if (currentFilters.onlyMyPosts) params.set("onlyMyPosts", "true");
 
         params.set("page", currentPage);
@@ -153,6 +155,18 @@ export default function CarePostsPage() {
                 handleApply();
               }}
             >
+              <Form.Group className="sidebar-group" controlId="filter-keyword">
+                <Form.Label>Search Plants</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="e.g. Monstera care"
+                  value={pending.keyword}
+                  onChange={(e) =>
+                    handlePendingChange("keyword", e.target.value)
+                  }
+                />
+              </Form.Group>
+
               <Form.Group className="sidebar-group" controlId="filter-plant-type">
                 <Form.Label>Plant Type</Form.Label>
                 <Form.Select

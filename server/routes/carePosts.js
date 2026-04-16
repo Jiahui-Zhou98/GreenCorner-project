@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
 
     const page = Number(req.query.page) || 1;
     const limit = Number(req.query.limit) || 9;
-    const { plantType, difficulty, light, onlyMyPosts } = req.query;
+    const { plantType, difficulty, light, onlyMyPosts, keyword } = req.query;
 
     const filter = {};
     if (plantType) filter.plantType = plantType;
@@ -20,6 +20,12 @@ router.get("/", async (req, res) => {
     if (light) filter.light = light;
     if (onlyMyPosts === "true" && req.user?._id?.toString()) {
       filter.createdBy = req.user?._id?.toString();
+    }
+    if (keyword) {
+      filter.title = {
+        $regex: keyword,
+        $options: "i", 
+      };
     }
 
     const skip = (page - 1) * limit;
