@@ -22,7 +22,7 @@ const PLANT_TYPES = [
 ];
 const LISTING_TYPES = ["free", "for sale"];
 const CONDITIONS = ["excellent", "good", "fair"];
-const PAGE_SIZE = 18;
+const PAGE_SIZE = 9;
 
 function filtersFromParams(params) {
   return {
@@ -147,7 +147,8 @@ export default function PlantListingsPage() {
           <h1 className="listings-page-title">Plant Marketplace</h1>
           <p className="listings-page-sub">
             Browse plants for sale or free adoption in your area.
-            {!user && " Sign in to create a listing or filter by your own posts."}
+            {!user &&
+              " Sign in to create a listing or filter by your own posts."}
           </p>
         </div>
         <div className="listings-layout">
