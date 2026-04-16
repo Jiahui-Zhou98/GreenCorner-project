@@ -1,34 +1,21 @@
 import { MongoClient } from "mongodb";
 import "dotenv/config";
 
-const PLANT_DATA = {
-  Tropical: {
-    names: ["Monstera Deliciosa", "Fiddle Leaf Fig", "Bird of Paradise", "Peace Lily", "Snake Plant"],
-    template: "Provide high humidity and keep the soil moist but not waterlogged. Perfect for indoor corners."
-  },
-  Succulent: {
-    names: ["Jade Plant", "Aloe Vera", "Echeveria", "Zebra Plant", "String of Pearls"],
-    template: "Allow soil to dry out completely between waterings. Needs plenty of bright light."
-  },
-  Cactus: {
-    names: ["Prickly Pear", "Golden Barrel Cactus", "Christmas Cactus", "Saguaro", "Old Man Cactus"],
-    template: "Minimal watering required. Prefers a very bright, warm location and well-draining soil."
-  },
-  Fern: {
-    names: ["Boston Fern", "Maidenhair Fern", "Staghorn Fern", "Bird's Nest Fern"],
-    template: "Keep in a humid environment and never let the soil dry out completely. Mist regularly."
-  },
-  Herb: {
-    names: ["Sweet Basil", "Rosemary", "Peppermint", "Lavender", "Thyme"],
-    template: "Ensure at least 6 hours of sunlight. Frequent harvesting encourages bushier growth."
-  },
-  Flowering: {
-    names: ["Orchid", "African Violet", "Anthurium", "Begonia"],
-    template: "Needs balanced fertilizer and specific light cycles to encourage blooming."
-  }
-};
-
-const PLANT_TYPES = Object.keys(PLANT_DATA);
+const PLANT_TYPES = [
+  "Tropical",
+  "Succulent",
+  "Herb",
+  "Fern",
+  "Flowering",
+  "Cactus",
+  "Foliage",
+  "Trailing",
+  "Aquatic",
+  "Carnivorous",
+  "Bulb",
+  "Air Plant",
+  "Bonsai",
+];
 
 // Matches your DIFFICULTY_STYLE: easy, medium, hard
 const DIFFICULTIES = ["easy", "medium", "hard"];
@@ -54,6 +41,16 @@ const WATER_REQUIREMENTS = [
   "Monthly",
 ];
 
+const CARE_TEMPLATES = {
+  Tropical:
+    "Provide high humidity and keep the soil moist but not waterlogged.",
+  Succulent:
+    "Allow soil to dry out completely between waterings. Needs plenty of sun.",
+  Cactus: "Minimal watering required. Prefers a very bright, warm location.",
+  Fern: "Keep in a humid environment and never let the soil dry out completely.",
+  Herb: "Ensure at least 6 hours of sunlight and harvest leaves to promote growth.",
+};
+
 function pick(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
@@ -62,17 +59,18 @@ function generateCarePosts(count) {
   const posts = [];
   for (let i = 0; i < count; i++) {
     const type = pick(PLANT_TYPES);
-    const plantInfo = PLANT_DATA[type];
-    const specificName = pick(plantInfo.names);
+    const body =
+      CARE_TEMPLATES[type] ||
+      "Standard care includes monitoring soil moisture and providing adequate drainage.";
 
     posts.push({
-      title: specificName,
+      title: `Expert Guide: Caring for ${type} Plants`,
       plantType: type,
       author: pick(AUTHORS), // Matches post.author
       difficulty: pick(DIFFICULTIES), // Matches easy/medium/hard
       light: pick(LIGHT_REQUIREMENTS), // Matches post.light
       watering: pick(WATER_REQUIREMENTS), // Matches post.watering
-      content: `If you are looking for tips on ${specificName}, you've come to the right place. ${plantInfo.template}`,
+      content: `${body} This species is excellent for indoor collections and responds well to seasonal fertilization during spring and summer.`,
       imageUrl: null,
       createdAt: new Date(
         Date.now() - Math.floor(Math.random() * 90 * 24 * 60 * 60 * 1000)
