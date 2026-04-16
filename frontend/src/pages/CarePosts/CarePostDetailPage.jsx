@@ -128,7 +128,9 @@ export default function CarePostDetailPage() {
           {/* Content */}
           <div className="carepost-detail-info">
             <div className="carepost-detail-badges">
-              <Badge bg={difficulty.bg}>{difficulty.label}</Badge>
+              <Badge bg={difficulty.bg} text={difficulty.bg === "warning" ? "dark" : "white"}>
+                {difficulty.label}
+              </Badge>
             </div>
 
             <h1 className="carepost-detail-title">{post.title}</h1>
