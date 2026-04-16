@@ -32,7 +32,7 @@ export default function HomePage() {
       </header>
 
       {/* Main Call to Action Section (Stays dark/normal text) */}
-      <main id="main-content">
+      <main id="main-content" role="main">
       <section className="py-5 bg-light">
         <Container className="text-center py-5">
           <h2 className="section-title fw-bold">Ready to Get Started?</h2>
