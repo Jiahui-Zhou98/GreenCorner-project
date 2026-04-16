@@ -23,10 +23,10 @@ const PLANT_TYPES = [
 
 const DIFFICULTIES = ["easy", "medium", "hard"];
 const LIGHT_OPTIONS = [
+  "Low",
+  "Medium",
   "Bright Indirect",
-  "Low Light",
   "Direct Sunlight",
-  "Partial Shade",
 ];
 const PAGE_SIZE = 6;
 

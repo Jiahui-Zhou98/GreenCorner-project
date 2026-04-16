@@ -42,10 +42,10 @@ const AUTHORS = [
 ];
 
 const LIGHT_REQUIREMENTS = [
+  "Low",
+  "Medium",
   "Bright Indirect",
-  "Low Light",
   "Direct Sunlight",
-  "Partial Shade",
 ];
 const WATER_REQUIREMENTS = [
   "Every 1-2 weeks",

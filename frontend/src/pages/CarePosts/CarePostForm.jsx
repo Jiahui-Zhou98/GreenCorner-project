@@ -99,7 +99,7 @@ export default function CarePostForm({
       {/* Title */}
       <Form.Group className="cpf-group" controlId="cpfTitle">
         <Form.Label className="cpf-label">
-          Title <span className="cpf-required">*</span>
+          Plant Name <span className="cpf-required">*</span>
         </Form.Label>
         <Form.Control
           className="cpf-input"
