@@ -58,7 +58,7 @@ export default function DashboardPage() {
           <div className="dash-section">
             <h2 className="dash-section-title">My Plant Listings</h2>
             <p className="dash-section-desc">
-              Plants you have posted for sale, free adoption, or rehoming.
+              Plants you have posted for sale or free adoption.
             </p>
             <div className="dash-section-actions">
               <Link to="/listings?onlyMyPosts=true" className="dash-view-btn">

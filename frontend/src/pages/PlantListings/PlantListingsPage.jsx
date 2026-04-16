@@ -20,7 +20,7 @@ const PLANT_TYPES = [
   { value: "Air Plant", hint: "no soil needed" },
   { value: "Bonsai", hint: "miniature tree art" },
 ];
-const LISTING_TYPES = ["free", "for sale", "rehoming"];
+const LISTING_TYPES = ["free", "for sale"];
 const CONDITIONS = ["excellent", "good", "fair"];
 const PAGE_SIZE = 18;
 
@@ -146,7 +146,7 @@ export default function PlantListingsPage() {
         <div className="listings-header">
           <h1 className="listings-page-title">Plant Marketplace</h1>
           <p className="listings-page-sub">
-            Browse plants for sale, free adoption, or rehoming in your area.
+            Browse plants for sale or free adoption in your area.
             {!user && " Sign in to create a listing or filter by your own posts."}
           </p>
         </div>

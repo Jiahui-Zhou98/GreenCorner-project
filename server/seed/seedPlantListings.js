@@ -17,7 +17,7 @@ const PLANT_TYPES = [
   "Bonsai",
 ];
 
-const LISTING_TYPES = ["free", "for sale", "rehoming"];
+const LISTING_TYPES = ["free", "for sale"];
 
 const CONDITIONS = ["excellent", "good", "fair"];
 
@@ -384,7 +384,6 @@ function pickTags() {
 
 function generatePrice(listingType) {
   if (listingType === "free") return 0;
-  if (listingType === "rehoming") return Math.floor(Math.random() * 5) + 1;
   const tiers = [5, 8, 10, 12, 15, 18, 20, 25, 30];
   return pick(tiers);
 }

@@ -19,7 +19,7 @@ const PLANT_TYPES = [
   "Bonsai",
 ];
 const CONDITIONS = ["excellent", "good", "fair"];
-const LISTING_TYPES = ["free", "for sale", "rehoming"];
+const LISTING_TYPES = ["free", "for sale"];
 const STATUSES = ["available", "pending", "sold"];
 const TAGS_POOL = [
   "low-maintenance",

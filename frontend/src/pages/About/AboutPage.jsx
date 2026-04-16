@@ -34,7 +34,7 @@ export default function AboutPage() {
                 />
                 <img
                   src={conversation2}
-                  alt="Community members discussing plant rehoming"
+                  alt="Community members discussing plant exchange"
                   className="about-hero-photo"
                 />
               </div>

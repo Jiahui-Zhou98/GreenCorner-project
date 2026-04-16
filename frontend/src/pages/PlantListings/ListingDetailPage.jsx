@@ -40,10 +40,6 @@ const LISTING_BADGE = {
     label: "For Sale",
     style: { background: "#2c4f34", color: "#f1ece4" },
   },
-  rehoming: {
-    label: "Rehoming",
-    style: { background: "#fff3cd", color: "#664d03" },
-  },
 };
 
 const CONDITION_STYLE = {

@@ -53,7 +53,7 @@ GreenCorner is a community platform for plant lovers to both share plant care kn
 
 - Help beginners find trustworthy, community-sourced plant care advice
 - Allow experienced plant owners to share care knowledge through posts
-- Enable users to list plants for free adoption, sale, or rehoming
+- Enable users to list plants for free adoption or sale
 - Connect budget-conscious plant lovers with affordable or free local plants
 
 ## Core Features
@@ -69,7 +69,7 @@ GreenCorner is a community platform for plant lovers to both share plant care kn
 
 - Browse plant listings filtered by type, price, location, condition, and status
 - View detailed listing pages with full description and seller contact info
-- Create listings marked as free, for sale, or rehoming
+- Create listings marked as free or for sale
 - Edit and delete your own listings
 
 ## Design Document
