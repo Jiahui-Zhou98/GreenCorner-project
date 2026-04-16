@@ -67,6 +67,16 @@ export default function CarePostForm({
     const e2 = validate();
     if (Object.keys(e2).length > 0) {
       setErrors(e2);
+      const firstErrorKey = Object.keys(e2)[0];
+      const idMap = {
+        title: "cpfTitle",
+        plantType: "cpfPlantType",
+        difficulty: "cpfDifficulty",
+        content: "cpfCareGuide",
+        author: "cpfAuthor",
+      };
+
+      document.getElementById(idMap[firstErrorKey])?.focus();
       return;
     }
 
@@ -98,7 +108,7 @@ export default function CarePostForm({
           onChange={(e) => set("title", e.target.value)}
           isInvalid={!!errors.title}
         />
-        <Form.Control.Feedback type="invalid">
+        <Form.Control.Feedback type="invalid" role="alert">
           {errors.title}
         </Form.Control.Feedback>
       </Form.Group>
@@ -223,7 +233,7 @@ export default function CarePostForm({
       </Form.Group>
 
       {/* Image URL */}
-      <Form.Group className="cpf-group" controlId="cpfImageURLㄔㄛ">
+      <Form.Group className="cpf-group" controlId="cpfImageURL">
         <Form.Label className="cpf-label">
           Image URL <span className="cpf-note">(optional)</span>
         </Form.Label>
