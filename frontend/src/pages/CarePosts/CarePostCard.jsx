@@ -28,7 +28,7 @@ export default function CarePostCard({ post }) {
           <span className="carepost-meta-badge">{post.plantType}</span>
           <span className="carepost-meta-badge">{post.difficulty}</span>
         </div>
-        <h3 className="carepost-card-title">{post.title}</h3>
+        <p className="carepost-card-title">{post.title}</p>
         <p className="carepost-card-text">
           {post.content?.length > 120
             ? `${post.content.slice(0, 120)}...`
