@@ -16,7 +16,7 @@
 
 /* ── Sidebar ──────────────────────────────────────── */
 .careposts-sidebar {
-  width: 220px;
+  width: 260px;
   flex-shrink: 0;
   position: sticky;
   top: 90px;
@@ -192,6 +192,7 @@
     width: 100%;
     position: static;
     margin-bottom: 1.5rem;
+    overflow-y: auto;
   }
 }
 
