@@ -42,7 +42,7 @@ export default function CarePostCard({ post }) {
           <span className="carepost-card-author">By {post.author}</span>
           <Button
             className="btn-green carepost-detail-btn"
-            href={`/careposts/${post._id}`}
+            onClick={handleReadMore}
           >
             Read More
           </Button>
