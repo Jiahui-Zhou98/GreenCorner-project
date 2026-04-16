@@ -17,7 +17,7 @@
 
 /* ONLY light text for the banner */
 .banner-text {
-  color: #f8f9fa !important; /* Off-white for better eye comfort */
+  color: #f8f9fa; 
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Drop shadow to pop against the image */
 }
 
@@ -38,7 +38,7 @@
     0,
     0,
     0.4
-  ); /* Dark overlay helps the light text stand out */
+  ); 
   z-index: 1;
 }
 
@@ -105,13 +105,15 @@
   transform: translateY(10px);
 }
 
+.btn-primary-custom:active,
+.btn-secondary-custom:active {
+  transform: translateY(-1px);
+}
+
+.btn-primary-custom:focus,
+.btn-secondary-custom:focus,
 .btn-primary-custom:focus-visible,
 .btn-secondary-custom:focus-visible {
   outline: 3px solid #4d90fe;
   outline-offset: 3px;
-}
-
-.btn-primary-custom:active,
-.btn-secondary-custom:active {
-  transform: translateY(-1px);
 }
