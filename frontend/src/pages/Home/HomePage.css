@@ -95,3 +95,33 @@
 .section-title {
   color: #2c4f34;
 }
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: 350px; 
+  }
+
+  .banner-text.display-3 {
+    font-size: 2.5rem; 
+  }
+
+  .banner-text.lead {
+    font-size: 1.1rem;
+  }
+
+  .hero-content {
+    text-align: center; 
+  }
+
+  .d-flex.gap-3 {
+    flex-direction: column; 
+    width: 100%;
+    max-width: 300px; 
+    margin: 0 auto;
+  }
+
+  .btn-primary-custom, 
+  .btn-secondary-custom {
+    width: 100%; 
+  }
+}
