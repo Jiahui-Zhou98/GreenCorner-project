@@ -242,6 +242,9 @@ export default function CarePostsPage() {
             id="main-content"
             tabIndex="-1"
           >
+            <h1 className="visually-hidden">
+              Care Posts
+            </h1>
             <div className="careposts-toolbar">
               <span className="careposts-count" aria-live="polite">
                 {loading
