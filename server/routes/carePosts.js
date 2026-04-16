@@ -17,7 +17,12 @@ router.get("/", async (req, res) => {
     const filter = {};
     if (plantType) filter.plantType = plantType;
     if (difficulty) filter.difficulty = difficulty;
-    if (light) filter.light = light;
+    if (light) {
+      filter.light = {
+        $regex: `^${light}$`,
+        $options: "i",
+      };
+    }
     if (onlyMyPosts === "true" && req.user?._id?.toString()) {
       filter.createdBy = req.user?._id?.toString();
     }
