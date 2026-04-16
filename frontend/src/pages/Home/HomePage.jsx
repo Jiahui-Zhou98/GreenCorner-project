@@ -9,7 +9,7 @@ export default function HomePage() {
         Skip to content
       </a>
       {/* Hero Section */}
-      <header className="hero-section">
+      <section className="hero-section" role="presentation">
         <img
           src="/banner.png"
           alt="GreenCorner plant community banner"
@@ -29,7 +29,7 @@ export default function HomePage() {
             </p>                
           </div>
         </Container>
-      </header>
+      </section>
 
       {/* Main Call to Action Section (Stays dark/normal text) */}
       <main id="main-content">
