@@ -171,7 +171,7 @@ export default function CarePostsPage() {
               </Form.Group>
 
               <Form.Group className="sidebar-group" controlId="filter-difficulty">
-                <Form.Label>Difficulty</Form.Label>
+                <Form.Label>Care Difficulty</Form.Label>
                 <Form.Select
                   value={pending.difficulty}
                   onChange={(e) =>
@@ -188,7 +188,7 @@ export default function CarePostsPage() {
               </Form.Group>
 
               <Form.Group className="sidebar-group" controlId="filter-light">
-                <Form.Label>Light</Form.Label>
+                <Form.Label>Sunlight Needs</Form.Label>
                 <Form.Select
                   value={pending.light}
                   onChange={(e) => handlePendingChange("light", e.target.value)}
