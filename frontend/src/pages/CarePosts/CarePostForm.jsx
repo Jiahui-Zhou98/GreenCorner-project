@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import { Form, Button, Row, Col, Spinner } from "react-bootstrap";
 import "./CarePostForm.css";
@@ -41,12 +41,14 @@ export default function CarePostForm({
 }) {
   const [form, setForm] = useState({ ...EMPTY_FORM, ...initialValues });
   const [errors, setErrors] = useState({});
+  const [prevInitialValues, setPrevInitialValues] = useState(initialValues);
 
-  useEffect(() => {
-  if (Object.keys(initialValues).length > 0) {
-    setForm({ ...EMPTY_FORM, ...initialValues });
+  if (initialValues !== prevInitialValues) {
+    setPrevInitialValues(initialValues);
+    if (Object.keys(initialValues).length > 0) {
+      setForm({ ...EMPTY_FORM, ...initialValues });
+    }
   }
-  }, [initialValues]);
 
   function set(key, value) {
     setForm((prev) => ({ ...prev, [key]: value }));

@@ -34,6 +34,7 @@ main {
 }
 
 .app-wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -126,14 +127,18 @@ p {
 /* ── Skip link (global, used by App-level <a>) ───────── */
 .skip-link {
   position: absolute;
-  top: -40px;
+  top: -999px;
   left: 10px;
+  display: inline-block;
   background: hsl(134, 28%, 24%);
   color: white;
   padding: 8px 12px;
+  border-radius: 4px;
+  text-decoration: none;
   z-index: 1000;
 }
 
-.skip-link:focus {
+.skip-link:focus,
+.skip-link:focus-visible {
   top: 10px;
 }

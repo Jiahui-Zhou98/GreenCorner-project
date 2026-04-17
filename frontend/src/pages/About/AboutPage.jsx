@@ -8,12 +8,12 @@ export default function AboutPage() {
   return (
     <div className="about-page">
       {/* 1. Hero — asymmetric, left-aligned, with decorative SVG */}
-      <section className="about-hero">
+      <section className="about-hero" aria-labelledby="about-hero-heading">
         <Container>
           <Row className="align-items-center">
             <Col lg={7}>
               <p className="about-hero-label">About GreenCorner</p>
-              <h1 className="about-hero-heading">
+              <h1 id="about-hero-heading" className="about-hero-heading">
                 Share what you grow, learn from fellow plant lovers, and find
                 your next plant
               </h1>
@@ -42,9 +42,11 @@ export default function AboutPage() {
       </section>
 
       {/* 2. How It Works — numbered steps, not cards */}
-      <section className="about-steps">
+      <section className="about-steps" aria-labelledby="about-steps-heading">
         <Container>
-          <h2 className="about-section-heading">How it works</h2>
+          <h2 id="about-steps-heading" className="about-section-heading">
+            How it works
+          </h2>
           <div className="about-steps-list">
             <div className="about-step">
               <span className="about-step-num">1</span>
@@ -81,11 +83,13 @@ export default function AboutPage() {
       </section>
 
       {/* 3. Values — two-column asymmetric */}
-      <section className="about-values">
+      <section className="about-values" aria-labelledby="about-values-heading">
         <Container>
           <Row className="align-items-center g-5">
             <Col lg={5}>
-              <h2 className="about-section-heading">Why this exists</h2>
+              <h2 id="about-values-heading" className="about-section-heading">
+                Why this exists
+              </h2>
               <p className="about-values-text">
                 Most plant communities live on social media, buried under
                 algorithms and ads. GreenCorner is different. No feed. No
@@ -139,10 +143,12 @@ export default function AboutPage() {
       </section>
 
       {/* 4. Getting Started — instructional */}
-      <section className="about-start">
+      <section className="about-start" aria-labelledby="about-start-heading">
         <Container>
           <div className="about-start-inner">
-            <h2 className="about-section-heading">Getting started</h2>
+            <h2 id="about-start-heading" className="about-section-heading">
+              Getting started
+            </h2>
             <ul className="about-start-list">
               <li>
                 In the{" "}
