@@ -39,7 +39,7 @@ A community platform for plant lovers to share plant care knowledge and exchange
 ## How to Use the Website
 
 - [Slides](https://docs.google.com/presentation/d/1lxsB4VIGPUUYRKfH8CaAaCd-5RZMp6Ccrj5nxqUPdEE/edit?usp=sharing)
-- [Video](https://drive.google.com/file/d/1ra1BNOxGSG91-IlCSzw4A4OJffBhDnLR/view?usp=sharing)
+- [Video](https://drive.google.com/file/d/1dXn8UBYb3PQHEIP8sueKsLQqIQYAbpvy/view?usp=sharing)
 
 ## Project Link
 
