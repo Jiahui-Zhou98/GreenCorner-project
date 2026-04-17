@@ -33,8 +33,10 @@ const EMPTY_FORM = {
   imageUrl: "",
 };
 
+const EMPTY_INITIAL = {};
+
 export default function CarePostForm({
-  initialValues = {},
+  initialValues = EMPTY_INITIAL,
   onSubmit,
   submitting = false,
   submitLabel = "Submit",
@@ -43,11 +45,12 @@ export default function CarePostForm({
   const [errors, setErrors] = useState({});
   const [prevInitialValues, setPrevInitialValues] = useState(initialValues);
 
-  if (initialValues !== prevInitialValues) {
+  if (
+    initialValues !== prevInitialValues &&
+    Object.keys(initialValues).length > 0
+  ) {
     setPrevInitialValues(initialValues);
-    if (Object.keys(initialValues).length > 0) {
-      setForm({ ...EMPTY_FORM, ...initialValues });
-    }
+    setForm({ ...EMPTY_FORM, ...initialValues });
   }
 
   function set(key, value) {
