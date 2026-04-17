@@ -324,7 +324,10 @@ export default function ListingForm({
       {/* Image */}
       <Form.Group className="lf-group" controlId="lfImage">
         <Form.Label className="lf-label">
-          Plant Image <span className="lf-note">(optional, defaults to plant type image)</span>
+          Plant Image{" "}
+          <span className="lf-note">
+            (optional, defaults to plant type image)
+          </span>
         </Form.Label>
 
         {/* Upload box */}
@@ -359,7 +362,10 @@ export default function ListingForm({
               const file = e.target.files[0];
               if (!file) return;
               if (file.size > 3 * 1024 * 1024) {
-                setErrors((prev) => ({ ...prev, imageUrl: "Image must be under 3 MB." }));
+                setErrors((prev) => ({
+                  ...prev,
+                  imageUrl: "Image must be under 3 MB.",
+                }));
                 return;
               }
               const reader = new FileReader();
@@ -368,9 +374,7 @@ export default function ListingForm({
             }}
           />
         </label>
-        {errors.imageUrl && (
-          <div className="lf-error">{errors.imageUrl}</div>
-        )}
+        {errors.imageUrl && <div className="lf-error">{errors.imageUrl}</div>}
 
         {/* Remove button */}
         {form.imageUrl && (
@@ -390,13 +394,16 @@ export default function ListingForm({
             className="lf-url-toggle"
             onClick={() => setShowUrlInput((prev) => !prev)}
           >
-            {showUrlInput ? "Hide URL input" : "No file? Paste a public image URL instead"}
+            {showUrlInput
+              ? "Hide URL input"
+              : "No file? Paste a public image URL instead"}
           </button>
 
           {showUrlInput && (
             <>
               <Form.Text className="lf-hint mt-2">
-                The URL must be publicly accessible, or the image will not display.
+                The URL must be publicly accessible, or the image will not
+                display.
               </Form.Text>
               <Form.Control
                 className="lf-input mt-1"
@@ -407,7 +414,6 @@ export default function ListingForm({
             </>
           )}
         </div>
-
       </Form.Group>
 
       {/* Tags */}

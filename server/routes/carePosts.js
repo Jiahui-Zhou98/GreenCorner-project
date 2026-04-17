@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
     if (keyword) {
       filter.title = {
         $regex: keyword,
-        $options: "i", 
+        $options: "i",
       };
     }
 
@@ -97,7 +97,9 @@ router.post("/", async (req, res) => {
     }
 
     if (imageUrl && !/^https?:\/\//i.test(imageUrl)) {
-      return res.status(400).json({ error: "Image URL must be an http(s) link" });
+      return res
+        .status(400)
+        .json({ error: "Image URL must be an http(s) link" });
     }
 
     const newPost = {

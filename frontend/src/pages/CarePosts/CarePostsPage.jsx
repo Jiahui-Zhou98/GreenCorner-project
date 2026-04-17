@@ -22,12 +22,7 @@ const PLANT_TYPES = [
 ];
 
 const DIFFICULTIES = ["easy", "medium", "hard"];
-const LIGHT_OPTIONS = [
-  "Low",
-  "Medium",
-  "Bright Indirect",
-  "Direct Sunlight",
-];
+const LIGHT_OPTIONS = ["Low", "Medium", "Bright Indirect", "Direct Sunlight"];
 const PAGE_SIZE = 6;
 
 function filtersFromParams(params) {
@@ -138,10 +133,10 @@ export default function CarePostsPage() {
           {/* Sidebar */}
           <aside className="careposts-sidebar">
             <div className="sidebar-header">
-              <h6 className="sidebar-title">Filter</h6>
+              <h2 className="sidebar-title">Filter</h2>
 
-              <button 
-              className="sidebar-reset" 
+              <button
+                className="sidebar-reset"
                 onClick={handleReset}
                 aria-label="Reset all filters"
               >
@@ -167,7 +162,10 @@ export default function CarePostsPage() {
                 />
               </Form.Group>
 
-              <Form.Group className="sidebar-group" controlId="filter-plant-type">
+              <Form.Group
+                className="sidebar-group"
+                controlId="filter-plant-type"
+              >
                 <Form.Label>Plant Type</Form.Label>
                 <Form.Select
                   value={pending.plantType}
@@ -184,7 +182,10 @@ export default function CarePostsPage() {
                 </Form.Select>
               </Form.Group>
 
-              <Form.Group className="sidebar-group" controlId="filter-difficulty">
+              <Form.Group
+                className="sidebar-group"
+                controlId="filter-difficulty"
+              >
                 <Form.Label>Care Difficulty</Form.Label>
                 <Form.Select
                   value={pending.difficulty}
@@ -237,14 +238,8 @@ export default function CarePostsPage() {
           </aside>
 
           {/* Main Content Area */}
-          <div 
-            className="careposts-main"
-            id="main-content"
-            tabIndex="-1"
-          >
-            <h1 className="visually-hidden">
-              Care Posts
-            </h1>
+          <div className="careposts-main" id="main-content" tabIndex="-1">
+            <h1 className="visually-hidden">Care Posts</h1>
             <div className="careposts-toolbar">
               <span className="careposts-count" aria-live="polite">
                 {loading
@@ -281,7 +276,11 @@ export default function CarePostsPage() {
             ) : posts.length === 0 ? (
               <div className="careposts-empty">
                 <p>No care posts match your filters.</p>
-                <button className="sidebar-reset" onClick={handleReset} aria-label="Clear all filters">
+                <button
+                  className="sidebar-reset"
+                  onClick={handleReset}
+                  aria-label="Clear all filters"
+                >
                   Clear filters
                 </button>
               </div>
@@ -318,7 +317,11 @@ export default function CarePostsPage() {
                   }, [])
                   .map((item, i) =>
                     item === "..." ? (
-                      <span key={`ellipsis-${i}`} className="page-ellipsis" aria-label="More pages"> 
+                      <span
+                        key={`ellipsis-${i}`}
+                        className="page-ellipsis"
+                        aria-label="More pages"
+                      >
                         …
                       </span>
                     ) : (

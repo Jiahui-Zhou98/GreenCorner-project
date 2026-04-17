@@ -5,11 +5,11 @@ import "./CarePostCard.css";
 
 export default function CarePostCard({ post }) {
   const navigate = useNavigate();
-  const location = useLocation(); 
+  const location = useLocation();
 
   const handleReadMore = () => {
-    navigate(`/careposts/${post._id}`, { 
-      state: { from: location.pathname + location.search } 
+    navigate(`/careposts/${post._id}`, {
+      state: { from: location.pathname + location.search },
     });
   };
   return (

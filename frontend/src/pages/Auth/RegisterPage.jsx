@@ -107,7 +107,9 @@ export default function RegisterPage() {
             </Form.Group>
 
             <Form.Group className="auth-group" controlId="registerPassword">
-              <Form.Label className="auth-label">Password (at least 6 letters, numbers, or symbols)</Form.Label>
+              <Form.Label className="auth-label">
+                Password (at least 6 letters, numbers, or symbols)
+              </Form.Label>
               <InputGroup>
                 <Form.Control
                   className="auth-input"

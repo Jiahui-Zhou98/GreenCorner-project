@@ -3,29 +3,58 @@ import "dotenv/config";
 
 const PLANT_DATA = {
   Tropical: {
-    names: ["Monstera Deliciosa", "Fiddle Leaf Fig", "Bird of Paradise", "Peace Lily", "Snake Plant"],
-    template: "Provide high humidity and keep the soil moist but not waterlogged. Perfect for indoor corners."
+    names: [
+      "Monstera Deliciosa",
+      "Fiddle Leaf Fig",
+      "Bird of Paradise",
+      "Peace Lily",
+      "Snake Plant",
+    ],
+    template:
+      "Provide high humidity and keep the soil moist but not waterlogged. Perfect for indoor corners.",
   },
   Succulent: {
-    names: ["Jade Plant", "Aloe Vera", "Echeveria", "Zebra Plant", "String of Pearls"],
-    template: "Allow soil to dry out completely between waterings. Needs plenty of bright light."
+    names: [
+      "Jade Plant",
+      "Aloe Vera",
+      "Echeveria",
+      "Zebra Plant",
+      "String of Pearls",
+    ],
+    template:
+      "Allow soil to dry out completely between waterings. Needs plenty of bright light.",
   },
   Cactus: {
-    names: ["Prickly Pear", "Golden Barrel Cactus", "Christmas Cactus", "Saguaro", "Old Man Cactus"],
-    template: "Minimal watering required. Prefers a very bright, warm location and well-draining soil."
+    names: [
+      "Prickly Pear",
+      "Golden Barrel Cactus",
+      "Christmas Cactus",
+      "Saguaro",
+      "Old Man Cactus",
+    ],
+    template:
+      "Minimal watering required. Prefers a very bright, warm location and well-draining soil.",
   },
   Fern: {
-    names: ["Boston Fern", "Maidenhair Fern", "Staghorn Fern", "Bird's Nest Fern"],
-    template: "Keep in a humid environment and never let the soil dry out completely. Mist regularly."
+    names: [
+      "Boston Fern",
+      "Maidenhair Fern",
+      "Staghorn Fern",
+      "Bird's Nest Fern",
+    ],
+    template:
+      "Keep in a humid environment and never let the soil dry out completely. Mist regularly.",
   },
   Herb: {
     names: ["Sweet Basil", "Rosemary", "Peppermint", "Lavender", "Thyme"],
-    template: "Ensure at least 6 hours of sunlight. Frequent harvesting encourages bushier growth."
+    template:
+      "Ensure at least 6 hours of sunlight. Frequent harvesting encourages bushier growth.",
   },
   Flowering: {
     names: ["Orchid", "African Violet", "Anthurium", "Begonia"],
-    template: "Needs balanced fertilizer and specific light cycles to encourage blooming."
-  }
+    template:
+      "Needs balanced fertilizer and specific light cycles to encourage blooming.",
+  },
 };
 
 const PLANT_TYPES = Object.keys(PLANT_DATA);

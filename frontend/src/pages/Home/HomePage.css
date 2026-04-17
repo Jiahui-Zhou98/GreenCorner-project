@@ -98,11 +98,11 @@
 
 @media (max-width: 768px) {
   .hero-section {
-    height: 350px; 
+    height: 350px;
   }
 
   .banner-text.display-3 {
-    font-size: 2.5rem; 
+    font-size: 2.5rem;
   }
 
   .banner-text.lead {
@@ -110,18 +110,18 @@
   }
 
   .hero-content {
-    text-align: center; 
+    text-align: center;
   }
 
   .d-flex.gap-3 {
-    flex-direction: column; 
+    flex-direction: column;
     width: 100%;
-    max-width: 300px; 
+    max-width: 300px;
     margin: 0 auto;
   }
 
-  .btn-primary-custom, 
+  .btn-primary-custom,
   .btn-secondary-custom {
-    width: 100%; 
+    width: 100%;
   }
 }

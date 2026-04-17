@@ -39,7 +39,11 @@ export default function CreateListingPage() {
   return (
     <div className="listing-form-page">
       <Container className="listing-form-container">
-        <button className="lf-back-link" onClick={() => navigate(-1)} aria-label="Go back to previous page">
+        <button
+          className="lf-back-link"
+          onClick={() => navigate(-1)}
+          aria-label="Go back to previous page"
+        >
           ← Back
         </button>
         <h1 className="listing-form-title">New Listing</h1>

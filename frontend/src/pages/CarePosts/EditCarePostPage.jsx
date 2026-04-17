@@ -82,7 +82,11 @@ export default function EditCarePostPage() {
     return (
       <Container className="carepost-form-container">
         <p className="cpf-server-error">Failed to load post: {loadError}</p>
-        <button className="cpf-back-link" onClick={() => navigate(-1)} aria-label="Go back to previous page">
+        <button
+          className="cpf-back-link"
+          onClick={() => navigate(-1)}
+          aria-label="Go back to previous page"
+        >
           ← Back
         </button>
       </Container>
@@ -111,7 +115,7 @@ export default function EditCarePostPage() {
             {serverError}
           </div>
         )}
-        
+
         <CarePostForm
           initialValues={initialValues}
           onSubmit={handleSubmit}

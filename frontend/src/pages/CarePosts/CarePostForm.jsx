@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import { Form, Button, Row, Col, Spinner } from "react-bootstrap";
 import "./CarePostForm.css";
@@ -42,11 +42,12 @@ export default function CarePostForm({
   const [form, setForm] = useState({ ...EMPTY_FORM, ...initialValues });
   const [errors, setErrors] = useState({});
 
-  useEffect(() => {
-    if (initialValues && Object.keys(initialValues).length > 0) {
-      setForm((prev) => ({ ...prev, ...initialValues }));
-    }
-  }, [initialValues]);
+  // Sync form when initialValues changes (e.g. after async fetch in Edit page)
+  const [prev, setPrev] = useState(initialValues);
+  if (prev !== initialValues) {
+    setPrev(initialValues);
+    setForm({ ...EMPTY_FORM, ...initialValues });
+  }
 
   function set(key, value) {
     setForm((prev) => ({ ...prev, [key]: value }));

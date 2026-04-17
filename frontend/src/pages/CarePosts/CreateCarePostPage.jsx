@@ -42,7 +42,11 @@ export default function CreateCarePostPage() {
   return (
     <div className="carepost-form-page">
       <Container className="carepost-form-container">
-        <button className="cpf-back-link" onClick={() => navigate(-1)} aria-label="Go back to previous page">
+        <button
+          className="cpf-back-link"
+          onClick={() => navigate(-1)}
+          aria-label="Go back to previous page"
+        >
           ← Back
         </button>
 

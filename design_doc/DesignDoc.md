@@ -7,13 +7,13 @@
 
 ## Project Description
 
-GreenCorner is a community platform for plant lovers to both share plant care knowledge and exchange plants locally. Many beginners struggle to find practical advice for watering, lighting, propagation, and plant health, while experienced plant owners often have extra plants, cuttings, or unwanted pots they want to sell, give away, or rehome. GreenCorner brings these two needs together in one space. Users can post plant care guides and tips for others to learn from, while also creating plant listings for sale, free adoption, or rehoming. The platform is designed as a lightweight, community-first alternative to both generic marketplaces and plant reminder apps.
+GreenCorner is a community platform for plant lovers to both share plant care knowledge and exchange plants locally. Many beginners struggle to find practical advice for watering, lighting, propagation, and plant health, while experienced plant owners often have extra plants, cuttings, or unwanted pots they want to sell or give away. GreenCorner brings these two needs together in one space. Users can post plant care guides and tips for others to learn from, while also creating plant listings for sale or free adoption. The platform is designed as a lightweight, community-first alternative to both generic marketplaces and plant reminder apps.
 
 ## Project Objective
 
 - Help beginners find trustworthy, community-sourced plant care advice
 - Allow experienced plant owners to share care knowledge through posts
-- Enable users to list plants for free adoption, sale, or rehoming
+- Enable users to list plants for free adoption or sale
 - Connect budget-conscious plant lovers with affordable or free local plants
 - Provide a lightweight, focused alternative to generic marketplaces and reminder apps
 
@@ -30,7 +30,7 @@ GreenCorner is a community platform for plant lovers to both share plant care kn
 
 - Browse plant listings with filtering by plant type, price range, condition, listing type, and availability status
 - View detailed listing pages showing full description, plant condition, and seller contact info
-- Create listings marked as free, for sale, or rehoming
+- Create listings marked as free or for sale
 - Edit and delete your own listings
 - Listings seeded with 1000 entries across 6 plant categories for a rich browsing experience
 
@@ -38,7 +38,7 @@ GreenCorner is a community platform for plant lovers to both share plant care kn
 
 1. **Beginner Plant Owner** — Wants simple, trustworthy advice for keeping houseplants alive.
 2. **Experienced Plant Enthusiast** — Wants to share care knowledge and plant care tips with others.
-3. **Moving or Downsizing Plant Owner** — Wants to sell, give away, or rehome plants when they no longer have space or time to care for them.
+3. **Moving or Downsizing Plant Owner** — Wants to sell or give away plants when they no longer have space or time to care for them.
 4. **Budget-Conscious Plant Lover** — Wants affordable or free plants from a local plant community.
 
 ## User Stories
@@ -53,8 +53,8 @@ GreenCorner is a community platform for plant lovers to both share plant care kn
 
 ### Jiahui Zhou — Plant Listings
 
-1. As a plant owner, I want to create a plant listing with plant type, condition, price, and location, so I can sell or rehome my plant.
-2. As a plant owner, I want to mark a listing as free, for sale, or rehoming, so I can clearly show what kind of exchange I want.
+1. As a plant owner, I want to create a plant listing with plant type, condition, price, and location, so I can sell or give away my plant.
+2. As a plant owner, I want to mark a listing as free or for sale, so I can clearly show what kind of exchange I want.
 3. As a seller, I want to view, edit, and delete my listings, so I can manage my available plants.
 4. As a buyer, I want to browse plant listings filtered by plant type, price, location, and status, so I can find plants that fit my budget and interest.
 5. As a student, I want to find low-cost or free plants nearby, so I can grow my collection affordably.

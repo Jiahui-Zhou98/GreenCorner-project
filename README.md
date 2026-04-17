@@ -188,12 +188,16 @@ plant-community/
   ![market-listings](./design_doc/screenshots/market.png)
 
 - **Detailed Page**
-  ![detailed-page](./design_doc/screenshots/detail_page.png)
-  ![detailed-page](./design_doc/screenshots/post_detail.png)
+  - Care post
+    ![detailed-page](./design_doc/screenshots/post_detail.png)
+  - Marketplace listing
+    ![detailed-page](./design_doc/screenshots/detail_page.png)
 
 - **Create/Edit Form**
-  ![create-edit-form](./design_doc/screenshots/form.png)
-  ![create-edit-form](./design_doc/screenshots/post_form.png)
+  - create
+    ![create-edit-form](./design_doc/screenshots/post_form.png)
+  - edit
+    ![form](./design_doc/screenshots/form.png)
 
 - **Register**
   ![register](./design_doc/screenshots/register.png)

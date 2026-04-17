@@ -21,8 +21,8 @@
 /* ── Back link ────────────────────────────────────── */
 .cpf-back-link {
   display: inline-block;
-  background: #fff; 
-  border: 1.5px solid var(--green-dark); 
+  background: #fff;
+  border: 1.5px solid var(--green-dark);
   padding: 8px 20px;
   border-radius: 8px;
   color: var(--green-dark);

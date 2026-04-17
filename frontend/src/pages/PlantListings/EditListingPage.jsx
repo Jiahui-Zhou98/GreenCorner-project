@@ -80,7 +80,11 @@ export default function EditListingPage() {
     return (
       <Container className="listing-form-container">
         <p className="lf-server-error">Failed to load listing: {loadError}</p>
-        <button className="lf-back-link" onClick={() => navigate(-1)} aria-label="Go back to previous page">
+        <button
+          className="lf-back-link"
+          onClick={() => navigate(-1)}
+          aria-label="Go back to previous page"
+        >
           ← Back
         </button>
       </Container>

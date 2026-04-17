@@ -206,7 +206,7 @@
   line-height: 1;
 }
 
-.carepost-modal-body h5 {
+.carepost-modal-heading {
   font-family: var(--font-display);
   font-size: 1.3rem;
   color: var(--green-dark);

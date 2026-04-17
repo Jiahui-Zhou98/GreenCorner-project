@@ -47,9 +47,9 @@
   font-size: 0.8rem;
   color: var(--text-muted);
   cursor: pointer;
-  padding: 2px 6px; 
+  padding: 2px 6px;
   border-radius: 4px;
-  text-decoration: underline; 
+  text-decoration: underline;
   transition: all 0.2s ease;
 }
 
@@ -137,7 +137,7 @@
 /* ── Pagination (Centered) ────────────────────────── */
 .careposts-pagination {
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
   gap: 0.5rem;
   margin-top: 3rem;

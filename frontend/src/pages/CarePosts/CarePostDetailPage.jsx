@@ -81,7 +81,9 @@ export default function CarePostDetailPage() {
   if (loading) {
     return (
       <div className="carepost-detail-loading">
-        <Spinner animation="border" />
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading care post...</span>
+        </Spinner>
       </div>
     );
   }
@@ -107,7 +109,11 @@ export default function CarePostDetailPage() {
   return (
     <div className="carepost-detail-page">
       <Container className="carepost-detail-container">
-        <button className="carepost-back-link" onClick={() => navigate(backTo)}>
+        <button
+          className="carepost-back-link"
+          onClick={() => navigate(backTo)}
+          aria-label="Back to care posts"
+        >
           ← Back to Care Posts
         </button>
 
@@ -128,7 +134,10 @@ export default function CarePostDetailPage() {
           {/* Content */}
           <div className="carepost-detail-info">
             <div className="carepost-detail-badges">
-              <Badge bg={difficulty.bg} text={difficulty.bg === "warning" ? "dark" : "white"}>
+              <Badge
+                bg={difficulty.bg}
+                text={difficulty.bg === "warning" ? "dark" : "white"}
+              >
                 {difficulty.label}
               </Badge>
             </div>
@@ -184,7 +193,7 @@ export default function CarePostDetailPage() {
       <Modal show={showConfirm} onHide={() => setShowConfirm(false)} centered>
         <Modal.Body className="carepost-modal-body">
           <div className="carepost-modal-icon">🗑️</div>
-          <h5>Delete this post?</h5>
+          <h2 className="carepost-modal-heading">Delete this post?</h2>
           <p>
             <strong>{post.title}</strong> will be permanently removed.
           </p>
