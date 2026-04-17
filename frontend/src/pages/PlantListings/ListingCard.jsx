@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useNavigate, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import "./ListingCard.css";
 
@@ -54,7 +54,6 @@ const STATUS_STYLE = {
 };
 
 export default function ListingCard({ listing }) {
-  const navigate = useNavigate();
   const location = useLocation();
   const fallbackImg = TYPE_IMAGE[listing.plantType] || null;
   const listingBadge = LISTING_BADGE[listing.listingType] || {
@@ -72,25 +71,13 @@ export default function ListingCard({ listing }) {
     label: listing.status,
   };
 
-  function goToDetail() {
-    navigate(`/listings/${listing._id}`, {
-      state: { from: location.pathname + location.search },
-    });
-  }
-
   return (
     <Card
+      as={Link}
+      to={`/listings/${listing._id}`}
+      state={{ from: location.pathname + location.search }}
       className="listing-card h-100"
-      role="button"
-      tabIndex={0}
       aria-label={`View details for ${listing.plantName}`}
-      onClick={goToDetail}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          goToDetail();
-        }
-      }}
     >
       <div className="listing-card-hero">
         {listing.imageUrl ? (

@@ -1,12 +1,10 @@
 import { Container, Row, Col } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import conversation1 from "../../assets/about/conversation1.webp";
 import conversation2 from "../../assets/about/conversation2.webp";
 import "./AboutPage.css";
 
 export default function AboutPage() {
-  const navigate = useNavigate();
-
   return (
     <div className="about-page">
       {/* 1. Hero — asymmetric, left-aligned, with decorative SVG */}
@@ -148,31 +146,17 @@ export default function AboutPage() {
             <ul className="about-start-list">
               <li>
                 In the{" "}
-                <a
-                  href="/careposts"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigate("/careposts");
-                  }}
-                  className="about-start-link"
-                >
+                <Link to="/careposts" className="about-start-link">
                   Care Guides
-                </a>
+                </Link>
                 , you can read and write care tips on watering, lighting,
                 propagation, and more.
               </li>
               <li>
                 In the{" "}
-                <a
-                  href="/listings"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigate("/listings");
-                  }}
-                  className="about-start-link"
-                >
+                <Link to="/listings" className="about-start-link">
                   Marketplace
-                </a>
+                </Link>
                 , you can browse plant listings near you, post plants for sale
                 or free adoption, and find your next green friend.
               </li>

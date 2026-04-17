@@ -122,3 +122,18 @@ p {
   --bs-btn-active-border-color: #2c4f34;
   --bs-btn-active-color: #f1ece4;
 }
+
+/* ── Skip link (global, used by App-level <a>) ───────── */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 10px;
+  background: hsl(134, 28%, 24%);
+  color: white;
+  padding: 8px 12px;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: 10px;
+}

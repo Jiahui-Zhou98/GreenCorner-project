@@ -125,9 +125,6 @@ export default function CarePostsPage() {
 
   return (
     <div className="careposts-page">
-      <a href="#main-content" className="skip-link">
-        Skip to main content
-      </a>
       <Container className="careposts-body">
         <div className="careposts-layout">
           {/* Sidebar */}
@@ -238,7 +235,7 @@ export default function CarePostsPage() {
           </aside>
 
           {/* Main Content Area */}
-          <div className="careposts-main" id="main-content" tabIndex="-1">
+          <div className="careposts-main">
             <h1 className="visually-hidden">Care Posts</h1>
             <div className="careposts-toolbar">
               <span className="careposts-count" aria-live="polite">

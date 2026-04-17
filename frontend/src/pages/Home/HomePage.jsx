@@ -5,9 +5,6 @@ import "./HomePage.css";
 export default function HomePage() {
   return (
     <div className="home-page">
-      <a href="#main-content" className="skip-link">
-        Skip to content
-      </a>
       {/* Hero Section */}
       <header className="hero-section">
         <img

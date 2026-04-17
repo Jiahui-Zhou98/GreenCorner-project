@@ -20,8 +20,11 @@ export default function App() {
   return (
     <AuthProvider>
       <div className="app-wrapper">
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         <Navbar />
-        <main>
+        <main id="main-content" tabIndex={-1}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/careposts" element={<CarePostsPage />} />

@@ -4,9 +4,17 @@
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
+  text-decoration: none;
+  color: inherit;
   transition:
     transform 0.18s ease,
     box-shadow 0.18s ease;
+}
+
+.listing-card:hover,
+.listing-card:focus {
+  text-decoration: none;
+  color: inherit;
 }
 
 .listing-card:hover {

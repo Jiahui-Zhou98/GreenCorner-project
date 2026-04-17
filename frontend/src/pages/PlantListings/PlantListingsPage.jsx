@@ -156,11 +156,14 @@ export default function PlantListingsPage() {
           <button
             type="button"
             className="filters-toggle"
+            aria-expanded={filtersOpen}
+            aria-controls="listings-sidebar"
             onClick={() => setFiltersOpen((o) => !o)}
           >
             Filters{activeFilterCount > 0 ? ` (${activeFilterCount})` : ""}
             <span
               className={`filters-toggle-arrow ${filtersOpen ? "open" : ""}`}
+              aria-hidden="true"
             >
               &#9662;
             </span>
@@ -168,6 +171,7 @@ export default function PlantListingsPage() {
 
           {/* ── Filter Sidebar ── */}
           <aside
+            id="listings-sidebar"
             className={`listings-sidebar ${filtersOpen ? "sidebar-open" : ""}`}
           >
             <h2 className="sidebar-title">Filter</h2>
